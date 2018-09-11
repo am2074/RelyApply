@@ -14,6 +14,16 @@
 
 
 <h2> Overall </h2> 
+
+<% if @company.reviews.size == 0 %> 
+  There are currently no reviews
+<% else %>
+  <%= number_to_percentage((Float(@company.reviews.where(satisfaction: "Highly satisfied. My expectations were far surpassed.").size + @company.reviews.where(satisfaction: "Average Satisfaction").size) /@company.reviews.count * 100), precision: 0) %> Positive 
+<% end %>
+
+
+
+
 <hr>
 <h3> Satisfaction for Application Response Time</h3>
 <h3>Note: Either an interview follow-up or a rejection</h3>

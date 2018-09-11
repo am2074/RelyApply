@@ -7,6 +7,7 @@
     <tr>
       <th>Name</th>
       <th>Website</th>
+      <th>Overall</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,12 +17,24 @@
       <tr>
         <td><%= company.name %></td>
         <td><%= company.website %></td>
+        <td>
+          <% if company.reviews.size == 0 %> 
+              N/A
+          <% else %>
+              <%= number_to_percentage((Float(company.reviews.where(satisfaction: "Highly satisfied. My expectations were far surpassed.").size + company.reviews.where(satisfaction: "Average Satisfaction").size) /company.reviews.count * 100), precision: 0) %> Positive 
+          <% end %>
+        </td>
         <td><%= link_to 'Show', company %></td>
       </tr>
+      
     <% end %>
+      <tr>
+      
+      </tr>
   </tbody>
 </table>
 
 <br>
 
 <%= link_to 'New Company', new_company_path %>
+
