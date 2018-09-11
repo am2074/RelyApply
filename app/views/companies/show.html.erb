@@ -1,14 +1,59 @@
 <p id="notice"><%= notice %></p>
 
-<p>
+<h1>
   <strong>Name:</strong>
   <%= @company.name %>
-</p>
+</h1>
 
-<p>
+<h1>
   <strong>Website:</strong>
   <%= @company.website %>
-</p>
+</h1>
+  <%= link_to 'Edit', edit_company_path(@company) %> 
 
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %>
+
+
+<h2> Overall </h2> 
+<hr>
+<h3> Satisfaction for Application Response Time</h3>
+<h3>Note: Either an interview follow-up or a rejection</h3>
+<hr>
+<h3><%= @company.reviews.where(satisfaction: "Highly satisfied. My expectations were far surpassed.").size %> expectation's were surpassed with the time it took to hear back from the company</h3>
+<h3><%= @company.reviews.where(satisfaction: "Average Satisfaction").size %> were satisfed with the time it took for the company to hear back from the company </h3>
+<h3><%= @company.reviews.where(satisfaction: "Poor Satisfaction").size %> were not satisfed with the time it took for the company to hear back from the company</h3>
+<hr>
+
+
+<h3 class="comments_title">
+ <%= @company.reviews.count %> Application Response Time Review(s) 
+</h3>
+<h4 class="lead">*REMINDER: IT TAKES 2-3 WEEKS ON AVERAGE TO HEAR BACK FROM A JOB APPLICATION.*</h4>
+
+<div id="comments">
+ <%= render :partial => @company.reviews %>
+</div>
+
+<hr>
+
+<%= simple_form_for [@company, Review.new] do |f| %>
+ <h3>Submit a Review </h3>
+ <p>*REMINDER: IT TAKES 2-3 WEEKS ON AVERAGE TO HEAR BACK FROM A JOB APPLICATION.*</p>
+ <div class="field">
+    <%= f.label :position %>
+    <%= f.text_field :position %>
+  </div>
+
+  <div class="field">
+    <%= f.label :employment_type %>
+    <%= f.select(:employment_type, options_for_select([["Full-Time","Full-Time"],["Part-Time","Part-Time"],["Temporary","Temporary"],["Contractor","Contractor"]], params[:employment_type] ), class:"select") %>
+  </div>
+
+  <div class="field">
+    <%= f.label :satisfaction do %>
+      Level of Satisfaction With the Time It Took for a Company to Get Back After Sending an Application (For an Interview or a Rejection)  <span class="required"></span>
+    <% end %>
+    <%= f.select(:satisfaction, options_for_select([["Highly satisfied. My expectations were far surpassed.","Highly satisfied. My expectations were far surpassed."],["Average Satisfaction","Average Satisfaction"],["Poor Satisfaction","Poor Satisfaction"]], params[:satisfaction] ), class:"select") %> 
+  </div>
+ <br>
+ <%= f.submit "Add Review", class: "btn btn-primary" %>
+<% end %>

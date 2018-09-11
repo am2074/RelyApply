@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Position:</strong>
+  <%= @review.position %>
+</p>
+
+<p>
+  <strong>Employment type:</strong>
+  <%= @review.employment_type %>
+</p>
+
+<p>
+  <strong>Satisfaction:</strong>
+  <%= @review.satisfaction %>
+</p>
+
+<%= link_to 'Edit', edit_review_path(@review) %> |
+<%= link_to 'Back', reviews_path %>
