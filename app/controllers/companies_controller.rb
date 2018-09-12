@@ -1,12 +1,25 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update, :destroy,]
-   before_action :authenticate_user!, except: [:index, :show]
+   before_action :authenticate_user!, except: [:index, :show, :search]
   # GET /companies
   # GET /companies.json
   def index
-    @companies = Company.all
+      @companies = Company.all
   end
 
+  def search
+    if params[:search].blank?
+      redirect_to companies_url
+      #unhash if you want to see all comapnies
+      #companies = Company.all
+    else 
+      @companies = Company.search(params)
+    end
+  end
+
+  def list
+    @companies = Company.all
+  end
   # GET /companies/1
   # GET /companies/1.json
   def show
