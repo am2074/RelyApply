@@ -1,9 +1,11 @@
 <%= div_for(review) do %>
  <div class="comments_wrapper clearfix">
   <div class="pull-left">
-   <p class="lead">Position: <%= review.position %></p>
-   <p class="lead">Employment Type:<%= review.employment_type %></p>
-   <p class="lead">Response Time Satisfaction: <%= review.satisfaction %></p>
+   <p class="lead">Position:                     <%= review.position %></p>
+   <p class="lead">Employment Type:              <%= review.employment_type %></p>
+   <p class="lead">Application Type:              <%= review.application_type %></p>
+   <p class="lead">Estimated Wait Time:          <%= review.estimated_wait_time %></p>
+   <p class="lead">Response Time Satisfaction:   <%= review.satisfaction %></p>
    <p><small>Submitted <strong><%= time_ago_in_words(review.created_at) %> ago</strong></small></p>
   </div>
 <div class="btn-group pull-right">
