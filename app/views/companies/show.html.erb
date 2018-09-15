@@ -7,7 +7,7 @@
 
 <h1>
   <strong>Website:</strong>
-  <%= @company.website %>
+ <%= link_to @company.website, "http://#{@company.website}" %>
 </h1>
   <%= link_to 'Edit', edit_company_path(@company) %> 
 
@@ -25,33 +25,60 @@
 
 
 <hr>
-<h3><strong> Satisfaction for Application Response Time</strong></h3>
-<h3>Note: Either an interview follow-up or a rejection</h3>
-<hr>
-<h3><strong><%= @company.reviews.where(satisfaction: "Highly satisfied. My expectations were far surpassed.").size %></strong> expectation's were surpassed with the time it took to hear back from the company</h3>
-<h3><strong><%= @company.reviews.where(satisfaction: "Average Satisfaction").size %> </strong>were satisfed with the time it took for the company to hear back from the company </h3>
-<h3><strong><%= @company.reviews.where(satisfaction: "Poor Satisfaction").size %></strong> were not satisfed with the time it took for the company to hear back from the company</h3>
+<h3><strong> Satisfaction for Follow-up Application Response Time</strong></h3>
+<h3>Follow-ups include interview scheduling or rejections via phone or email.</h3>
+<h3><strong><%= @company.reviews.where(satisfaction: "Highly satisfied. My expectations were far surpassed.").size %></strong> Exceeded expectations</h3>
+<h3> <strong><%= @company.reviews.where(satisfaction: "Average Satisfaction").size %> </strong>Acceptable expectations </h3>
+<h3><strong><%= @company.reviews.where(satisfaction: "Poor Satisfaction").size %></strong> Dissatisfied expectations</h3>
 <hr>
 
+<hr>
+<h3><strong>Summary of Follow-up Response Times</strong></h3>
+<h3>Follow-ups include interview scheduling or rejections via phone or email.</h3>
+<h3><strong><%= @company.reviews.where(response_time: "1 week").size %> </strong> Reported a follow-up response of around 1 week</h3>
+<h3><strong><%= @company.reviews.where(response_time: "2 weeks").size %></strong> Reported a follow-up response of around 2 weeks</h3>
+<h3><strong><%= @company.reviews.where(response_time: "3 weeks").size %></strong> Reported a follow-up response of around 3 weeks</h3>
+<h3><strong><%= @company.reviews.where(response_time: "Greater than 4 weeks").size %></strong> Reported a follow-up response greater than 4 weeks</h3>
+<hr>
 <% if user_signed_in? %>
   <%= simple_form_for [@company, Review.new] do |f| %>
     <h3><strong>Submit a Review</strong> </h3>
       <p>*REMINDER: IT TAKES 2-3 WEEKS ON AVERAGE TO HEAR BACK FROM A JOB APPLICATION.*</p>
-    <div class="field">
-      <%= f.label :position %>
-      <%= f.text_field :position %>
-      </div>
+
 
     <div class="field">
-      <%= f.label :employment_type %>
-      <%= f.select(:employment_type, options_for_select([["Full-Time","Full-Time"],["Part-Time","Part-Time"],["Temporary","Temporary"],["Contractor","Contractor"]], params[:employment_type] ), class:"select") %>
-     </div>
+      <%= f.label :response_time do%>
+      Response Time for an Interview or Rejection:
+      <%end %>
+      <%= f.select(:response_time, options_for_select([["1 week","1 week"],["2 weeks","2 weeks"],["3 weeks","3 weeks"],["Greater than 4 weeks","Greater than 4 weeks"]], params[:response_time] ), class:"select") %> 
+    </div> 
 
     <div class="field">
       <%= f.label :satisfaction do %>
       Level of Satisfaction With the Time It Took for a Company to Get Back After Sending an Application (For an Interview or a Rejection)  <span class="required"></span>
       <% end %>
     <%= f.select(:satisfaction, options_for_select([["Highly satisfied. My expectations were far surpassed.","Highly satisfied. My expectations were far surpassed."],["Average Satisfaction","Average Satisfaction"],["Poor Satisfaction","Poor Satisfaction"]], params[:satisfaction] ), class:"select") %> 
+    </div>
+    <hr>
+    Optional
+    <div class="field"> 
+      <div class="field">
+      <%= f.label :position %>
+      <%= f.text_field :position %>
+      </div>
+
+     <div class="field"> 
+      <div class="field">
+      <%= f.label :application_type %>
+      <%= f.select(:application_type, options_for_select([["In Person","In Person"],["Online","Online"],["Referral","Referral"]], params[:application_type] ), class:"select") %> 
+      </div>
+
+    <div class="field">
+      <%= f.label :employment_type %>
+      <%= f.select(:employment_type, options_for_select([["Full-Time","Full-Time"],["Part-Time","Part-Time"],["Intern","Intern"],["Temporary","Temporary"],["Contractor","Contractor"]], params[:employment_type] ), class:"select") %>
+     </div>
+      <%= f.label :location %>
+      <%= f.text_field :location %>
     </div>
  <br>
     <%= f.submit "Add Review", class: "btn btn-primary" %>

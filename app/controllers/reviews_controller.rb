@@ -4,7 +4,7 @@ class ReviewsController < ApplicationController
   # GET /reviews
   # GET /reviews.json
   def index
-    @reviews = Review.all
+    @review = Review.where(:user_id => current_user.id)
   end
 
   # GET /reviews/1
@@ -42,9 +42,10 @@ class ReviewsController < ApplicationController
   # PATCH/PUT /reviews/1
   # PATCH/PUT /reviews/1.json
   def update
+    
     respond_to do |format|
       if @review.update(review_params)
-        format.html { redirect_to @company, notice: 'Review was successfully updated.' }
+        format.html {  redirect_to 'reviews#show', notice: 'Review was successfully updated.' }
         format.json { render :show, status: :ok, location: @review }
       else
         format.html { render :edit }
@@ -71,6 +72,6 @@ class ReviewsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def review_params
-      params.require(:review).permit(:review_id, :position, :employment_type, :satisfaction, :company_id, :user_id)
+      params.require(:review).permit(:review_id, :position, :employment_type, :satisfaction, :company_id, :user_id, :location, :response_time, :application_type, :company_id)
     end
 end

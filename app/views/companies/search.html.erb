@@ -7,6 +7,7 @@
     <tr>
       <th>Name</th>
       <th>Overall Response Rating</th>
+      <th>Average Follow-up Response Time </th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,7 +20,7 @@
           <% if company.reviews.size == 0 %> 
               N/A
           <% else %>
-              <%= number_to_percentage((Float(company.reviews.where(satisfaction: "Highly satisfied. My expectations were far surpassed.").size + company.reviews.where(satisfaction: "Average Satisfaction").size) /company.reviews.count * 100), precision: 0) %> Positive 
+              <%= number_to_percentage((Float(company.reviews.where(satisfaction: "Highly satisfied. My expectations were far surpassed.").size + company.reviews.where(satisfaction: "Average Satisfaction").size) /company.reviews.count * 100), precision: 0) %> Positive
           <% end %>
         </td>
         <td><%= link_to 'Show', company %></td>

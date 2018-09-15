@@ -3,13 +3,17 @@
   <div class="pull-left">
    <p class="lead">Position: <%= review.position %></p>
    <p class="lead">Employment Type:<%= review.employment_type %></p>
+   <p class="lead">Application Type: <%= review.application_type %></p>
+   <p class="lead">Response Time for an interview or rejection: <%= review.response_time %></p>
    <p class="lead">Response Time Satisfaction: <%= review.satisfaction %></p>
+   <p class="lead">Location: <%= review.location %></p>
    <p><small>Submitted <strong><%= time_ago_in_words(review.created_at) %> ago</strong></small></p>
   </div>
-<div class="btn-group pull-right">
+ <div class="btn-group pull-right">
    <% if review.user == current_user %>
-    <%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-default" %>
+      <%= link_to 'Edit', review %> 
+      <%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-default" %>
     <% end %>
-  </div>
  </div>
+</div>
 <% end %>
