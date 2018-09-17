@@ -56,6 +56,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise', '~> 4.4', '>= 4.4.1'
 gem 'simple_form'
 gem 'record_tag_helper', '~> 1.0'
-gem 'city-state'
 gem 'bootstrap-sass', '~> 3.3.7'
-
+gem 'acts_as_votable', '~> 0.11.1'

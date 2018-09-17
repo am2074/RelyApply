@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  resources :reviews
+  resources :reviews do
+   member do
+    put "like", to: "reviews#upvote"
+    put "dislike", to: "reviews#downvote"
+   end
+  end
+
   devise_for :users
   resources :users, only: [:show]
   resources :companies do 

@@ -64,6 +64,18 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def upvote
+    @review = Review.find(params[:id])
+    @review.upvote_by current_user
+    redirect_back fallback_location: root_path
+  end
+
+  def downvote
+    @review = Review.find(params[:id])
+    @review.downvote_by current_user
+    redirect_back fallback_location: root_path
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_review
