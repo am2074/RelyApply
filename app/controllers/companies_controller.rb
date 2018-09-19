@@ -24,6 +24,9 @@ class CompaniesController < ApplicationController
   # GET /companies/1.json
   def show
   end
+  
+  def show_reviews
+  end
 
   def ranking
     @company = Company.find(params[:id])

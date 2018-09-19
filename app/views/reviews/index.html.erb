@@ -1,11 +1,44 @@
-<p id="notice"><%= notice %></p>
+<head>
+...
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+...
+</head>
 
-<h1>My Reviews</h1>
+# Your Form
+<script type="text/javascript">
+  function initialize() {
 
+  var input = document.getElementById('address');
+  var autocomplete = new google.maps.places.Autocomplete(input);
+  }
 
-<%=current_user.reviews.inspect%>
+  google.maps.event.addDomListener(window, 'load', initialize);
+</script>
 
+<script type="text/javascript">
+  function initialize() {
 
-<br>
+  var input2 = document.getElementById('destaddress');
+  var autocomplete2 = new google.maps.places.Autocomplete(input2);
+  }
 
-<%= link_to 'New Review', new_review_path %>
+  google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+<%= form_tag("/welcome/index", method: "post") do %>
+  <h5>Location</h5>
+  <%= label_tag :address %><br> 
+  <%= text_field_tag "address" %>
+
+  <h5>Destination Location</h5>
+  <%= label_tag :address %><br> 
+  <%= text_field_tag "destaddress" %>
+
+<p>
+  <%= submit_tag("Submit") %>
+</p>
+<% end %>
+<div class="field">
+      <%= f.label :location %>
+      <%= f.text_field :location %>
+      </div>

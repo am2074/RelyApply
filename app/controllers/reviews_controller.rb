@@ -73,7 +73,7 @@ class ReviewsController < ApplicationController
   def downvote
     @review = Review.find(params[:id])
     @review.downvote_by current_user
-    redirect_back fallback_location: root_path
+    redirect_back fallback_location: root_path.hash
   end
 
   private
