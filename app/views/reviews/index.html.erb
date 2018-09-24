@@ -1,44 +1,43 @@
-<head>
-...
-  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
-...
-</head>
+<hr>
 
-# Your Form
-<script type="text/javascript">
-  function initialize() {
+<div>
+  <h2><strong>Total Reviews for <%= @company.name %>: <%= @company.reviews.size %></strong></h2>
+  <p><I>*REMINDER: IT TAKES 2-3 WEEKS ON AVERAGE TO HEAR BACK FROM A JOB APPLICATION.*</I></p>
+</div>
 
-  var input = document.getElementById('address');
-  var autocomplete = new google.maps.places.Autocomplete(input);
-  }
+<hr>
+<%= div_for(@company.reviews) do |review| %>
+ <div class="comments_wrapper clearfix">
+  <div class="pull-left">
+   <p class="lead">Position: <%= review.position %></p>
+   <p class="lead">Employment Type:<%= review.employment_type %></p>
+   <p class="lead">Application Type: <%= review.application_type %></p>
+   <p class="lead">Response Time for an interview or rejection: <%= review.response_time %></p>
+   <p class="lead">Response Time Satisfaction: <%= review.satisfaction %></p>
+   <p class="lead">Location: <%= review.location %></p>
+   <p><small>Submitted <strong><%= time_ago_in_words(review.created_at) %> ago</strong></small></p>
+  </div>
 
-  google.maps.event.addDomListener(window, 'load', initialize);
-</script>
+  <div>
+    <%= link_to like_review_path(review), method: :put, class: "btn btn-default btn-sm" do %>
+      <span class="glyphicon glyphicon-chevron-up"></span>
+      Accurate
+      <%= review.get_upvotes.size %>
+      <% end %>
+    
+    <%= link_to dislike_review_path(review), method: :put, class: "btn btn-default btn-sm" do %>
+      <span class="glyphicon glyphicon-chevron-down"></span>
+      Inaccurate
+      <%= review.get_downvotes.size %>
+      <% end %>
+  </div>
 
-<script type="text/javascript">
-  function initialize() {
-
-  var input2 = document.getElementById('destaddress');
-  var autocomplete2 = new google.maps.places.Autocomplete(input2);
-  }
-
-  google.maps.event.addDomListener(window, 'load', initialize);
-</script>
-
-<%= form_tag("/welcome/index", method: "post") do %>
-  <h5>Location</h5>
-  <%= label_tag :address %><br> 
-  <%= text_field_tag "address" %>
-
-  <h5>Destination Location</h5>
-  <%= label_tag :address %><br> 
-  <%= text_field_tag "destaddress" %>
-
-<p>
-  <%= submit_tag("Submit") %>
-</p>
+   <div class="btn-group pull-right">
+     <% if review.user == current_user %>
+       <%= link_to 'Edit', review, class: "btn btn-sm btn-default" %> 
+       <%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-default" %>
+     <% end %>
+  </div>
+ </div>
+ 
 <% end %>
-<div class="field">
-      <%= f.label :location %>
-      <%= f.text_field :location %>
-      </div>

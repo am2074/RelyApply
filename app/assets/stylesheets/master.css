@@ -1,0 +1,10 @@
+html {
+	background-image:url('/assets/images/stockwoman.jpeg');
+}
+.search-container {
+	width: 250px;
+	height: 200px;
+	background: rgba(0,0,0,0.4);
+	padding: 40px;
+	color: white;
+}

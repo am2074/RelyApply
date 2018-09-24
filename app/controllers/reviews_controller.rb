@@ -4,7 +4,8 @@ class ReviewsController < ApplicationController
   # GET /reviews
   # GET /reviews.json
   def index
-    @review = Review.where(:user_id => current_user.id)
+    @review = Review.where(company_id: params[:company_id]) 
+    @company= Company.friendly.find(params[:company_id])
   end
 
   # GET /reviews/1
@@ -15,6 +16,7 @@ class ReviewsController < ApplicationController
   # GET /reviews/new
   def new
     @review = Review.new
+    @company = Company.friendly.find(params[:company_id])
   end
 
   # GET /reviews/1/edit
@@ -24,7 +26,7 @@ class ReviewsController < ApplicationController
   # POST /reviews
   # POST /reviews.json
   def create
-    @company = Company.find(params[:company_id])
+    @company = Company.friendly.find(params[:company_id])
     @review = @company.reviews.new(review_params)
     @review.user = current_user
 

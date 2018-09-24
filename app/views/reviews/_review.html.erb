@@ -9,6 +9,7 @@
    <p class="lead">Location: <%= review.location %></p>
    <p><small>Submitted <strong><%= time_ago_in_words(review.created_at) %> ago</strong></small></p>
   </div>
+  
  <%= link_to like_review_path(review), method: :put, class: "btn btn-default btn-sm" do %>
       <span class="glyphicon glyphicon-chevron-up"></span>
       Accurate
@@ -19,6 +20,8 @@
       Inaccurate
       <%= review.get_downvotes.size %>
       <% end %>
+
+
  <div class="btn-group pull-right">
    <% if review.user == current_user %>
       <%= link_to 'Edit', review %> 

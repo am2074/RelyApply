@@ -77,6 +77,9 @@ GEM
     erubi (1.7.1)
     execjs (2.7.0)
     ffi (1.9.23)
+    filterrific (5.1.0)
+    friendly_id (5.2.4)
+      activerecord (>= 4.0.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     i18n (1.1.0)
@@ -214,6 +217,8 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
   devise (~> 4.4, >= 4.4.1)
+  filterrific
+  friendly_id (~> 5.2.0)
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)

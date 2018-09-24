@@ -1,5 +1,9 @@
 class Company < ApplicationRecord
+	extend FriendlyId
+  	friendly_id :name, use: :slugged
+	
 	has_many :reviews
+	
 	validates_uniqueness_of :name, :case_sensitive => false
 	def self.search(params)
 		companies = Company.where("name iLIKE ? or website iLIKE ?", "%#{params[:search]}%", "%#{params[:search]}%") if params[:search].present?

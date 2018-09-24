@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE >
 <html>
   <head>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
@@ -18,30 +18,44 @@
 </h1>
    <%= link_to 'Edit', edit_company_path(@company) %> 
 
-<%# Navbar type 1
- Navbar: Overall and Reviews  
+<%#= link_to "Make default", make_default_admin_state_path(state) 
 <nav class="navbar nav nav-tabs">
   <div class="container-fluid">
-    <ul class="nav navbar-nav">
-      <li class= "active"><a data-toggle="tab" href="#overall">Overall</a></li>
-      <li><a data-taggle="tab" href='#show_reviews'>Reviews</a></li>
+    <ul class="nav navbar-nav" role="tablist">
+      <li class= "active" role="presentation"><a data-toggle="tab" href="#overall">Overall</a></li>
+      <li role="presentation"><%= link_to 'Reviews', company_reviews_path(:company_id => @company.id) </li>
+      <li class= "active" role="presentation"><a data-toggle="tab" href="#submit_review">Submit A Review</a></li>
     </ul>
   </div>
 </nav>
 %>
 
-
   <%# Rating Section %>
-  <h2><strong>Rating:</strong></h2> 
-
-  <% if @company.reviews.size == 0 %> 
+  <h2><strong>Rating:</strong> <% if @company.reviews.size == 0 %> 
     There are currently no reviews
   <% else %>
-    <%= number_to_percentage((Float(@company.reviews.where(satisfaction: "Highly satisfied. My expectations were far surpassed.").size + @company.reviews.where(satisfaction: "Average Satisfaction").size) /@company.reviews.count * 100), precision: 0) %> Positive 
-  <% end %>
+    <%= number_to_percentage((Float(@company.reviews.where(satisfaction: "Highly satisfied. My expectations were far surpassed.").size + @company.reviews.where(satisfaction: "Average Satisfaction").size) /@company.reviews.count * 100), precision: 0) %> Positive from <%= @company.reviews.count %> review(s)
+  <% end %></h2> 
+
+  
   <hr>
   
   <%# Basic Statistics Section %>
+  <h3><strong>Summary of Follow-up Response Times</strong></h3>
+
+  <h3>Follow-ups include interview scheduling or rejections via phone or email.</h3>
+
+  <h3><strong><%= @company.reviews.where(response_time: "1 week").size %> </strong> Reported an estimated response time of around 1 week</h3>
+
+  <h3><strong><%= @company.reviews.where(response_time: "2 weeks").size %></strong> Reported an estimated response time of around 2 weeks</h3>
+
+  <h3><strong><%= @company.reviews.where(response_time: "3 weeks").size %></strong> Reported an estimated response time of around 3 weeks</h3>
+
+  <h3><strong><%= @company.reviews.where(response_time: "Greater than 4 weeks").size %></strong> Reported an estimated response time of greater than 4 weeks</h3>
+
+  <hr>
+
+   <%# Basic Statistics Section %>
   <h3><strong> Satisfaction for Follow-up Application Response Time</strong></h3>
  
   <h3>Follow-ups include interview scheduling or rejections via phone or email.</h3>
@@ -51,27 +65,14 @@
   <h3> <strong><%= @company.reviews.where(satisfaction: "Average Satisfaction").size %> </strong>Acceptable expectations </h3>
   
   <h3><strong><%= @company.reviews.where(satisfaction: "Poor Satisfaction").size %></strong> Dissatisfied expectations</h3>
+
   
-
-  <hr>
-
-   <%# Basic Statistics Section %>
-  <h3><strong>Summary of Follow-up Response Times</strong></h3>
-
-  <h3>Follow-ups include interview scheduling or rejections via phone or email.</h3>
-
-  <h3><strong><%= @company.reviews.where(response_time: "1 week").size %> </strong> Reported a follow-up response of around 1 week</h3>
-
-  <h3><strong><%= @company.reviews.where(response_time: "2 weeks").size %></strong> Reported a follow-up response of around 2 weeks</h3>
-
-  <h3><strong><%= @company.reviews.where(response_time: "3 weeks").size %></strong> Reported a follow-up response of around 3 weeks</h3>
-
-  <h3><strong><%= @company.reviews.where(response_time: "Greater than 4 weeks").size %></strong> Reported a follow-up response greater than 4 weeks</h3>
   <hr>
 
   <hr>
- 
+</div>
 <%# Overall Tab Content %> 
+
   <% if user_signed_in? %> 
     <script type="text/javascript">
   function initialize() {
@@ -142,18 +143,6 @@
  <% else %>
    <p> You need to <%= link_to "sign in", new_user_session_path %> or <%= link_to "sign up", new_user_registration_path %> to comment </p>
  <% end %>
-
-
- <h3 class="comments_title">
-   <strong><%= @company.reviews.count %></strong><strong> Application Response Time Review(s) <strong>
- </h3>
- <h4 class="lead">*REMINDER: IT TAKES 2-3 WEEKS ON AVERAGE TO HEAR BACK FROM A JOB APPLICATION.*</h4>
-  <div id="comments">
-   <%= render :partial => @company.reviews %>
-  </div>
-
-
-
 </div>
 </body>
 </html>
