@@ -31,13 +31,6 @@
       <%= review.get_downvotes.size %>
       <% end %>
   </div>
-
-   <div class="btn-group pull-right">
-     <% if review.user == current_user %>
-       <%= link_to 'Edit', review, class: "btn btn-sm btn-default" %> 
-       <%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-default" %>
-     <% end %>
-  </div>
  </div>
  
 <% end %>

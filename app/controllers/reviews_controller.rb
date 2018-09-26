@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, except: [:index, :show]
+  
   # GET /reviews
   # GET /reviews.json
   def index
@@ -47,7 +48,7 @@ class ReviewsController < ApplicationController
     
     respond_to do |format|
       if @review.update(review_params)
-        format.html {  redirect_to 'reviews#show', notice: 'Review was successfully updated.' }
+        format.html {  redirect_to @review.user, notice: 'Review was successfully updated.' }
         format.json { render :show, status: :ok, location: @review }
       else
         format.html { render :edit }

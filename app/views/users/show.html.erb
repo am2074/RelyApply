@@ -1,1 +1,31 @@
-<%= @user.email %>
+<h1><strong>My Profile</strong> </h1>
+<button tye="button" class="btn btn-outline-info"><%= link_to 'Account Settings', edit_user_registration_path %></button>
+
+<hr>
+
+<h2><strong><u>My Reviews</u></strong></h2>
+<div>
+<% @users.reviews.includes(:company).each do |review| %>
+<hr>
+<div class="comments_wrapper cleafix">
+   <div class="pull left">
+     <p class="lead"><strong>Company:</strong> <%= review.company.name %></p>
+     <p class="lead"><strong>Response Time for an interview or rejection:</strong> <%= review.response_time %></p>
+     <p class="lead"><strong>Response Time Satisfaction:</strong> <%= review.satisfaction %></p>
+     <p class="lead"><strong>Position:</strong> <%= review.position %></p>
+     <p class="lead"><strong>Employment Type:</strong><%= review.employment_type %></p>
+     <p class="lead"><strong>Application Type:</strong> <%= review.application_type %></p>
+     <p class="lead"><strong>Location:</strong> <%= review.location %></p>
+     <p><small>Submitted <strong><%= time_ago_in_words(review.created_at) %> ago</strong></small></p>
+   <div class="btn-group pull-right">
+     <% if review.user == current_user %>
+       <%= link_to 'Edit', review, class: "btn btn-sm btn-default" %> 
+       <%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-default" %>
+     <% end %>
+   </div>
+<% end %>
+<hr>
+<div>
+<hr>
+
+<%= link_to 'Account Settings', edit_user_registration_path, class: "btn btn-default btn-sm" %>

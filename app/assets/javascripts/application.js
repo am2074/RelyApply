@@ -16,7 +16,39 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+$(function() {
+  initPage();
+});
+$(window).bind('page:change', function() {
+  initPage();
+});
+function initPage() { 
+  function initialize() {
 
+  var input = document.getElementById('location');
+  var autocomplete = new google.maps.places.Autocomplete(input);
+  }
+
+}
+
+
+$(document).on 'turbolinks:load', ->
+  my_func()
+
+ document.addEventListener("turbolinks:load", function() {
+  my_func();
+})
+
+ $(document).on('turbolinks:load', function() {
+   console.log('(document).turbolinks:load')
+});
+
+$(document).on('page:load', function() {
+  $(document).trigger('ready');
+});
+
+$(document).ready(loadMap)
+$(document).on('page:load', loadMap)
 
 <script type="text/javascript">
   $('#myTab a').click(function(e) {

@@ -22,7 +22,7 @@
               <%= number_to_percentage((Float(company.reviews.where(satisfaction: "Highly satisfied. My expectations were far surpassed.").size + company.reviews.where(satisfaction: "Average Satisfaction").size) /company.reviews.count * 100), precision: 0) %> Positive
           <% end %>
         </td>
-        <td><%= link_to 'Show', company %></td>
+        <td><%= link_to 'Show', company, data: { turbolinks: false } %></td>
       </tr>
       
     <% end %>
@@ -34,5 +34,5 @@
 
 <br>
 
-<%= link_to 'New Company', new_company_path %>
+<%= link_to 'New Company', new_company_path%>
 

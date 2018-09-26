@@ -1,7 +1,11 @@
 <p id="notice"><%= notice %></p>
 
+<h3> <I><u>Review You Want to Edit</u></I></h3>
+
+<p><strong>Company:</strong> <%= @review.company.name %></p>
+
 <p>
-  <strong>Response Time for an interview or rejection::</strong>
+  <strong>Response Time for an interview or rejection:</strong>
   <%= @review.response_time %>
 </p>
 
@@ -9,8 +13,7 @@
   <strong>Response Time Satisfaction:</strong>
   <%= @review.satisfaction %>
 </p>
-<hr>
-<strong> Optional </strong>
+<p><I>**Optional**</I></p>
 
 <p>
   <strong>Position:</strong>
@@ -32,6 +35,6 @@
   <%= @review.location %>
 </p>
 
-<%= link_to 'Edit', edit_review_path(@review) %> |
-<%= link_to 'Back', reviews_path %>
+<%= link_to 'Edit', edit_review_path(@review), data: { turbolinks: false } %> 
+
 

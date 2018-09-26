@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   end 
   
   devise_for :users
+
   resources :users, only: [:show]
+
   resources :companies do 
   	resources :reviews
   	 collection do 
@@ -23,4 +25,6 @@ Rails.application.routes.draw do
   root to:'companies#index'
   get 'about', to: 'pages#about'
   get 'contact', to: 'pages#contact'
+  match 'users/:id' => 'users#show', via: :get
+
 end
