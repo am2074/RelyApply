@@ -1,4 +1,4 @@
-<h1><strong>My Profile</strong> </h1>
+<h1><strong>Hello <%= @users.email %>!</strong> </h1>
 <button tye="button" class="btn btn-outline-info"><%= link_to 'Account Settings', edit_user_registration_path %></button>
 
 <hr>
@@ -23,6 +23,18 @@
        <%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-default" %>
      <% end %>
    </div>
+   <div>
+    <div>
+      <span class="glyphicon glyphicon-chevron-up"></span>
+      Accurate
+      <%= review.get_upvotes.size %>
+   </div>
+    <div>
+      <span class="glyphicon glyphicon-chevron-down"></span>
+      Inaccurate
+      <%= review.get_downvotes.size %>
+    </div>
+ </div>
 <% end %>
 <hr>
 <div>

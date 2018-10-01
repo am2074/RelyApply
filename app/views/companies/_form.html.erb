@@ -11,17 +11,19 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class:"form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :website %>
-    <%= form.text_field :website %>
+    <p><I>**We ask that you copy and paste the company's website to avoid misspelling. Thank You.**</I></p>
+    <%= form.text_field :website, class: "form-control"%>
   </div>
-
+  <p><strong>PLEASE DOUBLE CHECK IF ALL THE INFORMATION IS CORRECT BEFORE SUBMITTING!</strong></p>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Submit", class: "btn btn-kg btn-primary" %>
+    <%= link_to 'Back', companies_path, class: "btn btn-kg btn-primary"  %>
   </div>
 <% end %>

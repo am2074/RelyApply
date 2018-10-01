@@ -25,7 +25,8 @@
 
    <h3><strong>Submit a Review</strong> </h3>
       <p>*REMINDER: IT TAKES 2-3 WEEKS ON AVERAGE TO HEAR BACK FROM A JOB APPLICATION.*</p>
-
+    <div><strong>Company:</strong><%= @review.company.name %>
+    </div>
     <div class="field">
       <%= f.label :response_time do%>
       Response Time for an Interview or Rejection:
@@ -38,7 +39,7 @@
     </div>
 
     <hr>
-    <p>Optional</p>
+    <p><I>**Optional**</I></p>
     
     <div class="field">
       <%= f.label :position %>

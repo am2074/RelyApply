@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Company Search Results</h1>
+<h1><u>Company Search Results</u></h1>
 
 <table>
   <thead>
@@ -31,8 +31,9 @@
       </tr>
   </tbody>
 </table>
-
+<hr>
 <br>
-
-<%= link_to 'New Company', new_company_path%>
-
+<div class="container">
+<p><strong>Can't Find the Company You're Looking For?</strong></p>
+<%= link_to 'Submit a New Company', new_company_path%>
+</div>

@@ -1,8 +1,9 @@
-<div>
-<%= form_tag(search_companies_path, method: :get) do %>
-  <%= label_tag(:q, "Search for a Company:") %>
-  <%= text_field_tag (:search) %>
-  <%= submit_tag("Search") %>
-<% end %>
-</div>
-
+<body id="homepage">
+<div class="homesearch">
+    <%= form_tag(search_companies_path, method: :get) do %>
+      <%= label_tag(:q, "Sent a Job Application? Get an Idea When You'll Hear Back", class: "homequote") %>
+      <%= text_field_tag :search,  "",  placeholder: 'Search The Company You Applied For...',class: 'search_bar_home'%>
+    <%= submit_tag "Search", class: "form_submit"%>
+    <% end %>
+  </div>
+</body>

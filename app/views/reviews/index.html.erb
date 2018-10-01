@@ -18,7 +18,6 @@
    <p><small>Submitted <strong><%= time_ago_in_words(review.created_at) %> ago</strong></small></p>
   </div>
 
-  <div>
     <%= link_to like_review_path(review), method: :put, class: "btn btn-default btn-sm" do %>
       <span class="glyphicon glyphicon-chevron-up"></span>
       Accurate
@@ -31,6 +30,5 @@
       <%= review.get_downvotes.size %>
       <% end %>
   </div>
- </div>
- 
+
 <% end %>
