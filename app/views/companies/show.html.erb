@@ -1,4 +1,4 @@
-
+<form onsubmit="return confirm('Please double check to see if the information is correct.');">
 <%# Area to show Company Name and Website %>
 <h1>
   <strong>Name:</strong>
@@ -107,7 +107,7 @@
           <%= f.label :satisfaction do %>
           Level of Satisfaction With the Time It Took for a Company to Get Back After Sending an Application (For an Interview or a Rejection)  <span class="required"></span>
           <% end %>
-          <%= f.select(:satisfaction, options_for_select([["Highly satisfied. My expectations were far surpassed.","Highly satisfied. My expectations were far surpassed."],["Average Satisfaction","Average Satisfaction"],["Poor Satisfaction","Poor Satisfaction"]], params[:satisfaction] ), class:"select") %> 
+          <%= f.select(:satisfaction, options_for_select([["Highly Satisfied. My expectations were far surpassed.","Highly Satisfied. My expectations were far surpassed."],["Average Satisfaction","Average Satisfaction"],["Poor Satisfaction","Poor Satisfaction"]], params[:satisfaction] ), class:"select") %> 
         </div>
 
         <hr>

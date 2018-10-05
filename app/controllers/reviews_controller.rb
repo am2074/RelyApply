@@ -5,9 +5,12 @@ class ReviewsController < ApplicationController
   # GET /reviews
   # GET /reviews.json
   def index
-    @review = Review.where(company_id: params[:company_id]) 
+    @reviews = Review.where(company_id: params[:company_id]) 
     @company= Company.friendly.find(params[:company_id])
+    @q = Review.ransack(params[:q])
+    @reviews = @q.result
   end
+
 
   # GET /reviews/1
   # GET /reviews/1.json
