@@ -77,9 +77,11 @@ GEM
     erubi (1.7.1)
     execjs (2.7.0)
     ffi (1.9.23)
-    filterrific (5.1.0)
+    figaro (1.1.1)
+      thor (~> 0.14)
     friendly_id (5.2.4)
       activerecord (>= 4.0.0)
+    geocoder (1.5.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     i18n (1.1.0)
@@ -146,6 +148,11 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (12.3.1)
+    ransack (2.0.1)
+      actionpack (>= 5.0)
+      activerecord (>= 5.0)
+      activesupport (>= 5.0)
+      i18n
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
@@ -217,14 +224,16 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
   devise (~> 4.4, >= 4.4.1)
-  filterrific
+  figaro
   friendly_id (~> 5.2.0)
+  geocoder
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
   rails (~> 5.2.0)
+  ransack
   record_tag_helper (~> 1.0)
   sass-rails (~> 5.0)
   simple_form

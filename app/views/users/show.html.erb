@@ -3,7 +3,7 @@
 
 <hr>
 
-<h2><strong><u>My Reviews</u></strong></h2>
+<ahref="#"><h2><strong><u>My Reviews</u>  <span class="badge"><%=@users.reviews.count%></span></strong></h2>
 <div>
 <% @users.reviews.includes(:company).each do |review| %>
 <hr>
@@ -15,7 +15,7 @@
      <p class="lead"><strong>Position:</strong> <%= review.position %></p>
      <p class="lead"><strong>Employment Type:</strong><%= review.employment_type %></p>
      <p class="lead"><strong>Application Type:</strong> <%= review.application_type %></p>
-     <p class="lead"><strong>Location:</strong> <%= review.location %></p>
+     <p class="lead"><strong>Location:</strong> <%= review.address %></p>
      <p><small>Submitted <strong><%= time_ago_in_words(review.created_at) %> ago</strong></small></p>
    <div class="btn-group pull-right">
      <% if review.user == current_user %>
