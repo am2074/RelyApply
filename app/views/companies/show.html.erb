@@ -1,4 +1,4 @@
-<form onsubmit="return confirm('Please double check to see if the information is correct.');">
+
 <%# Area to show Company Name and Website %>
 <h1>
   <strong>Name:</strong>
@@ -122,20 +122,42 @@
          <%= f.select(:employment_type, options_for_select([["Full-Time","Full-Time"],["Part-Time","Part-Time"],["Intern","Intern"],["Temporary","Temporary"],["Contractor","Contractor"]], params[:employment_type] ), class:"select") %>
         </div>
 
-       <div class="field">
-         <script type="text/javascript">
-              function initialize() {
-
-              var input = document.getElementById('location');
-              var autocomplete = new google.maps.places.Autocomplete(input);
-              }
-
-              google.maps.event.addDomListener(window, 'load', initialize);
-         </script>
         
-         <%= f.input :location, :input_html =>{:id => 'location'}, :placeholder => 'Start typing a place name...'%>
-       </div>
+        <div class="field">
+          <%= f.label 'Address' %>
+          <%= f.text_field :address, placeholder: "Type address", id: :autocomplete_address %>
+         </div>
 
+        <div class="field">
+          <%= f.label 'Street Number' %>
+          <%= f.text_field :street_number, id: :street_number %>
+        </div>
+
+        <div class="field">
+          <%= f.label 'City' %>
+          <%= f.text_field :locality, id: :locality %>
+        </div>
+
+        <div class="field">
+          <%= f.label 'Route' %>
+          <%= f.text_field :route, id: :route %>
+        </div>
+
+        <div class="field">
+          <%= f.label 'Region' %>
+          <%= f.text_field :administrative_area_level_1, id: :administrative_area_level_1 %>
+        </div>
+
+        <div class="field">
+          <%= f.label 'Country' %>
+          <%= f.text_field :country, id: :country %>
+        </div>
+
+        <div class="field">
+          <%= f.label 'Zip Code' %>
+          <%= f.number_field :postal_code, id: :postal_code %>
+        </div>
+       
 <br>
       <%= f.submit %>
     <% end %>

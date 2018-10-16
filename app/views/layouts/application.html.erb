@@ -1,51 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-      <script
-     src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
-   
-
-    <title>Hearback</title>
+    <title>Rely-Apply</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_BROWSER_KEY']}" %>
   </head>
  
  <body>
  <header class="navbar navbar-default" role="navigation" id="navbar">
-    <div class="navbar-inner">
-      <div class="container">
-        <div id="logo" class="navbar-brand"><%= link_to "Rely-Apply", root_path %></div>
-        <nav class="collapse navbar-collapse navbar-ex1-collapse" id="navbar_tabs" >
-          <% if user_signed_in? -%>
-            <ul class="nav navbar-nav navbar-right" >
-              <li><%= link_to 'Home', root_path %></li>
-              <li><%= link_to 'About', about_path %></li>
-              <li><%= link_to 'Submit a Company', new_company_path %></li>
-              <li><%= link_to 'Profile', current_user %></li>
-              <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
-            </ul>
-          <% else -%>
-            <ul class="nav navbar-nav pull-right">
-              <li><%= link_to 'Home', root_path %></li>
-              <li><%= link_to 'About', about_path %></li>
-              <li><%= link_to 'Submit a Company', new_user_session_path, onclick: "alert('You must sign up or sign in to submit a new company.')" %></li>
-              <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-              <li><%= link_to 'Log In', new_user_session_path %></li>
-            </ul>
-          <% end -%>
-        </nav>
-      </div>
-    </div>
+    <%= render "shared/nav_menu" %>
   </header>
-<div id="main_content" class="container">
+<div id="main_content" class="container" data-trigger="focus">
     <% flash.each do |name, msg| %>
       <%= content_tag(:div, msg, class: "alert alert-info") %>
+
     <% end %>
+  </a>
 <div id="content" class="col-md-9 center-block">
         <%= yield %>
+        <%= javascript_include_tag 'application' %>
       </div>
     </div>
   </div>

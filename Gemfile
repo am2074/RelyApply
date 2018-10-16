@@ -63,3 +63,5 @@ gem 'webpacker', '~> 3.0'
 gem 'jquery-rails'
 gem 'ransack'
 gem 'friendly_id', '~> 5.2.0'
+gem "geocoder"
+gem "figaro"

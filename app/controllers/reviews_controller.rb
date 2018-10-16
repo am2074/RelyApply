@@ -7,8 +7,13 @@ class ReviewsController < ApplicationController
   def index
     @reviews = Review.where(company_id: params[:company_id]) 
     @company= Company.friendly.find(params[:company_id])
-    @q = Review.ransack(params[:q])
-    @reviews = @q.result
+    if params[:search].present?
+      @q = @company.reviews.near(params[:search], 200, :order => 'distance' ).ransack(params[:q])
+      @reviews = @q.result(:distinct => true).includes(:company)
+    else 
+      @q = @company.reviews.ransack(params[:q])
+      @reviews = @q.result(:distinct => true).includes(:company)
+    end
   end
 
 
@@ -89,7 +94,7 @@ class ReviewsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def review_params
-      params.require(:review).permit(:review_id, :position, :employment_type, :satisfaction, :company_id, :user_id, :location, :response_time, :application_type, :company_id)
+     def review_params
+      params.require(:review).permit(:review_id, :position, :employment_type, :satisfaction, :company_id, :user_id,:response_time, :application_type, :street_number, :company_id, :address, :locality, :route, :administrative_area_level_1, :country, :postal_code)
     end
 end

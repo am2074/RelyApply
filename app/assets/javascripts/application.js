@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= rails-ujs
 //= require bootstrap-sprockets
 //= require activestorage
 //= require turbolinks
@@ -66,3 +67,9 @@ $("ul.nav-tabs > li > a").on("shown.bs.tab", function(e) {
 var hash = window.location.hash;
 $('#myTab a[href="' + hash + '"]').tab('show');
 </script>
+
+$(document).ready( function() {
+    $('.alert').delay(5000).fadeOut();
+  });
+
+  

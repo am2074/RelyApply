@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
 	before_action :store_user_location!, if: :storable_location?
 
+
 private
     # Its important that the location is NOT stored if:
     # - The request method is not GET (non idempotent)
