@@ -29,7 +29,7 @@
     </div>
     
     <div>
-      <%= f.label :satisfaction_eq, "Application Type" %>
+      <%= f.label :satisfaction_eq, "Satisfaction Level" %>
       <%= f.select :satisfaction_eq, options_for_select([
         ["Highly satisfied","Highly Satisfied."],
         ["Average Satisfaction","Average Satisfaction"],
@@ -57,41 +57,47 @@
       <%= f.label :Location, "Location" %>
       <%= text_field_tag :search, params[:search], :placeholder => 'Enter City, State or Zip Code'%>
     </div>
-    <%= f.submit %>
+      <%= f.submit :class => "btn btn-primary" %>  <a href="<%=company_reviews_path%>" class="btn btn-primary" color="black">Clear filters</a>
   <% end %>
-  <div>
+</div>
+  
+</div>
+ <div>
     <%= sort_link(@q, :created_at, default_order: :asc) do %>
       <strong>Sort by Date</strong>
     <% end %>
-  </div>
-</div>
-</div>
+  </div>  
 </hr>
 
 
 <div>
   <% @reviews.each do |review| %>
+  <div class="well" id=reviewIndex>
    <div class="comments_wrapper clearfix">
-    <div class="pull-left">
-     <p class="lead">Response Time for an interview or rejection: <%= review.response_time %></p>
-     <p class="lead">Response Time Satisfaction: <%= review.satisfaction %></p>
-     <p class="lead">Position: <%= review.position %></p>
-     <p class="lead">Employment Type:<%= review.employment_type %></p>
-     <p class="lead">Application Type: <%= review.application_type %></p>
-     <p class="lead">Location: <%= review.address.chomp(', USA') %></p>
-     <p><small>Submitted <strong><%= review.created_at.strftime("%B %d, %Y") %></strong></small></p>
-      <%= link_to like_review_path(review), method: :put, class: "btn btn-default btn-sm" do %>
-        <span class="glyphicon glyphicon-chevron-up"></span>
-        Accurate
-        <%= review.get_upvotes.size %>
-        <% end %>
-      
-      <%= link_to dislike_review_path(review), method: :put, class: "btn btn-default btn-sm" do %>
-        <span class="glyphicon glyphicon-chevron-down"></span>
-        Inaccurate
-        <%= review.get_downvotes.size %>
-        <% end %>
-    </div>
-  </div>   
-    <% end %>
+    
+     <div class="pull-left">
+       <p><strong>Response Time for an interview or rejection:</strong> <%= review.response_time %></p>
+       <p><strong>Response Time Satisfaction:</strong> <%= review.satisfaction %></p>
+       <p><strong>Position:</strong> <%= review.position %></p>
+       <p><strong>Employment Type:</strong><%= review.employment_type %></p>
+       <p><strong>Application Type:</strong> <%= review.application_type %></p>
+       <p><strong>Location:</strong> <%= review.address.chomp(', USA') %></p>
+       <p><small><I>Submitted</I> <strong><%= review.created_at.strftime("%B %d, %Y") %></strong></small></p>
+       <div colspan="1" align="center">
+        <%= link_to like_review_path(review), method: :put, class: "btn btn-default btn-sm" do %>
+          <span class="glyphicon glyphicon-chevron-up"></span>
+          Accurate
+          (<%= review.get_upvotes.size %>)
+          <% end %>
+        
+        <%= link_to dislike_review_path(review), method: :put, class: "btn btn-default btn-sm" do %>
+          <span class="glyphicon glyphicon-chevron-down"></span>
+          Inaccurate
+          (<%= review.get_downvotes.size %>)
+          <% end %>
+      </div>
+     </div>
+    </div> 
+   </div>   
+  <% end %>
 </div>

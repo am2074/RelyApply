@@ -7,25 +7,35 @@
     
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_BROWSER_KEY']}" %>
+    <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
+
+    
   </head>
  
  <body>
- <header class="navbar navbar-default" role="navigation" id="navbar">
-    <%= render "shared/nav_menu" %>
-  </header>
-<div id="main_content" class="container" data-trigger="focus">
-    <% flash.each do |name, msg| %>
-      <%= content_tag(:div, msg, class: "alert alert-info") %>
 
-    <% end %>
-  </a>
-<div id="content" class="col-md-9 center-block">
-        <%= yield %>
-        <%= javascript_include_tag 'application' %>
+   <header class="navbar navbar-default" role="navigation" id="navbar">
+      <%= render "shared/nav_menu" %>
+    </header>
+
+ 
+
+  <div class="container" data-trigger="focus">
+      <% flash.each do |name, msg| %>
+       <div id="flash">
+        <%= content_tag(:div, class: "alert alert-info") do %>
+        <%=msg%>
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <% end %>
+      <% end %>
       </div>
-    </div>
+      <div  id="main_content" class="container" data-trigger="focus">
+
+        <%= yield %>
+        <%= javascript_include_tag 'application'%>
+      </div>
   </div>
-</body>
+ </body>
 </html>
 
 

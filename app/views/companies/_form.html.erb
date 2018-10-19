@@ -10,20 +10,29 @@
       </ul>
     </div>
   <% end %>
+  <div class="form-group-lg"  id="formGroupFont">
+    <%= form.label :name do%>
+     Company Name
+    <%end %>
 
-  <div class="form-group">
-    <%= form.label :name %>
     <%= form.text_field :name, class:"form-control" %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :website %>
-    <p><I>**We ask that you copy and paste the company's website to avoid misspelling. Thank You.**</I></p>
+  <br />
+  <div class="form-group-lg" id="formGroupFont">
+    <%= form.label :website %><I>   **We ask that you copy and paste the company's website to avoid misspelling. Thank You.**</I>
+     
     <%= form.text_field :website, class: "form-control"%>
+    
   </div>
-  <p><strong>PLEASE DOUBLE CHECK IF ALL THE INFORMATION IS CORRECT BEFORE SUBMITTING!</strong></p>
+
+  <br />
+
+  <div class="alert alert-info">
+    <p><strong>PLEASE DOUBLE CHECK IF ALL THE INFORMATION IS CORRECT BEFORE SUBMITTING!</strong></p>
+  </div>
   <div class="actions">
-    <%= form.submit "Submit", class: "btn btn-kg btn-primary" %>
-    <%= link_to 'Back', companies_path, class: "btn btn-kg btn-primary"  %>
+    <%= form.submit "Submit", data: { confirm: "Is the information correct and in the right format?" }, class: "btn btn-lg btn-primary" %>
+    <%= link_to 'Back', companies_path, class: "btn btn-lg btn-primary"  %>
   </div>
 <% end %>

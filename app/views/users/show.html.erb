@@ -3,7 +3,7 @@
 
 <hr>
 
-<ahref="#"><h2><strong><u>My Reviews</u>  <span class="badge"><%=@users.reviews.count%></span></strong></h2>
+<ahref="#"><h2><strong>My Reviews <span class="badge" id="userReviewBadge"><%=@users.reviews.count%></span></strong></h2>
 <div>
 <% @users.reviews.includes(:company).each do |review| %>
 <hr>
@@ -27,17 +27,15 @@
     <div>
       <span class="glyphicon glyphicon-chevron-up"></span>
       Accurate
-      <%= review.get_upvotes.size %>
+      (<%= review.get_upvotes.size %>)
    </div>
     <div>
       <span class="glyphicon glyphicon-chevron-down"></span>
       Inaccurate
-      <%= review.get_downvotes.size %>
+      (<%= review.get_downvotes.size %>)
     </div>
  </div>
 <% end %>
 <hr>
 <div>
 <hr>
-
-<%= link_to 'Account Settings', edit_user_registration_path, class: "btn btn-default btn-sm" %>

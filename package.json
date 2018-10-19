@@ -2,7 +2,9 @@
   "name": "hearback",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "3.5"
+    "@rails/webpacker": "3.5",
+    "chart.js": "^2.7.3",
+    "chartkick": "^3.0.1"
   },
   "devDependencies": {
     "webpack-dev-server": "2.11.2"

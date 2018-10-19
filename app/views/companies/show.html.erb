@@ -1,16 +1,22 @@
-
 <%# Area to show Company Name and Website %>
-<h1>
-  <strong>Name:</strong>
-    <%= @company.name %>
-</h1>
+<div class="well">
+ <h1>
+    <strong><%= @company.name %></strong>
+ </h1>
+ <h2>
+   <strong>Rating:</strong> <% if @company.reviews.size == 0 %> 
+      There are currently no reviews
+    <% else %>
+      <%= number_to_percentage((Float(@company.reviews.where(satisfaction: "Highly satisfied. My expectations were far surpassed.").size + @company.reviews.where(satisfaction: "Average Satisfaction").size) /@company.reviews.count * 100), precision: 0) %> Positive 
+    <% end %>
+  </h2> 
+ <h3>
+   <strong>Website:</strong>
+     <%= link_to @company.website, "http://#{@company.website}" %>
+ </h3>
 
-<h1>
- <strong>Website:</strong>
-   <%= link_to @company.website, "http://#{@company.website}" %>
-</h1>
    <%= link_to 'Edit', edit_company_path(@company) %> 
-
+</div>
 <%#= link_to "Make default", make_default_admin_state_path(state) 
 <nav class="navbar nav nav-tabs">
   <div class="container-fluid">
@@ -22,13 +28,11 @@
   </div>
 </nav>
 %>
-<div>
-
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active"><a href="#overall" aria-controls="home" role="tab" data-toggle="tab">Overall</a></li>
     <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Submit a Review</a></li>
-    
+    <li role="presentation"><%= link_to 'Show Reviews', company_reviews_path(:company_id => @company.id)%></li>
   </ul>
 
 
@@ -45,23 +49,29 @@
 
   
   <hr>
-  
+
   <%# Basic Statistics Section %>
+  <div class="well">
+
   <h3><strong>Summary of Follow-up Response Times</strong></h3>
 
-  <h3>Follow-ups include interview scheduling or rejections via phone or email.</h3>
+  <I>**Follow-ups include interview scheduling or rejections via phone or email**</I>
 
-  <h3><strong><%= @company.reviews.where(response_time: "1 week").size %> </strong> Reported an estimated response time of around 1 week</h3>
 
-  <h3><strong><%= @company.reviews.where(response_time: "2 weeks").size %></strong> Reported an estimated response time of around 2 weeks</h3>
+  <h3><strong><%= @company.reviews.where(response_time: "1 week").size %> </strong> Reported around 1 week</h3>
 
-  <h3><strong><%= @company.reviews.where(response_time: "3 weeks").size %></strong> Reported an estimated response time of around 3 weeks</h3>
+  <h3><strong><%= @company.reviews.where(response_time: "2 weeks").size %></strong> Reported around 2 weeks</h3>
 
-  <h3><strong><%= @company.reviews.where(response_time: "Greater than 4 weeks").size %></strong> Reported an estimated response time of greater than 4 weeks</h3>
+  <h3><strong><%= @company.reviews.where(response_time: "3 weeks").size %></strong> Reported around 3 weeks</h3>
+
+  <h3><strong><%= @company.reviews.where(response_time: "Greater than 4 weeks").size %></strong> Reported around 4 weeks or greater</h3>
+  </div>
 
   <hr>
-
+ 
+  
    <%# Basic Statistics Section %>
+  <div class="well">
   <h3><strong> Satisfaction for Follow-up Application Response Time</strong></h3>
  
   <h3>Follow-ups include interview scheduling or rejections via phone or email.</h3>
@@ -71,19 +81,19 @@
   <h3> <strong><%= @company.reviews.where(satisfaction: "Average Satisfaction").size %> </strong>Acceptable expectations </h3>
   
   <h3><strong><%= @company.reviews.where(satisfaction: "Poor Satisfaction").size %></strong> Dissatisfied expectations</h3>
-
+  </div>
   
   <hr>
 
   <hr>
- <%= link_to 'See All Reviews', company_reviews_path(:company_id => @company.id), class: "btn btn-kg btn-primary"%>
-    </div>
+
+</div>
     <div role="tabpanel" class="tab-pane" id="profile">
       <%# Overall Tab Content %> 
 
   <% if user_signed_in? %> 
    
-
+  <div class="well">
     <%= simple_form_for [@company, Review.new] do |f| %>
       <h3><strong>Submit a Review</strong> </h3>
         <p>*REMINDER: IT TAKES 2-3 WEEKS ON AVERAGE TO HEAR BACK FROM A JOB APPLICATION.*</p>
@@ -157,9 +167,11 @@
           <%= f.label 'Zip Code' %>
           <%= f.number_field :postal_code, id: :postal_code %>
         </div>
+         <%= f.submit %>
+  </div>      
        
 <br>
-      <%= f.submit %>
+     
     <% end %>
   <% else %>
     <p> You need to <%= link_to "sign in", new_user_session_path %> or <%= link_to "sign up", new_user_registration_path %> to submit a review </p>

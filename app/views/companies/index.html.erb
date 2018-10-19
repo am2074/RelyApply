@@ -1,9 +1,16 @@
-<body id="homepage">
-<div class="homesearch">
+<body  id="homepage" >
+  <div class="vcenter">
     <%= form_tag(search_companies_path, method: :get) do %>
-      <%= label_tag(:q, "Sent a Job Application? Get an Idea When You'll Hear Back", class: "homequote") %>
-      <%= text_field_tag :search,  "",  placeholder: 'Search The Company You Applied For...',class: 'search_bar_home'%>
-    <%= submit_tag "Search", class: "form_submit"%>
-    <% end %>
+     <div class="input-group">
+       <%= text_field_tag :search,  "",  placeholder: "Want to Know When You'll Probably Hear Back? Search For That Company Now...", class: 'form-control input-lg', id: 'input-field-home'%>
+      <span class="input-group-btn">
+    	<%= button_tag( :class => "btn btn-lg btn-default",  id: 'search-btn') do %>
+        	<span class='glyphicon glyphicon-search'></span>
+        <%end %>
+   	  </span>
+  	</div>
+  	<% end %>
   </div>
 </body>
+
+

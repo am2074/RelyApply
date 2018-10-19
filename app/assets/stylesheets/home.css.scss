@@ -5,3 +5,57 @@ html #background {
   -o-background-size: cover;
   background-size: cover;
 }
+
+#homepage { 
+  height: 850px;
+  background: url(WomanApply.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.navsbarsearch {
+  width: 850px;
+}
+
+// HOME PAGE 
+//disabled homesearch for now was class container fluid in a div
+
+.vcenter {
+    margin-top:350px;
+    overflow: hidden;
+    dislay: inline-block;
+
+}
+
+
+#searchBarHome {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.form_submit {
+  background-color: orange;
+  color: white;
+  font-weight: bold;
+}
+
+#search-btn {
+  background: orange;
+  color: white;
+ 
+}
+
+#input-field-home {
+font-size: 20px;
+} 
+
+
+
+#input-field-home::placeholder {
+  color: #383838;
+  font-weight: bold;
+  font-size: 20px;
+}
