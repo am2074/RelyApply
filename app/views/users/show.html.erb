@@ -1,40 +1,59 @@
 <h1><strong>Hello <%= @users.email %>!</strong> </h1>
-<button tye="button" class="btn btn-outline-info"><%= link_to 'Account Settings', edit_user_registration_path %></button>
+
+<%= link_to 'Account Settings', edit_user_registration_path, :class => "btn btn-primary"%>
+
 
 <hr>
-
+<div class="well" id="profile-well">
 <ahref="#"><h2><strong>My Reviews <span class="badge" id="userReviewBadge"><%=@users.reviews.count%></span></strong></h2>
+</div>
 <div>
 <% @users.reviews.includes(:company).each do |review| %>
 <hr>
 <div class="comments_wrapper cleafix">
-   <div class="pull left">
-     <p class="lead"><strong>Company:</strong> <%= review.company.name %></p>
-     <p class="lead"><strong>Response Time for an interview or rejection:</strong> <%= review.response_time %></p>
-     <p class="lead"><strong>Response Time Satisfaction:</strong> <%= review.satisfaction %></p>
-     <p class="lead"><strong>Position:</strong> <%= review.position %></p>
-     <p class="lead"><strong>Employment Type:</strong><%= review.employment_type %></p>
-     <p class="lead"><strong>Application Type:</strong> <%= review.application_type %></p>
-     <p class="lead"><strong>Location:</strong> <%= review.address %></p>
-     <p><small>Submitted <strong><%= time_ago_in_words(review.created_at) %> ago</strong></small></p>
-   <div class="btn-group pull-right">
-     <% if review.user == current_user %>
-       <%= link_to 'Edit', review, class: "btn btn-sm btn-default" %> 
-       <%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-default" %>
-     <% end %>
-   </div>
-   <div>
-    <div>
-      <span class="glyphicon glyphicon-chevron-up"></span>
-      Accurate
-      (<%= review.get_upvotes.size %>)
-   </div>
-    <div>
-      <span class="glyphicon glyphicon-chevron-down"></span>
-      Inaccurate
-      (<%= review.get_downvotes.size %>)
+  <div class="well" id=reviewIndex>
+   <div class="comments_wrapper clearfix">
+   
+
+    <div class="pull-right">
+        <p><I>Review Submitted: <%= review.created_at.strftime("%B %d, %Y") %></I></p>
+      </div>
+
+     <div class="pull-left" id="indexReviewMainInfo">
+       <p> <strong> Company:</strong> <%= review.company.name %></p>
+       <p id="indexReviewMainInfo"><strong>Response Time for an Interview or Rejection:</strong> <br /><%= review.response_time %></p>
+       <p id="indexReviewMainInfo"><strong>Response Time Satisfaction:</strong> <br /><%= review.satisfaction %></p>
+     </div>
+     <div class="pull-right">
+         <p><strong><u>Application Details</u></strong></p>
+         <p><strong>Position:</strong> <%= review.position %></p>
+         <p><strong>Employment Type:</strong><%= review.employment_type %></p>
+         <p><strong>Application Type:</strong> <%= review.application_type %></p>
+         <p><strong>Location:</strong> <%= review.address.chomp(', USA') %></p>
+       </div>
+    
     </div>
+      <div colspan="1" align="left">
+        <span class="glyphicon glyphicon-thumbs-up" id="chevronUp"></span>
+        Accurate
+        (<%= review.get_upvotes.size %>)
+      </div>
+      
+      <div>
+        <span class="glyphicon glyphicon-thumbs-down" id="chevronDown"></span>
+         Inaccurate
+        (<%= review.get_downvotes.size %>)
+      
+      </div>
+      <div colspan="1" align="right">
+        <% if review.user == current_user %>
+       <%= link_to 'Edit', edit_review_path(review), class: "btn btn-sm btn-default"%>
+       <%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-default" %>
+       <% end %>
+     </div>
  </div>
+
+</div>
 <% end %>
 <hr>
 <div>

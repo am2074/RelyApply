@@ -1,49 +1,65 @@
-<hr>
 
-<div>
-  <h2><strong>Total Reviews for <%= @company.name %>: <%= @company.reviews.size %></strong></h2>
-  <p><I>*REMINDER: IT TAKES 2-3 WEEKS ON AVERAGE TO HEAR BACK FROM A JOB APPLICATION.*</I></p>
+<%= link_to "< Back to Company Profile", company_path(:id => @company.id)%>
+<br />
+<div class="well" id="wellProfileForReviewIndex">
+    <div id= "headerProfileForReviewIndex">  
+      <h1><strong>  <%= link_to @company.name, company_path(:id => @company.id),{:style=>'color:#FFFFFF;'} %></strong></h1>
+    </div>
 </div>
-<hr>
-<div class="panel panel-default">
-<div class="panel-body">
+<p>Want to add a review? Go back to <%= link_to @company.name, company_path(:id => @company.id)%>'s profile and click "Add a Review"</p>
+
+
+<div class="text-left">
+
+<div class="alert alert-info" role="alert">
+
+<u><strong>Reminder:</strong></u>
+<ul>
+   <li>
+    <p><I><strong>Response Times are the estimated time it takes to hear back for scheduling an interview or rejection</strong></I></p>
+  </li>
+  <li>
+     <p><I><strong>It takes 2-3 weeks on average to hear back from a job application. Even then, it can vary based on the industry, time of the year, etc.</strong></I></p>
+  </li>
+
+  <li>
+  <p><I><strong>If you don't hear back within a reasonable time frame relative to the other reviews, it is highly suggested you do a follow-up or assume you didn't qualify for the job.</strong></I></p>
+  </li>
+</ul>
+</div>
+
+</div>
+<hr id="reviewIndexHr">
+<div class="comments_wrapper clearfix" id="reviewFilter">
   <%= search_form_for @q, url: company_reviews_path(params[:company_id]) do |f| %> 
     <h4><strong>Filter & Search</strong></h4>
-     <div>
-      <%= f.label :response_time_eq, "Response Time" %>
+     <div style="white-space: nowrap;">
+      <%= f.label :response_time_eq, "Response Time: " %>
       <%= f.select :response_time_eq, options_for_select([
         ["1 week","1 week"],
         ["2 weeks","2 weeks"],
         ["3 weeks","3 weeks"],
         ["Greater than 4 weeks","Greater than 4 weeks"]
         ] , @q.response_time_eq), prompt: '--Select--' %>
-    </div>
 
-     <div>
-      <%= f.label :application_type_eq, "Application Type" %>
+      <%= f.label :application_type_eq, "Application Type: " %>
       <%= f.select :application_type_eq, options_for_select([
         ["In Person","In Person"],
         ["Online","Online"],
         ["Referral","Referral"]
         ] , @q.application_type_eq),prompt: '--Select--'   %>
-    </div>
     
+      <%= f.label :position, "Position:" %>
+      <%= f.search_field :position_cont, :placeholder => 'Search Position'%>
     <div>
-      <%= f.label :satisfaction_eq, "Satisfaction Level" %>
+      <%= f.label :satisfaction_eq, "Satisfaction Level: " %>
       <%= f.select :satisfaction_eq, options_for_select([
         ["Highly satisfied","Highly Satisfied."],
         ["Average Satisfaction","Average Satisfaction"],
         ["Poor Satisfaction","Poor Satisfaction"]
         ] , @q.satisfaction_eq), prompt: '--Select--'   %>
-    </div>
-
-    <div>
-      <%= f.label :position%>
-      <%= f.search_field :position_cont, :placeholder => 'Search Position'%>
-    </div>
-
-    <div>
-      <%= f.label :employment_type_eq, "Employment Type" %>
+      
+          <%= f.label :employment_type_eq, "Employment Type: " %>
       <%= f.select :employment_type_eq, options_for_select([
         ["Full-Time","Full-Time"],
         ["Part-Time","Part-Time"],
@@ -51,53 +67,78 @@
         ["Temporary","Temporary"],
         ["Contractor","Contractor"]
         ] , @q.employment_type_eq), prompt: '--Select--'  %>
+      <%= f.label :Location, "Location: " %>
+      <%= text_field_tag :search, params[:search], :placeholder => '[City, State] or Zip Code'%>
     </div>
 
     <div>
-      <%= f.label :Location, "Location" %>
-      <%= text_field_tag :search, params[:search], :placeholder => 'Enter City, State or Zip Code'%>
+        
     </div>
+    </div>
+    <div>
+    
+
+      
+
+    
+    </div>
+    <div class="text-center">
       <%= f.submit :class => "btn btn-primary" %>  <a href="<%=company_reviews_path%>" class="btn btn-primary" color="black">Clear filters</a>
+    </div>
   <% end %>
 </div>
-  
-</div>
- <div>
+
+<hr id="reviewIndexHr">
+<h2><strong>Total Reviews: <%= @company.reviews.size %></strong></h2>
+ <div class="text-right">
     <%= sort_link(@q, :created_at, default_order: :asc) do %>
       <strong>Sort by Date</strong>
     <% end %>
   </div>  
-</hr>
-
 
 <div>
   <% @reviews.each do |review| %>
-  <div class="well" id=reviewIndex>
-   <div class="comments_wrapper clearfix">
+  <div class="panel panel-default" id="panelCompanyShow">
+     <div class="comments_wrapper clearfix">
+      <div class="panel-heading" id="panelCompanyShowHeader">
+       <h3 id="indexReviewMainInfo" align="center">
+      Estimated Response Time: <%= review.response_time %></h3>
+       
+     </div>
+     <div class="pull-right" id="review-Submit-Time-Stamp">
+     <p><I>Review Submitted: <%= review.created_at.strftime("%B %d, %Y") %></I></p>
+     </div>
     
-     <div class="pull-left">
-       <p><strong>Response Time for an interview or rejection:</strong> <%= review.response_time %></p>
-       <p><strong>Response Time Satisfaction:</strong> <%= review.satisfaction %></p>
+      <div class="panel-body">
+      <div class="pull-left">
+       <h4><strong><u>Application Details</u></strong></h4>
        <p><strong>Position:</strong> <%= review.position %></p>
        <p><strong>Employment Type:</strong><%= review.employment_type %></p>
        <p><strong>Application Type:</strong> <%= review.application_type %></p>
-       <p><strong>Location:</strong> <%= review.address.chomp(', USA') %></p>
-       <p><small><I>Submitted</I> <strong><%= review.created_at.strftime("%B %d, %Y") %></strong></small></p>
-       <div colspan="1" align="center">
+       
+     </div>
+      <div class="pull-right">
+        <br />
+        <p><strong>Location:</strong> <%= review.address.chomp(', USA') %></p>
+        <p><strong>Response Time Satisfaction:</strong> <%= review.satisfaction %></p>
+      </div>
+     
+    </div>
+      <div colspan="1" align="center">
         <%= link_to like_review_path(review), method: :put, class: "btn btn-default btn-sm" do %>
-          <span class="glyphicon glyphicon-chevron-up"></span>
+          <span class="glyphicon glyphicon-thumbs-up" id="chevronUp"></span>
           Accurate
           (<%= review.get_upvotes.size %>)
           <% end %>
         
         <%= link_to dislike_review_path(review), method: :put, class: "btn btn-default btn-sm" do %>
-          <span class="glyphicon glyphicon-chevron-down"></span>
+          <span class="glyphicon glyphicon-thumbs-down" id="chevronDown"></span>
           Inaccurate
           (<%= review.get_downvotes.size %>)
           <% end %>
       </div>
-     </div>
-    </div> 
    </div>   
+   </div>
   <% end %>
+
 </div>

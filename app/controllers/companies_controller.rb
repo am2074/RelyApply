@@ -9,9 +9,9 @@ class CompaniesController < ApplicationController
 
   def search
     if params[:search].blank?
-      redirect_to companies_url
+      #redirect_to companies_url
       #unhash if you want to see all comapnies
-      #companies = Company.all
+      @companies = Company.all
     else 
       @companies = Company.search(params)
     end
@@ -23,6 +23,7 @@ class CompaniesController < ApplicationController
   # GET /companies/1
   # GET /companies/1.json
   def show
+    
   end
 
   def ranking

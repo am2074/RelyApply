@@ -20,6 +20,10 @@
 
 
 // NAVBAR
+#flash-Messages {
+  position: fixed;
+  width: 1150px;
+}
 
 #logo {
  font-size: 32px;
@@ -54,8 +58,15 @@ nav .navbar-nav li a:active{
 
 // NAVBAR SEARCHBAR 
 
+#navbarSearchBar {
+   align-items: center;
+   justify-content: center;
+}
 #searchbarcontainer {
-  height: 50px
+  height: 50px;
+  left:500px;
+   align-items: center;
+   justify-content: center;
 }
 
 #searchicon {
@@ -77,7 +88,23 @@ nav .navbar-nav li a:active{
   padding: 1.5px;
 }
 
+form-control-inline {
+    min-width: 0;
+    width: auto;
+    display: inline;
+}
 
+
+#input-field-navbar {
+  text-align: center;
+  font-size: 20px;
+}
+
+#input-field-navbar::placeholder {
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+}
 
 // MAIN CONTENT
 #main_content {

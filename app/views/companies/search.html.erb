@@ -4,13 +4,12 @@
 <div>
     <p><I>Can't Find the Company You're Looking For?</I> <%= link_to 'Submit a Company', new_company_path%></p>
 </div>
-
+<br />
 <table class="table table-hover" id= "searchtable" >
   <thead class="thead-light" id="tableHeader">
     <tr>
       <th>Company</th>
-      <th colspan="5"></th>
-      <th >Response Rating</th>
+      <th>Responsiveness Rating</th>
     </tr>
   </thead>
 
@@ -18,12 +17,11 @@
     <% @companies.each do |company| %>
       <tr>
         <td style="border-color:grey"><strong><%= link_to company.name, company, data: { turbolinks: false }%></strong></td>
-        <td colspan="5" style="border-color:grey"></td>
-        <td  align="center" style="border-color:grey" id=tablerows>
+        <td   style="border-color:grey" id=tablerows>
           <% if company.reviews.size == 0 %> 
               N/A
           <% else %>
-              <%= number_to_percentage((Float(company.reviews.where(satisfaction: "Highly satisfied. My expectations were far surpassed.").size + company.reviews.where(satisfaction: "Average Satisfaction").size) /company.reviews.count * 100), precision: 0) %> Positive
+              <%= number_to_percentage((Float(company.reviews.where(satisfaction: "Highly satisfied. My expectations were far surpassed.").size + company.reviews.where(satisfaction: "Average Satisfaction").size) /company.reviews.count * 100), precision: 0) %> <span class="glyphicon glyphicon-thumbs-up"></span>
           <% end %>
         </td>
       </tr>

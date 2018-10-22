@@ -1,186 +1,219 @@
-<%# Area to show Company Name and Website %>
-<div class="well">
- <h1>
-    <strong><%= @company.name %></strong>
- </h1>
- <h2>
-   <strong>Rating:</strong> <% if @company.reviews.size == 0 %> 
-      There are currently no reviews
-    <% else %>
-      <%= number_to_percentage((Float(@company.reviews.where(satisfaction: "Highly satisfied. My expectations were far surpassed.").size + @company.reviews.where(satisfaction: "Average Satisfaction").size) /@company.reviews.count * 100), precision: 0) %> Positive 
-    <% end %>
-  </h2> 
- <h3>
-   <strong>Website:</strong>
-     <%= link_to @company.website, "http://#{@company.website}" %>
- </h3>
-
-   <%= link_to 'Edit', edit_company_path(@company) %> 
-</div>
-<%#= link_to "Make default", make_default_admin_state_path(state) 
-<nav class="navbar nav nav-tabs">
-  <div class="container-fluid">
-    <ul class="nav navbar-nav" role="tablist">
-      <li class= "active" role="presentation"><a data-toggle="tab" href="#overall">Overall</a></li>
-      <li role="presentation"><%= link_to 'Reviews', company_reviews_path(:company_id => @company.id) </li>
-      <li class= "active" role="presentation"><a data-toggle="tab" href="#submit_review">Submit A Review</a></li>
-    </ul>
+<%#Company Profile Show Header %>
+<div class="panel panel-default" id="panelCompanyShow">
+  <div class="panel-heading" id="panelCompanyShowHeader">
+    <h1><strong><%= @company.name %></strong></h1>
   </div>
-</nav>
-%>
-  <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#overall" aria-controls="home" role="tab" data-toggle="tab">Overall</a></li>
-    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Submit a Review</a></li>
-    <li role="presentation"><%= link_to 'Show Reviews', company_reviews_path(:company_id => @company.id)%></li>
-  </ul>
-
-
-
-  <!-- Tab panes -->
-  <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="overall">
-        <%# Rating Section %>
-  <h2><strong>Rating:</strong> <% if @company.reviews.size == 0 %> 
-    There are currently no reviews
-  <% else %>
-    <%= number_to_percentage((Float(@company.reviews.where(satisfaction: "Highly satisfied. My expectations were far surpassed.").size + @company.reviews.where(satisfaction: "Average Satisfaction").size) /@company.reviews.count * 100), precision: 0) %> Positive from <%= @company.reviews.count %> review(s)
-  <% end %></h2> 
-
-  
-  <hr>
-
-  <%# Basic Statistics Section %>
-  <div class="well">
-
-  <h3><strong>Summary of Follow-up Response Times</strong></h3>
-
-  <I>**Follow-ups include interview scheduling or rejections via phone or email**</I>
-
-
-  <h3><strong><%= @company.reviews.where(response_time: "1 week").size %> </strong> Reported around 1 week</h3>
-
-  <h3><strong><%= @company.reviews.where(response_time: "2 weeks").size %></strong> Reported around 2 weeks</h3>
-
-  <h3><strong><%= @company.reviews.where(response_time: "3 weeks").size %></strong> Reported around 3 weeks</h3>
-
-  <h3><strong><%= @company.reviews.where(response_time: "Greater than 4 weeks").size %></strong> Reported around 4 weeks or greater</h3>
-  </div>
-
-  <hr>
- 
-  
-   <%# Basic Statistics Section %>
-  <div class="well">
-  <h3><strong> Satisfaction for Follow-up Application Response Time</strong></h3>
- 
-  <h3>Follow-ups include interview scheduling or rejections via phone or email.</h3>
-  
-  <h3><strong><%= @company.reviews.where(satisfaction: "Highly satisfied. My expectations were far surpassed.").size %></strong> Exceeded expectations</h3>
-  
-  <h3> <strong><%= @company.reviews.where(satisfaction: "Average Satisfaction").size %> </strong>Acceptable expectations </h3>
-  
-  <h3><strong><%= @company.reviews.where(satisfaction: "Poor Satisfaction").size %></strong> Dissatisfied expectations</h3>
-  </div>
-  
-  <hr>
-
-  <hr>
-
-</div>
-    <div role="tabpanel" class="tab-pane" id="profile">
-      <%# Overall Tab Content %> 
-
-  <% if user_signed_in? %> 
-   
-  <div class="well">
-    <%= simple_form_for [@company, Review.new] do |f| %>
-      <h3><strong>Submit a Review</strong> </h3>
-        <p>*REMINDER: IT TAKES 2-3 WEEKS ON AVERAGE TO HEAR BACK FROM A JOB APPLICATION.*</p>
-
-        <div class="field">
-          <%= f.label :response_time do%>
-          Response Time for an Interview or Rejection:
-          <%end %>
-          <%= f.select(:response_time, options_for_select([["1 week","1 week"],["2 weeks","2 weeks"],["3 weeks","3 weeks"],["Greater than 4 weeks","Greater than 4 weeks"]], params[:response_time] ), class:"select") %> 
-        </div> 
-
-        <div class="field">
-          <%= f.label :application_type do %>
-          Estimated Wait Time<span class="required"></span>
+  <div class="panel-body">
+      <div class="pull-left">
+       <h3>
+         <strong>Website:</strong>
+           <%= link_to @company.website, "http://#{@company.website}" %>
+       </h3>
+      </div>
+      <div class="text-center">
+        <h3><strong>Responsiveness Rating:</strong> 
+          <% if @company.reviews.size == 0 %> 
+            There are currently no reviews
+          <% else %>
+            <%= number_to_percentage((Float(@company.reviews.where(satisfaction: "Highly satisfied. My expectations were far surpassed.").size + @company.reviews.where(satisfaction: "Average Satisfaction").size) /@company.reviews.count * 100), precision: 0) %> <span class="glyphicon glyphicon-thumbs-up"></span></p> 
           <% end %>
-          <%= f.select(:application_type, options_for_select([["In Person","In Person"],["Online","Online"],["Referral","Referral"]], params[:application_type] ), class:"select")  %>
-        </div>
+        </h3> 
+      </div>
+  </div>
+</div>
 
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tablist">
+  <li role="presentation" class="active"><a href="#overall" aria-controls="home" role="tab" data-toggle="tab">Overall</a></li>
+  <li role="presentation"><a href="#last60" aria-controls="profile" role="tab" data-toggle="tab">Last 2 Months</a></li>
+  <li role="presentation"><a href="#review-form" aria-controls="review-form" role="tab" data-toggle="tab">Add a Review</a></li>
+  <li role="presentation"><%= link_to 'Show Reviews', company_reviews_path(:company_id => @company.id)%></li>
+</ul>
 
-        <div class="field">
-          <%= f.label :satisfaction do %>
-          Level of Satisfaction With the Time It Took for a Company to Get Back After Sending an Application (For an Interview or a Rejection)  <span class="required"></span>
-          <% end %>
-          <%= f.select(:satisfaction, options_for_select([["Highly Satisfied. My expectations were far surpassed.","Highly Satisfied. My expectations were far surpassed."],["Average Satisfaction","Average Satisfaction"],["Poor Satisfaction","Poor Satisfaction"]], params[:satisfaction] ), class:"select") %> 
-        </div>
+<!-- Tab panes -->
+<div class="tab-content" id="statistics">
+  <div role="tabpanel" class="tab-pane active" id="overall">
+  
+    <%# Review Section Part A: Review Size%>
+    <h2>
+      <% if @company.reviews.size == 0 %> 
+        There are currently no reviews
+      <% else %>
+        <strong>Total Reviews: <%= @company.reviews.count %></strong>
+      <% end %>
+    </h2> 
 
-        <hr>
-      <p><I>**Optional**</I></p>
-        <div class="field">
-          <%= f.label :position %>
-          <%= f.text_field :position %>
-        </div>
+    <%# Review Section Part B: Basic Statistics Section %>
+    <div class="well" id="Summary">
+      <h3><strong>Summary of Follow-up Response Times</strong></h3>
+      
+      <I>**Follow-ups include interview scheduling or rejections **</I>
 
-        <div class="field">
-         <%= f.label :employment_type %>
-         <%= f.select(:employment_type, options_for_select([["Full-Time","Full-Time"],["Part-Time","Part-Time"],["Intern","Intern"],["Temporary","Temporary"],["Contractor","Contractor"]], params[:employment_type] ), class:"select") %>
-        </div>
+      <h3><strong><%= @company.reviews.where(response_time: "1 week").size %> </strong> said around 1 week</h3>
 
-        
-        <div class="field">
-          <%= f.label 'Address' %>
-          <%= f.text_field :address, placeholder: "Type address", id: :autocomplete_address %>
-         </div>
+      <h3><strong><%= @company.reviews.where(response_time: "2 weeks").size %></strong> said around 2 weeks</h3>
 
-        <div class="field">
-          <%= f.label 'Street Number' %>
-          <%= f.text_field :street_number, id: :street_number %>
-        </div>
+      <h3><strong><%= @company.reviews.where(response_time: "3 weeks").size %></strong> said around 3 weeks</h3>
 
-        <div class="field">
-          <%= f.label 'City' %>
-          <%= f.text_field :locality, id: :locality %>
-        </div>
-
-        <div class="field">
-          <%= f.label 'Route' %>
-          <%= f.text_field :route, id: :route %>
-        </div>
-
-        <div class="field">
-          <%= f.label 'Region' %>
-          <%= f.text_field :administrative_area_level_1, id: :administrative_area_level_1 %>
-        </div>
-
-        <div class="field">
-          <%= f.label 'Country' %>
-          <%= f.text_field :country, id: :country %>
-        </div>
-
-        <div class="field">
-          <%= f.label 'Zip Code' %>
-          <%= f.number_field :postal_code, id: :postal_code %>
-        </div>
-         <%= f.submit %>
-  </div>      
-       
-<br>
-     
-    <% end %>
-  <% else %>
-    <p> You need to <%= link_to "sign in", new_user_session_path %> or <%= link_to "sign up", new_user_registration_path %> to submit a review </p>
-  <% end %>
+      <h3><strong><%= @company.reviews.where(response_time: "Greater than 4 weeks").size %></strong> said around 4 weeks or greater</h3>
     </div>
+
+    <hr>
+ 
+
+
   </div>
 
 
+  <div role="tabpanel" class="tab-pane" id="last60">
+        
+    <%# Last 2 Months Section Part A: Review Size%>
+    <h2>
+      <% if @company.reviews.size == 0 %> 
+      There are currently no reviews
+      <% else %>
+      <strong>Reviews from Last 2 Months: <%= @company.reviews.count %></strong>
+      <% end %>
+    </h2> 
 
+    <%# Last 2 Months Section Part B: Basic Statistics Section %>
+    <div class="well" id="Summary">
+      <h3><strong>Summary of Follow-up Response Times</strong></h3>
+
+      <I>**Follow-ups include interview scheduling or rejections **</I>
+
+      <h3><strong><%= @company.reviews.where(response_time: "1 week").size %> </strong> said around 1 week</h3>
+
+      <h3><strong><%= @company.reviews.where(response_time: "2 weeks").size %></strong> said around 2 weeks</h3>
+
+      <h3><strong><%= @company.reviews.where(response_time: "3 weeks").size %></strong> said around 3 weeks</h3>
+
+      <h3><strong><%= @company.reviews.where(response_time: "Greater than 4 weeks").size %></strong> said around 4 weeks or greater</h3>
+    </div>
+
+    <hr>
 
 </div>
 
+<div role="tabpanel" class="tab-pane" id="review-form">
+
+  <%# Review Submission Form%> 
+  <% if user_signed_in? %> 
+
+    <div class="well" id="reviewForm">
+      <%= simple_form_for [@company, Review.new] do |f| %>
+        
+        <h3><strong>Submit a Review</strong> </h3>
+
+          <div class="alert alert-info" role="alert">
+            <u><strong>Reminder:</strong></u>
+              <ul>
+                 <li>
+                  <p><strong><I>Response Times</I> are the estimated time it takes to hear back for scheduling an interview or rejection</strong></p>
+                </li>
+              </ul>
+          </div>
+
+          <br />
+          
+          <p><I>**Required**</I></p>
+          
+          <div class="field">
+            <%= f.label :response_time do %>
+              Your Estimated Response Time for an Interview or Rejection:
+            <%end %>
+            <br />
+            <%= f.select(:response_time, options_for_select([["1 week","1 week"],["2 weeks","2 weeks"],["3 weeks","3 weeks"],["Greater than 4 weeks","Greater than 4 weeks"]], params[:response_time]),:include_blank => true, class:"select") %> 
+          </div> 
+
+          <br />
+
+          <div class="field">
+            <%= f.label :satisfaction do %>
+              Level of Satisfaction With Response Time:<span class="required"></span>
+            <% end %>
+            <br />
+            <%= f.select(:satisfaction, options_for_select([["Highly Satisfied. My expectations were far surpassed.","Highly Satisfied. My expectations were far surpassed."],["Average Satisfaction","Average Satisfaction"],["Poor Satisfaction","Poor Satisfaction"]], params[:satisfaction] ),:include_blank => true, class:"select") %> 
+          </div>
+
+          <br />
+
+          <div class="field">
+            <%= f.label :application_type do %>
+              Application Type:<span class="required"></span>
+            <% end %>
+            <br />
+            <%= f.select(:application_type, options_for_select([["In Person","In Person"],["Online","Online"],["Referral","Referral"]], params[:application_type] ),:include_blank => true, class:"select")  %>
+          </div>
+          
+          <br />
+          
+          <p><I>**Optional**</I></p>
+          
+          <div class="field">
+            <%= f.label :position do%>
+              Position:
+            <% end %>
+            <br />
+            <%= f.text_field :position %>
+          </div>
+          <br />
+          <div class="field">
+           <%= f.label :employment_type do%>
+            Employment Type: 
+           <% end %>
+           <br />
+           <%= f.select(:employment_type, options_for_select([["Full-Time","Full-Time"],["Part-Time","Part-Time"],["Intern","Intern"],["Temporary","Temporary"],["Contractor","Contractor"]], params[:employment_type] ),:include_blank => true, class:"select") %>
+          </div>
+
+          <br />
+
+          <div class="field">
+            <%= f.label 'Address' do %>
+              Address: 
+            <% end %>
+            <br />
+            <%= f.text_field :address, :size=>"80", placeholder: "Type full address here to auto-fill fields below", id: :autocomplete_address %>
+          </div>
+
+          <br />
+        <div class="comments_wrapper clearfix">
+          <div class="pull-left">
+            <div class="field">
+              <%= f.label 'Street' %>
+              <%= f.text_field :street_number, id: :street_number, readonly: true%>
+              <%= f.label 'Route' %>
+              <%= f.text_field :route, id: :route, readonly: true %>
+              <%= f.label 'City' %>
+              <%= f.text_field :locality, id: :locality, readonly: true %>
+              <%= f.label 'State' %>
+              <%= f.text_field :administrative_area_level_1, id: :administrative_area_level_1, readonly: true%>
+            </div>
+          </div>
+
+          <div class="pull-left">
+            <div class="field">
+              <%= f.label 'Zip Code' %>
+              <%= f.number_field :postal_code, id: :postal_code,readonly: true %>
+              <%= f.label 'Country' %>
+              <%= f.text_field :country, id: :country,readonly: true %>
+            </div>
+
+            <br />
+
+          </div>
+        </div> 
+        <div align="center">
+              <%= f.button :submit, :class => "btn btn-primary", data: { confirm: "Is the information you provided correct?" } %>
+        </div>
+      <% end %>
+    </div> 
+
+  <% else %>
+    <div>
+      <br />
+      <p> You need to <%= link_to "Log in", new_user_session_path %> or <%= link_to "Sign up", new_user_registration_path %> to submit a review </p>
+    </div>
+  <% end %>
+
+</div>
