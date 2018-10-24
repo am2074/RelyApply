@@ -4,6 +4,9 @@ class Company < ApplicationRecord
 	
 	has_many :reviews
 	
+
+	validates_presence_of :name, :website
+
 	validates_uniqueness_of :name, :case_sensitive => false
 	def self.search(params)
 		companies = Company.where("name iLIKE ? or website iLIKE ?", "%#{params[:search]}%", "%#{params[:search]}%") if params[:search].present?

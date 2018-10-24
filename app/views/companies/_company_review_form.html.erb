@@ -1,0 +1,126 @@
+ <%# Review Submission Form%> 
+  <% if user_signed_in? %>
+    <div class="well" id="reviewForm">
+      <%= simple_form_for [@company, Review.new] do |f| %>
+        
+        <h3><strong>Submit a Review</strong> </h3>
+
+          <div class="alert alert-info" role="alert">
+            <u><strong>Reminder:</strong></u>
+              <ul>
+                 <li><p><strong><I>Response Times</I> are the estimated time it takes to hear back for scheduling an interview or rejection</strong></p></li>
+              </ul>
+          </div>
+
+          <br />
+          
+          <p><I>**Required**</I></p>
+          
+          <div class="field">
+            <%= f.label :response_time do %>
+              Your Estimated Response Time for an Interview or Rejection:
+            <%end %>
+            <br />
+            <%= f.select(:response_time, options_for_select([
+            ["1 week","1 week"],["2 weeks","2 weeks"],["3 weeks","3 weeks"],["Greater than 4 weeks","Greater than 4 weeks"]], 
+            params[:response_time]),prompt: '--Select--' , class:"select") %> 
+          </div> 
+
+          <br />
+
+          <div class="field">
+            <%= f.label :satisfaction do %>
+              Level of Satisfaction With Response Time:<span class="required"></span>
+            <% end %>
+            <br />
+            <%= f.select(:satisfaction, options_for_select([
+              ["Highly Satisfied. Expectations were surpassed.","Highly Satisfied. Expectations were surpassed."],
+              ["Average Satisfaction","Average Satisfaction"],["Poor Satisfaction","Poor Satisfaction"]], params[:satisfaction] ),prompt: '--Select--' , class:"select") %> 
+          </div>
+
+          <br />
+
+          <div class="field">
+            <%= f.label :application_type do %>
+              Application Type:<span class="required"></span>
+            <% end %>
+            <br />
+            <%= f.select(:application_type, options_for_select([
+              ["In Person","In Person"],["Online","Online"],["Referral","Referral"]], params[:application_type] ),prompt: '--Select--' , class:"select")  %>
+          </div>
+          
+          <br />
+          
+          <p><I>**Optional**</I></p>
+          
+          <div class="field">
+            <%= f.label :position do%>
+              Position:
+            <% end %>
+            <br />
+            <%= f.text_field :position %>
+          </div>
+          <br />
+
+          <div class="field">
+           <%= f.label :employment_type do%>
+            Employment Type: 
+           <% end %>
+           <br />
+           <%= f.select(:employment_type, options_for_select([
+            ["Full-Time","Full-Time"],["Part-Time","Part-Time"],
+            ["Intern","Intern"],["Temporary","Temporary"],
+            ["Contractor","Contractor"]], params[:employment_type] ),prompt: '--Select--' , class:"select") %>
+          </div>
+
+          <br />
+
+          <div class="field">
+            <%= f.label 'Address' do %>
+              Address: 
+            <% end %>
+            <br />
+            <%= f.text_field :address, :size=>"80", placeholder: "Type full address here to auto-fill fields below", id: :autocomplete_address %>
+          </div>
+
+          <br />
+        <div class="comments_wrapper clearfix">
+          <div class="pull-left">
+            <div class="field">
+              <%= f.label 'Street' %>
+              <%= f.text_field :street_number, id: :street_number, readonly: true%>
+              <%= f.label 'Route' %>
+              <%= f.text_field :route, id: :route, readonly: true %>
+              <%= f.label 'City' %>
+              <%= f.text_field :locality, id: :locality, readonly: true %>
+              <%= f.label 'State' %>
+              <%= f.text_field :administrative_area_level_1, id: :administrative_area_level_1, readonly: true%>
+            </div>
+          </div>
+
+          <div class="pull-left">
+            <div class="field">
+              <%= f.label 'Zip Code' %>
+              <%= f.number_field :postal_code, id: :postal_code,readonly: true %>
+              <%= f.label 'Country' %>
+              <%= f.text_field :country, id: :country,readonly: true %>
+            </div>
+
+            <br />
+
+          </div>
+        </div> 
+        <div align="center">
+              <%= f.button :submit, :class => "btn btn-primary", data: { confirm: "Is the information you provided correct?" } %>
+        </div>
+      <% end %>
+
+    </div> 
+  <% else %>
+
+    <div>
+      <br />
+      <p> You need to <%= link_to "Log in", new_user_session_path %> or <%= link_to "Sign up", new_user_registration_path %> to submit a review </p>
+    </div>
+  
+  <% end %>

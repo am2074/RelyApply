@@ -1,25 +1,22 @@
 class CompaniesController < ApplicationController
-  before_action :set_company, only: [:show, :edit, :update, :destroy,]
+  before_action :set_company, only: [:show, :edit, :update, :destroy, :ranking]
+  before_action :all_companies, only: [:index, :search]
   before_action :authenticate_user!, except: [:index, :show, :search]
   # GET /companies
   # GET /companies.json
   def index
-      @companies = Company.all
   end
 
   def search
     if params[:search].blank?
       #redirect_to companies_url
       #unhash if you want to see all comapnies
-      @companies = Company.all
     else 
       @companies = Company.search(params)
     end
   end
 
-  def list
-    @companies = Company.all
-  end
+
   # GET /companies/1
   # GET /companies/1.json
   def show
@@ -27,7 +24,6 @@ class CompaniesController < ApplicationController
   end
 
   def ranking
-    @company = Company.find(params[:id])
   end
 
   # GET /companies/new
@@ -89,4 +85,8 @@ class CompaniesController < ApplicationController
     def company_params
       params.require(:company).permit(:name, :website)
     end
+
+    def all_companies
+      @companies = Company.all
+    end 
 end

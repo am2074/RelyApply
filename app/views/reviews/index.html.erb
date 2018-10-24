@@ -1,34 +1,27 @@
-
 <%= link_to "< Back to Company Profile", company_path(:id => @company.id)%>
+
 <br />
+
 <div class="well" id="wellProfileForReviewIndex">
     <div id= "headerProfileForReviewIndex">  
       <h1><strong>  <%= link_to @company.name, company_path(:id => @company.id),{:style=>'color:#FFFFFF;'} %></strong></h1>
     </div>
 </div>
+
 <p>Want to add a review? Go back to <%= link_to @company.name, company_path(:id => @company.id)%>'s profile and click "Add a Review"</p>
 
 
 <div class="text-left">
-
-<div class="alert alert-info" role="alert">
-
-<u><strong>Reminder:</strong></u>
-<ul>
-   <li>
-    <p><I><strong>Response Times are the estimated time it takes to hear back for scheduling an interview or rejection</strong></I></p>
-  </li>
-  <li>
-     <p><I><strong>It takes 2-3 weeks on average to hear back from a job application. Even then, it can vary based on the industry, time of the year, etc.</strong></I></p>
-  </li>
-
-  <li>
-  <p><I><strong>If you don't hear back within a reasonable time frame relative to the other reviews, it is highly suggested you do a follow-up or assume you didn't qualify for the job.</strong></I></p>
-  </li>
-</ul>
+  <div class="alert alert-info" role="alert">
+    <u><strong>Reminder:</strong></u>
+    <ul>
+      <li><p><I><strong>Response Times are the estimated time it takes to hear back for scheduling an interview or rejection</strong></I></p> </li>
+      <li><p><I><strong>It takes 2-3 weeks on average to hear back from a job application. Even then, it can vary based on the industry, time of the year, etc.</strong></I></p></li>
+      <li><p><I><strong>If you don't hear back within a reasonable time frame relative to the other reviews, it is highly suggested you do a follow-up or assume you didn't qualify for the job.</strong></I></p></li>
+    </ul>
+  </div>
 </div>
 
-</div>
 <hr id="reviewIndexHr">
 <div class="comments_wrapper clearfix" id="reviewFilter">
   <%= search_form_for @q, url: company_reviews_path(params[:company_id]) do |f| %> 
@@ -71,17 +64,9 @@
       <%= text_field_tag :search, params[:search], :placeholder => '[City, State] or Zip Code'%>
     </div>
 
-    <div>
-        
+   
     </div>
-    </div>
-    <div>
-    
 
-      
-
-    
-    </div>
     <div class="text-center">
       <%= f.submit :class => "btn btn-primary" %>  <a href="<%=company_reviews_path%>" class="btn btn-primary" color="black">Clear filters</a>
     </div>
@@ -103,20 +88,20 @@
       <div class="panel-heading" id="panelCompanyShowHeader">
        <h3 id="indexReviewMainInfo" align="center">
       Estimated Response Time: <%= review.response_time %></h3>
-       
-     </div>
-     <div class="pull-right" id="review-Submit-Time-Stamp">
-     <p><I>Review Submitted: <%= review.created_at.strftime("%B %d, %Y") %></I></p>
-     </div>
-    
+      </div>
+     
+      <div class="pull-right" id="review-Submit-Time-Stamp">
+       <p><I>Review Submitted: <%= review.created_at.strftime("%B %d, %Y") %></I></p>
+       </div>
+      
       <div class="panel-body">
-      <div class="pull-left">
-       <h4><strong><u>Application Details</u></strong></h4>
-       <p><strong>Position:</strong> <%= review.position %></p>
-       <p><strong>Employment Type:</strong><%= review.employment_type %></p>
-       <p><strong>Application Type:</strong> <%= review.application_type %></p>
-       
-     </div>
+        <div class="pull-left">
+          <h4><strong><u>Application Details</u></strong></h4>
+          <p><strong>Position:</strong> <%= review.position %></p>
+          <p><strong>Employment Type:</strong><%= review.employment_type %></p>
+          <p><strong>Application Type:</strong> <%= review.application_type %></p>
+      </div>
+      
       <div class="pull-right">
         <br />
         <p><strong>Location:</strong> <%= review.address.chomp(', USA') %></p>
@@ -124,6 +109,7 @@
       </div>
      
     </div>
+    
       <div colspan="1" align="center">
         <%= link_to like_review_path(review), method: :put, class: "btn btn-default btn-sm" do %>
           <span class="glyphicon glyphicon-thumbs-up" id="chevronUp"></span>

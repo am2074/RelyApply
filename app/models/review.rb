@@ -6,4 +6,5 @@ class Review < ApplicationRecord
 	geocoded_by :address
 	after_validation :geocode, :if => :address_changed?
 	scope :latest, -> { where(created_at: 60.days.ago..DateTime.now.end_of_day) }
+	validates_presence_of :response_time, :satisfaction, :application_type
 end

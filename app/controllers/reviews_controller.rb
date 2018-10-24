@@ -1,12 +1,12 @@
 class ReviewsController < ApplicationController
-  before_action :set_review, only: [:show, :edit, :update, :destroy]
+  before_action :set_review, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
+  before_action :company_friendly_params, only: [:index, :new, :create]
   before_action :authenticate_user!, except: [:index, :show]
   
   # GET /reviews
   # GET /reviews.json
   def index
     @reviews = Review.where(company_id: params[:company_id]) 
-    @company= Company.friendly.find(params[:company_id])
     if params[:search].present?
       @q = @company.reviews.near(params[:search], 200, :order => 'distance' ).ransack(params[:q])
       @reviews = @q.result(:distinct => true).includes(:company)
@@ -25,7 +25,6 @@ class ReviewsController < ApplicationController
   # GET /reviews/new
   def new
     @review = Review.new
-    @company = Company.friendly.find(params[:company_id])
   end
 
   # GET /reviews/1/edit
@@ -35,7 +34,6 @@ class ReviewsController < ApplicationController
   # POST /reviews
   # POST /reviews.json
   def create
-    @company = Company.friendly.find(params[:company_id])
     @review = @company.reviews.new(review_params)
     @review.user = current_user
 
@@ -53,7 +51,6 @@ class ReviewsController < ApplicationController
   # PATCH/PUT /reviews/1
   # PATCH/PUT /reviews/1.json
   def update
-    
     respond_to do |format|
       if @review.update(review_params)
         format.html {  redirect_to @review.user, notice: 'Review was successfully updated.' }
@@ -76,13 +73,11 @@ class ReviewsController < ApplicationController
   end
 
   def upvote
-    @review = Review.find(params[:id])
     @review.upvote_by current_user
     redirect_back fallback_location: root_path
   end
 
   def downvote
-    @review = Review.find(params[:id])
     @review.downvote_by current_user
     redirect_back fallback_location: root_path.hash
   end
@@ -97,4 +92,8 @@ class ReviewsController < ApplicationController
      def review_params
       params.require(:review).permit(:review_id, :position, :employment_type, :satisfaction, :company_id, :user_id,:response_time, :application_type, :street_number, :company_id, :address, :locality, :route, :administrative_area_level_1, :country, :postal_code)
     end
+
+    def company_friendly_params
+       @company = Company.friendly.find(params[:company_id])
+    end 
 end

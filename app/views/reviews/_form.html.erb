@@ -1,4 +1,3 @@
-
 <div class="well" id="reviewForm">
 <%= simple_form_for [@review] do |f| %>
   <% if review.errors.any? %>
@@ -48,7 +47,7 @@
      Level of Satisfaction With Response Time:<span class="required"></span>
     <% end %>
     <br />
-    <%= f.select :satisfaction, options_for_select([["Highly satisfied. My expectations were far surpassed.","Highly satisfied. My expectations were far surpassed."],["Average Satisfaction","Average Satisfaction"],["Poor Satisfaction","Poor Satisfaction"]], :selected => @review.satisfaction), class:"select"%> 
+    <%= f.select :satisfaction, options_for_select([["Highly satisfied. Expectations were surpassed","Highly satisfied. Expectations were surpassed"],["Average Satisfaction","Average Satisfaction"],["Poor Satisfaction","Poor Satisfaction"]], :selected => @review.satisfaction), class:"select"%> 
   </div>
 
   <br />

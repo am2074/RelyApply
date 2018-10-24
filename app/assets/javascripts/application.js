@@ -19,8 +19,7 @@
 //= require turbolinks
 //= require_tree 
 
-
-
+//Load Google autocomplete on first try?
 $(function() {
   initPage();
 });
