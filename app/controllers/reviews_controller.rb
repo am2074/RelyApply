@@ -2,7 +2,8 @@ class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
   before_action :company_friendly_params, only: [:index, :new, :create]
   before_action :authenticate_user!, except: [:index, :show]
-  
+
+  access [:all] => [:show, :index], user: :all, site_admin: :all
   # GET /reviews
   # GET /reviews.json
   def index
@@ -29,6 +30,7 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/1/edit
   def edit
+     
   end
 
   # POST /reviews
@@ -85,7 +87,7 @@ class ReviewsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_review
-      @review = Review.find(params[:id])
+      @review = Review.find(params[:id].to_i)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

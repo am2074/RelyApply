@@ -65,3 +65,4 @@ gem 'ransack'
 gem 'friendly_id', '~> 5.2.0'
 gem "geocoder"
 gem "figaro"
+gem 'petergate', '~> 1.6', '>= 1.6.3'

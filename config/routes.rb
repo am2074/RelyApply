@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   root to:'companies#index'
   get 'about', to: 'pages#about'
   get 'contact', to: 'pages#contact'
+  get 'profile', to: 'users#show'
+  
   match 'users/:id' => 'users#show', via: :get
 
 end

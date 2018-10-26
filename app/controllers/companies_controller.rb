@@ -2,6 +2,9 @@ class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update, :destroy, :ranking]
   before_action :all_companies, only: [:index, :search]
   before_action :authenticate_user!, except: [:index, :show, :search]
+
+  access [:all] => [:show, :index, :search], user: {except: [:destroy ,:edit, :update]}, site_admin: :all
+  
   # GET /companies
   # GET /companies.json
   def index
@@ -14,17 +17,16 @@ class CompaniesController < ApplicationController
     else 
       @companies = Company.search(params)
     end
+    @search = params[:search] 
   end
 
 
   # GET /companies/1
   # GET /companies/1.json
-  def show
-    
+  def show  
   end
 
-  def ranking
-  end
+  
 
   # GET /companies/new
   def new

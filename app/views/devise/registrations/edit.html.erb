@@ -1,4 +1,8 @@
-<%= link_to('< Back to Profile', user_path(@user)) if @user = current_user %>
+<% content_for :title do %>
+ Edit Profile | RelyApply
+<% end %>
+
+<%= link_to('< Back to Profile', profile_path) if @user = current_user %>
 <br />
 <div class="panel panel-default" id="signupPanelAll">
   <div class="panel-heading" id="signUpHeader"><h2><strong><h2>Edit Account </h2></strong></h2></div>

@@ -58,7 +58,7 @@
               Position:
             <% end %>
             <br />
-            <%= f.text_field :position %>
+            <%= h  f.text_field :position %>
           </div>
           <br />
 
@@ -80,7 +80,7 @@
               Address: 
             <% end %>
             <br />
-            <%= f.text_field :address, :size=>"80", placeholder: "Type full address here to auto-fill fields below", id: :autocomplete_address %>
+            <%= h f.text_field :address, :size=>"80", placeholder: "Type full address here to auto-fill fields below", id: :autocomplete_address %>
           </div>
 
           <br />

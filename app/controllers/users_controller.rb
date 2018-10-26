@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 before_action :authenticate_user!
 before_action :set_user
 
+
 	def show 
 	end
 
@@ -11,6 +12,8 @@ before_action :set_user
 
 private 
 	def set_user
-		@users= User.find(params[:id])
+		@users= current_user
 	end 
+
+	
 end

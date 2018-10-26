@@ -1,3 +1,6 @@
+<% content_for :title do %>
+ Company | Rely Apply
+<% end %>
 <%#Company Profile Show Header %>
 <div class="panel panel-default" id="panelCompanyShow">
   <div class="panel-heading" id="panelCompanyShowHeader">
@@ -19,6 +22,7 @@
           <% end %>
         </h3> 
       </div>
+      <%= link_to "Edit Company", edit_company_path(@company) if logged_in?(:site_admin) %>
   </div>
 </div>
 
@@ -27,7 +31,7 @@
   <li role="presentation" class="active"><a href="#overall" aria-controls="home" role="tab" data-toggle="tab">Overall</a></li>
   <li role="presentation"><a href="#last60" aria-controls="profile" role="tab" data-toggle="tab">Last 2 Months</a></li>
   <li role="presentation"><a href="#review-form" aria-controls="review-form" role="tab" data-toggle="tab">Add a Review</a></li>
-  <li role="presentation"><%= link_to 'Show Reviews', company_reviews_path(:company_id => @company.id)%></li>
+  <li role="presentation"><%= link_to 'Show Reviews', company_reviews_path(@company)%></li>
 </ul>
 
 <!-- Tab panes -->

@@ -1,4 +1,8 @@
-<%= link_to "< Back to Company Profile", company_path(:id => @company.id)%>
+<% content_for :title do %>
+ Reviews | RelyApply
+<% end %>
+
+<%= link_to "< Back to Company Profile", company_path(@company)%>
 
 <br />
 
@@ -43,7 +47,7 @@
         ] , @q.application_type_eq),prompt: '--Select--'   %>
     
       <%= f.label :position, "Position:" %>
-      <%= f.search_field :position_cont, :placeholder => 'Search Position'%>
+      <%= h f.search_field :position_cont, :placeholder => 'Search Position'%>
     <div>
       <%= f.label :satisfaction_eq, "Satisfaction Level: " %>
       <%= f.select :satisfaction_eq, options_for_select([
@@ -61,7 +65,7 @@
         ["Contractor","Contractor"]
         ] , @q.employment_type_eq), prompt: '--Select--'  %>
       <%= f.label :Location, "Location: " %>
-      <%= text_field_tag :search, params[:search], :placeholder => '[City, State] or Zip Code'%>
+      <%= h text_field_tag :search, params[:search], :placeholder => '[City, State] or Zip Code'%>
     </div>
 
    

@@ -1,6 +1,10 @@
+<% content_for :title do %>
+ Search | RelyApply
+<% end %>
+
 <p id="notice"><%= notice %></p>
 
-<h1>Company Search Results</h1>
+<h1>Company Search Results For "<%= @search %>"</h1>
 <div>
     <p><I>Can't Find the Company You're Looking For?</I> <%= link_to 'Submit a Company', new_company_path%></p>
 </div>
