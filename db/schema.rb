@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_24_153237) do
+ActiveRecord::Schema.define(version: 2018_11_06_131241) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,9 +36,42 @@ ActiveRecord::Schema.define(version: 2018_10_24_153237) do
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
   end
 
+  create_table "offers", force: :cascade do |t|
+    t.string "position"
+    t.string "employment_type"
+    t.string "satisfaction"
+    t.string "response_time"
+    t.integer "company_id"
+    t.string "address"
+    t.float "latitude"
+    t.float "longitude"
+    t.string "street_number"
+    t.string "locality"
+    t.string "route"
+    t.string "administrative_area_level_1"
+    t.string "country"
+    t.integer "postal_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["company_id"], name: "index_offers_on_company_id"
+    t.index ["user_id"], name: "index_offers_on_user_id"
+  end
+
   create_table "pages", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.integer "company_id"
+    t.string "name_suggestion"
+    t.string "website_suggestion"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["company_id"], name: "index_requests_on_company_id"
+    t.index ["user_id"], name: "index_requests_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -72,7 +105,7 @@ ActiveRecord::Schema.define(version: 2018_10_24_153237) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "roles"
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -91,5 +124,7 @@ ActiveRecord::Schema.define(version: 2018_10_24_153237) do
     t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
   end
 
+  add_foreign_key "offers", "users"
+  add_foreign_key "requests", "users"
   add_foreign_key "reviews", "users"
 end

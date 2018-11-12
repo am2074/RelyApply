@@ -1,3 +1,6 @@
+
+
+
 <% content_for :title do %>
  Company | Rely Apply
 <% end %>
@@ -21,17 +24,47 @@
             <%= number_to_percentage((Float(@company.reviews.where(satisfaction: "Highly satisfied. My expectations were far surpassed.").size + @company.reviews.where(satisfaction: "Average Satisfaction").size) /@company.reviews.count * 100), precision: 0) %> <span class="glyphicon glyphicon-thumbs-up"></span></p> 
           <% end %>
         </h3> 
-      </div>
-      <%= link_to "Edit Company", edit_company_path(@company) if logged_in?(:site_admin) %>
+      </div>    
+<%# Edit Company Information Section %> 
+<% if user_signed_in? %>
+  <p>
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#editCompanyDetails" aria-expanded="false" aria-controls="editCompanyDetails">
+      Edit Company Information
+    </button>
+  </p>
+  <div class="collapse" id="editCompanyDetails">
+    <div class="card card-body">
+      <p><I>*Edits must first be approved by RelyApply's admins*</I></p>
+      <%= simple_form_for [@company, Request.new] do |f| %>
+        <div class="form-inputs">
+          <%= f.input :name_suggestion %>
+          <%= f.input :website_suggestion %>
+        </div>
+    
+        <div class="form-actions">
+          <%= f.button :submit, "Submit", :class => "btn btn-primary", data: { confirm: "Is the information you provided correct?" } %>
+        </div>
+      <% end %>
+    </div>
   </div>
+<% else %>
+    <div>
+      <br />
+      <p> You need to <%= link_to "Log in", new_user_session_path %> or <%= link_to "Sign up", new_user_registration_path %> to request for information changes on <%= @company.name%>'s profile </p>
+    </div>
+  <% end %>
+</div>
 </div>
 
+        
 <!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist">
   <li role="presentation" class="active"><a href="#overall" aria-controls="home" role="tab" data-toggle="tab">Overall</a></li>
   <li role="presentation"><a href="#last60" aria-controls="profile" role="tab" data-toggle="tab">Last 2 Months</a></li>
   <li role="presentation"><a href="#review-form" aria-controls="review-form" role="tab" data-toggle="tab">Add a Review</a></li>
+  <li role="presentation"><a href="#post-review-form" aria-controls="review-form" role="tab" data-toggle="tab">Add a Post-Interview Review</a></li>
   <li role="presentation"><%= link_to 'Show Reviews', company_reviews_path(@company)%></li>
+  <li role="presentation"><%= link_to 'Show Post-Interview Reviews', company_offers_path(@company)%></li>
 </ul>
 
 <!-- Tab panes -->
@@ -87,4 +120,10 @@
      <%= render 'company_review_form', company: @company %>
   </div>
 
+
+
+   <%# Add A Review Tab %>
+  <div role="tabpanel" class="tab-pane" id="post-review-form">
+     <%= render 'company_post_review_form', company: @company %>
+  </div>
 </div>

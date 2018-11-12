@@ -1,0 +1,50 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
+    <div id="logo" class="navbar-brand"><%= link_to "RelyApply", root_path %></div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExample05">
+      <% if user_signed_in? -%>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active "><%= link_to 'Home', root_path, class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to 'About', about_path, class: 'nav-link'  %></li>
+          <li class="nav-item"><%= link_to 'Submit a Company', new_company_path, class: 'nav-link'  %></li>
+          <li class="nav-item"><%= link_to 'Profile', profile_path, class: 'nav-link'  %></li>
+          <li class="nav-item"><%= link_to 'Sign out', destroy_user_session_path, :method => :delete, class: 'nav-link'  %></li>
+        </ul>
+      <% else -%>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><%= link_to 'Home', root_path, class: 'nav-link'  %></li>
+          <li class="nav-item"><%= link_to 'About', about_path, class: 'nav-link'  %></li>
+          <li class="nav-item"><%= link_to 'Submit Company', new_user_session_path, onclick: "alert('You must sign up or sign in to submit a new company.')", class: 'nav-link'  %></li>
+          <li class="nav-item"><%= link_to 'Sign Up', new_user_registration_path, class: 'nav-link'  %></li>
+          <li class="nav-item"><%= link_to 'Log In', new_user_session_path, class: 'nav-link'  %></li>
+        </ul>
+      <% end %>
+
+      <%= form_tag(search_companies_path, method: :get, :class => "form-inline mt-2 mt-md-0", :id => "navbarsExample05") do %>
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search Companies..." aria-label="Search" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                  <button class="btn" type="button" id="navBarSearchButton">
+                    <i class="fas fa-search"></i>
+                  </button>
+            </div>
+        </div>
+      <% end %> 
+    </div>
+  </nav>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+  <script src="../../../../assets/js/vendor/popper.min.js"></script>
+  <script src="../../../../dist/js/bootstrap.min.js"></script>
+
+</header>
+
+
+
+
+   

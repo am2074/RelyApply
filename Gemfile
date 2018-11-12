@@ -56,13 +56,19 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise', '~> 4.4', '>= 4.4.1'
 gem 'simple_form'
 gem 'record_tag_helper', '~> 1.0'
-gem 'bootstrap-sass', '~> 3.3.7'
+
 gem 'acts_as_votable', '~> 0.11.1'
-gem 'bootstrap', '~> 4.1.3'
+#gem 'bootstrap', '~> 4.1.3'
 gem 'webpacker', '~> 3.0'
 gem 'jquery-rails'
 gem 'ransack'
 gem 'friendly_id', '~> 5.2.0'
 gem "geocoder"
 gem "figaro"
-gem 'petergate', '~> 1.6', '>= 1.6.3'
+gem 'rails_admin', '~> 1.3'
+gem 'cancancan', '~> 2.0'
+gem 'mail_form'
+gem 'bootstrap', '~> 4.1.3'
+gem 'sprockets-rails', :require => 'sprockets/railtie'
+gem 'popper_js', '~> 1.14.3'
+gem 'font_awesome5_rails'

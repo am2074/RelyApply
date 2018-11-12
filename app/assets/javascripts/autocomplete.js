@@ -26,4 +26,8 @@ function initializeAutocomplete(id) {
   google.maps.event.addDomListener(window, 'load', function() {
     initializeAutocomplete('autocomplete_address');
   });
+
+  google.maps.event.addDomListener(window, 'load', function() {
+    initializeAutocomplete('autocomplete_address2');
+  });
 });

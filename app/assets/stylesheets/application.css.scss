@@ -10,64 +10,82 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
+ //*= require_tree .
+ //*= require_self
  */
 
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
-@import "bootstrap-sprockets";
-@import "bootstrap";
 
+//@import "bootstrap-sprockets";
+@import "bootstrap";
+@import 'font_awesome5_webfont';
 
 // NAVBAR
-#flash-Messages {
-  position: fixed;
-  width: 1150px;
-}
-
-#logo {
- font-size: 32px;
- font-weight: 700;
- text-transform: uppercase;
- letter-spacing: -1px;
- padding: 15px 0;
- a {
-  color: #FFFFFF;
- }
-}
-
 
 #navbar {
-  background-color: #2c485c !important;
+  //background: #2c485c;
 }
 
+
+#logo {
+ font-size: 24px;
+ font-weight: 700;
+ //text-transform: uppercase;
+ letter-spacing: -1px;
+ //padding: 15px 0;
+ color: white;
+ a {
+  color: #FFFFFF;
+  }
+}
+
+.nav-item {
+
+}
+
+//Navbarhover
 nav .navbar-nav li a{
   color: white !important;
-  }
+}
 
 nav .navbar-nav li a:hover{
   color: grey !important;
   text-decoration: underline;
-  }
+ }
 
 nav .navbar-nav li a:active{
   color: white!important;
   text-decoration: underline;
   }
 
+#flash-Messages {
+
+  width: 1150px;
+}
+
 
 
 // NAVBAR SEARCHBAR 
 
-#navbarSearchBar {
-   align-items: center;
-   justify-content: center;
+
+#navBarSearchButton {
+  background: orange;
+  color: white;
 }
+
+#searchnav {
+  margin-top: 10px;
+}
+//#navbarSearchBar {
+   //align-items: center;
+   //justify-content: center;
+//}
 #searchbarcontainer {
   height: 50px;
-  left:500px;
-   align-items: center;
-   justify-content: center;
+  //left:500px;
+  //align-items: center;
+   //justify-content: center;
+   float: right;
 }
 
 #searchicon {
@@ -83,13 +101,14 @@ nav .navbar-nav li a:active{
   top: 0.2em;
 }
 
-.navsbarsearchfield {
+#navsbarsearchfield {
   vertical-align: top;
   width: 800px;
   padding: 1.5px;
 }
 
 form-control-inline {
+
     min-width: 0;
     width: auto;
     display: inline;
@@ -106,6 +125,8 @@ form-control-inline {
   font-size: 20px;
   text-align: center;
 }
+
+
 
 // MAIN CONTENT
 #main_content {

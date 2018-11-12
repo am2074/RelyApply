@@ -2,8 +2,7 @@ class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update, :destroy, :ranking]
   before_action :all_companies, only: [:index, :search]
   before_action :authenticate_user!, except: [:index, :show, :search]
-
-  access [:all] => [:show, :index, :search], user: {except: [:destroy ,:edit, :update]}, site_admin: :all
+  load_and_authorize_resource
   
   # GET /companies
   # GET /companies.json
@@ -20,13 +19,11 @@ class CompaniesController < ApplicationController
     @search = params[:search] 
   end
 
-
   # GET /companies/1
   # GET /companies/1.json
   def show  
   end
 
-  
 
   # GET /companies/new
   def new
@@ -44,6 +41,8 @@ class CompaniesController < ApplicationController
 
     respond_to do |format|
       if @company.save
+        @company.true
+        
         format.html { redirect_to @company, notice: 'Company was successfully created.' }
         format.json { render :show, status: :created, location: @company }
       else

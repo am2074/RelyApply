@@ -1,0 +1,15 @@
+<% content_for :title do %>
+ Edit Post-Interview Offer Review | RelyApply
+<% end %>
+
+<body>
+
+<% if user_signed_in? && current_user.id == @offer.user_id %>
+<h1>Editing Post-Interview Offer Offer </h1>
+
+<%= render 'form', offer: @offer %>
+
+<% else %> 
+<% controller.redirect_to root_path %>
+
+<% end %>

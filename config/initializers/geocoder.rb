@@ -1,6 +1,6 @@
 Geocoder.configure(
   lookup:    :google,
-  api_key:   ENV['GOOGLE_API_SERVER_KEY'],
+  api_key:   Hearback::Application.credentials.GOOGLE_API_SERVER_KEY,
   use_https: false,
   cache: Rails.cache,
   ip_lookup: :freegeoip,

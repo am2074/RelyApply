@@ -21,8 +21,9 @@
               Your Estimated Response Time for an Interview or Rejection:
             <%end %>
             <br />
+            Around
             <%= f.select(:response_time, options_for_select([
-            ["1 week","1 week"],["2 weeks","2 weeks"],["3 weeks","3 weeks"],["Greater than 4 weeks","Greater than 4 weeks"]], 
+            ["1 week","1 week"],["2 weeks","2 weeks"],["3 weeks","3 weeks"],["4 weeks", "4 weeks"],["Greater than 4 weeks","Greater than 4 weeks"]], 
             params[:response_time]),prompt: '--Select--' , class:"select") %> 
           </div> 
 

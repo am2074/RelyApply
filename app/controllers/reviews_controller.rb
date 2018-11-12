@@ -1,9 +1,9 @@
 class ReviewsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_review, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
   before_action :company_friendly_params, only: [:index, :new, :create]
   before_action :authenticate_user!, except: [:index, :show]
 
-  access [:all] => [:show, :index], user: :all, site_admin: :all
   # GET /reviews
   # GET /reviews.json
   def index
