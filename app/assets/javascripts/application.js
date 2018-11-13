@@ -18,7 +18,13 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree 
-
+  document.addEventListener('turbolinks:before-visit', function() {
+    var $navbar = $('.navbar-collapse');
+    
+    if ( $navbar.hasClass('in') ) {
+      $navbar.collapse('hide');
+    }
+  });
 //Load Google autocomplete on first try?
 $(function() {
   initPage();
@@ -70,8 +76,4 @@ $("ul.nav-tabs > li > a").on("shown.bs.tab", function(e) {
 var hash = window.location.hash;
 $('#myTab a[href="' + hash + '"]').tab('show');
 </script>
-
-$(document).ready( function() {
-    $('.alert').delay(5000).fadeOut();
-  });
 

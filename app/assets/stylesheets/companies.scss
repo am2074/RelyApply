@@ -1,0 +1,89 @@
+//@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+
+//Home Page
+#test{
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+
+  margin-top: 150px; 
+}
+
+//Media Query for Mobile Devices
+@media (min-width: 481px) and (max-width: 767px) {
+  #test{
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+
+  margin-top: 100px; 
+}
+  
+}
+
+//Media Query for Iphone X
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 812px)
+and (-webkit-device-pixel-ratio : 3)
+and (orientation : landscape) { #test{
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+
+  margin-top: 20px; 
+}}
+
+
+//Company Search
+
+#searchtable {
+  font-size: 20px;
+}
+#tableHeader {
+	background: #2c485c;
+	color: white;
+}
+
+thead tr th {
+     margin: 0; /* zero out margin */
+   
+     text-align: center;
+    
+}
+
+
+tbody tr td {
+     margin: 0; /* zero out margin */
+   
+     text-align: center;
+    
+}
+
+//Company Show
+
+#panelCompanyShow {
+	border: 1px solid grey;
+}
+
+#panelCompanyShowHeader {
+	background: #2c485c;
+	color: white;
+}
+
+#Summary {
+	border: 1px solid grey;
+}
+
+#reviewForm {
+	border: 1px solid grey;
+}
+
+
+
+#alert-info-submit {
+	border: 1px solid black;
+}

@@ -10,8 +10,7 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- //*= require_tree .
- //*= require_self
+
  */
 
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
@@ -20,7 +19,34 @@
 @import "bootstrap";
 @import 'font_awesome5_webfont';
 
+html, body {
+ 
+  background: url(abstract2.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+#test {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: top;
+}
+
 // NAVBAR
+body {
+  padding-bottom: 20px;
+}
+
+
+.navbar {
+  margin-bottom: 20px;
+}
 
 #navbar {
   //background: #2c485c;
@@ -60,7 +86,6 @@ nav .navbar-nav li a:active{
 
 #flash-Messages {
 
-  width: 1150px;
 }
 
 
@@ -158,13 +183,5 @@ a {
 }
 
 
-
-
-
-
-
-
-
-
-
-
+#vcenter {
+ align-items:center;}

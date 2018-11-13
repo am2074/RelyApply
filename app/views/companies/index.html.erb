@@ -2,3 +2,17 @@
       RelyApply
 <% end %>
 
+ <div class= "container-fluid" id="test">
+  <div class="col-12">
+   <%= form_tag(search_companies_path, method: :get) do %>
+        <div class="input-group input-group-lg">
+          <input type="text" class="form-control" placeholder="Search Companies..." aria-label="Search" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                  <button class="btn" type="button" id="navBarSearchButton">
+                    <i class="fas fa-search"></i>
+                  </button>
+            </div>
+        </div>
+      <% end %> 
+   </div>    
+  </div>
