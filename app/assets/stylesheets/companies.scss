@@ -39,18 +39,54 @@ and (orientation : landscape) { #test{
 
 
 //Company Search
+.good-review-score{
+    background-color:map-get($theme-colors, secondary);
+    //background-color:#66CC33;
+    color:white;
+    text-align: center;
+    padding: 10px;
+    margin-right: 5px;
+    width: 80px;
+    height: 60px; 
+    //line-height: 30px;*/
+    margin-top: 25px !important;
+}
 
+#cardSearchPage {
+height: auto !important;
+margin-top: auto !important;
+margin-bottom: 10px !important;
+width: 100% !important;
+background-color: rgba(0,0,0,0.5) !important;
+border-bottom: red;
+//border-color: grey !important;
+}
+
+#searchCardTitle {
+  padding-left: 10px;
+  margin-top: 5px !important;
+}
+
+#searchContainer {
+  background-color: rgba(0,0,0,0.9) !important;
+}
 #searchtable {
-  font-size: 20px;
+  font-size: 16px;
 }
+
+
+table {
+  border-spacing: 0;
+   border-collapse: collapse;
+}
+
 #tableHeader {
-	background: #2c485c;
-	color: white;
-}
+	
+  }
 
 thead tr th {
      margin: 0; /* zero out margin */
-   
+     color:white;
      text-align: center;
     
 }
@@ -62,6 +98,69 @@ tbody tr td {
      text-align: center;
     
 }
+
+
+
+@media (max-width: 991px){
+    #submitCompanyPortal{
+        margin-bottom: 10px;
+    }  
+}
+
+#loginContainer{
+height: 75%;
+//align-content: center;
+}
+
+#submitCompanyCard{
+height: auto;
+margin-top: auto;
+margin-bottom: auto;
+width: 600px;
+background-color: rgba(0,0,0,0.5) !important;
+}
+
+
+#submitCompanyHeader h3{
+text-align: center;
+color: white;
+}
+
+
+.input-group-prepend span{
+width: 50px;
+background-color: #FFC312;
+color: black;
+border:0 !important;
+}
+
+input:focus{
+outline: 0 0 0 0  !important;
+box-shadow: 0 0 0 0 !important;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //Company Show
 
@@ -87,3 +186,99 @@ tbody tr td {
 #alert-info-submit {
 	border: 1px solid black;
 }
+
+
+//Submit a Company
+
+
+@import url('https://fonts.googleapis.com/css?family=Numans');
+.divider{
+    width:10px;
+    height:auto;
+    display:inline;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 991px){
+    #submitCompanyPortal{
+        margin-bottom: 10px;
+    }  
+}
+
+#loginContainer{
+height: 75%;
+align-content: center;
+}
+
+#submitCompanyCard{
+height: auto;
+margin-top: auto;
+margin-bottom: auto;
+width: 600px;
+background-color: rgba(0,0,0,0.5) !important;
+}
+
+
+#submitCompanyHeader h3{
+text-align: center;
+color: white;
+}
+
+
+.input-group-prepend span{
+width: 50px;
+background-color: #FFC312;
+color: black;
+border:0 !important;
+}
+
+input:focus{
+outline: 0 0 0 0  !important;
+box-shadow: 0 0 0 0 !important;
+
+}
+
+.remember{
+color: white;
+}
+
+.remember input
+{
+width: 20px;
+height: 20px;
+margin-left: 15px;
+margin-right: 5px;
+}
+
+
+#loginBttn {
+  text-align:center;
+}
+
+loginBttn {
+margin-left: -25px !important;
+}
+
+.login_btn{
+color: black;
+background-color: #FFC312;
+width: 100px;
+text-align:center;
+}
+
+.login_btn:hover{
+color: black;
+background-color: white;
+}
+
+.links{
+color: white;
+}
+
+.links a{
+margin-left: 4px;
+}
+
+
+
+

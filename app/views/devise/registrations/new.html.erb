@@ -1,44 +1,75 @@
 <% content_for :title do %>
  Sign Up | RelyApply
 <% end %>
-<br />
-<div class="panel panel-default" id="signupPanelAll">
-  <div class="panel-heading" id="signUpHeader"><h2><strong>Sign Up</strong></h2></div>
-      <div class="panel-body">
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+<div class="container" id=loginContainer>
+  <div class="d-flex justify-content-center h-100" >
+    <div class="card">
+        <div class="card-header">
+          <h3>Sign Up</h3>
+          <em style="color:white">
           <%= devise_error_messages! %>
-        <div class="form-group-lg" id="formGroupFont">
-              <p><%= f.label :email %></p>
-              <%= f.email_field :email, autofocus: true, class: "form-control", required: true %>
+          </em>
+        </div>
+        <div class="card-body">
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%# Email Input %>
+            <div class="input-group form-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                </div>
+              <%= f.email_field :email, autofocus: true, class: "form-control", required: true, placeholder: "Email"  %>
             </div>
+            <% if @minimum_password_length %>
+                <em style="color:white;">Please create a password (<%= @minimum_password_length %> characters minimum)</em>
+              <% end %><br />
+            <%# PW Input %>
+            <div class="input-group form-group">
+                <div class="input-group-prepend">
+                   
+                  <span class="input-group-text"><i class="fas fa-key"></i></span>
+                </div>
+             
 
-          <br />
-        
-        <div class="form-group-lg" id="formGroupFont">
-              <p><%= f.label :password %>
-              <% if @minimum_password_length %>
-                <em>(<%= @minimum_password_length %> characters minimum)</em>
-              <% end %><br /></p>
-
-              <%= f.password_field :password, class: "form-control", required: true %>
+              <%= f.password_field :password, class: "form-control", required: true, placeholder: "Password" %>
             </div>
+            <%# Remember Me Checkbox %>
+                <em style="color:white;">Please re-enter password to confirm</em>
+              <br />
+           <div class="input-group form-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-check"></i></span>
+                </div>
 
-        <br />
-        
-        <div class="form-group-lg" id="formGroupFont">
-              <p><%= f.label :password_confirmation %></p>
-              <%= f.password_field :password_confirmation, class: "form-control", required: true %>
+               <%= f.password_field :password_confirmation, class: "form-control", required: true,placeholder: "Confirm Password" %>
             </div>
+            <%# Submit Button %>
+            <div class="form-group" id=loginBttn>
+              <%= f.submit "Sign Up",class: "btn login_btn"%>
+            </div>
+          <% end %>
+        </div>
+        <div class="card-footer">
+          <%# Sign Up Link %>
+          <div class="d-flex justify-content-center links">
+              Already have an account?
+              <%- if controller_name != 'sessions' %>
+                <%= link_to "Log in", new_session_path(resource_name) %><br />
+              <% end -%>
 
-        <br />
-        
-        <div class="form-group-lg" >
-              <%= f.submit "Sign Up", class: "btn btn-lg btn-primary" %>
-            </div>
-        <% end %>
+          </div>
+          <%#Forgot PW Link%>
+          <div class="d-flex justify-content-center">
+            <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+            <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+            <% end -%>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-<div id="formGroupFont">
-<p>Already have an account?<%= render "devise/shared/links" %></p>
-</div>
+
+
+

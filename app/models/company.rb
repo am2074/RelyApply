@@ -8,6 +8,7 @@ class Company < ApplicationRecord
 	validates_uniqueness_of :name, :case_sensitive => false
 	def self.search(params)
 		companies = Company.where("name iLIKE ? or website iLIKE ?", "%#{params[:search]}%", "%#{params[:search]}%") if params[:search].present?
+		companies
 	end
 end
 #Old #companies = Company.where("name LIKE ? or website LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%") if params[:search].present?

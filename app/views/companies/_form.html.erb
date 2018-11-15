@@ -20,19 +20,21 @@
 
   <br />
   <div class="form-group-lg" id="formGroupFont">
-    <%= form.label :website %><I> **Please <strong><u>COPY AND PASTE</u></strong> the company's website to avoid misspelling. Thank You.**</I>
+    <%= form.label :website %>
      
-    <%= form.text_field :website, placeholder: "Website Format: www.yourcompanyname.com", class: "form-control"%>
+    <%= form.text_field :website, placeholder: "Format: www.companyname.com", class: "form-control"%>
     
   </div>
 
   <br />
 
-  <div class="alert alert-info">
-    <p><strong>PLEASE DOUBLE CHECK IF ALL THE INFORMATION IS CORRECT BEFORE SUBMITTING!</strong></p>
+  <div class="alert alert-info"id="submitCompanyDoubleCheck">
+    <p >Please double check if all the information is correct before submitting.</p>
+    
   </div>
-  <div class="actions">
-    <%= form.submit "Submit", data: { confirm: "Is the information correct and in the right format?" }, class: "btn btn-lg btn-primary" %>
-    <%= link_to 'Back', @company, class: "btn btn-lg btn-primary"  %>
+   <div class="form-group" id=loginBttn>
+              <%= form.submit "Submit", data: { confirm: "Is the information correct and in the right format?" }, class: "btn login_btn"%>
+               <%= link_to 'Back',root_path, class: "btn login_btn" %>
   </div>
+  
 <% end %>

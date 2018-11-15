@@ -2,39 +2,79 @@
  Search | RelyApply
 <% end %>
 
+
+  <div class="col-12">
+   <%= form_tag(search_companies_path, method: :get, enforce_utf8: false) do %>
+        <div class="input-group input-group-lg">
+          <%= text_field_tag :search,  "",  placeholder: "Search Companies...", class: 'form-control input-lg', id: 'input-field-home'%>
+            <div class="input-group-append">
+              <%=button_tag( :class => "btn btn-lg btn-default",  id: "navBarSearchButton") do %>
+                  <i class="fas fa-search"></i>
+                <%end %>
+            </div>
+        </div>
+      <% end %> 
+   </div>    
+
+
 <p id="notice"><%= notice %></p>
-
-<h1>Company Search Results For "<%= @search %>"</h1>
-<div>
-    <p><I>Can't Find the Company You're Looking For?</I> <%= link_to 'Submit a Company', new_company_path%></p>
-</div>
-<br />
-<table class="table table-hover" id= "searchtable" >
-  <thead class="thead-light" id="tableHeader">
-    <tr>
-      <th>Company</th>
-      <th>Responsiveness Rating</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @companies.each do |company| %>
-      <tr>
-        <td style="border-color:grey"><strong><%= link_to company.name, company, data: { turbolinks: false }%></strong></td>
-        <td   style="border-color:grey" id=tablerows>
-          <% if company.reviews.size == 0 %> 
-              N/A
-          <% else %>
-              <%= number_to_percentage((Float(company.reviews.where(satisfaction: "Highly satisfied. My expectations were far surpassed.").size + company.reviews.where(satisfaction: "Average Satisfaction").size) /company.reviews.count * 100), precision: 0) %> <span class="glyphicon glyphicon-thumbs-up"></span>
+<div class="container-fluid" id="searchContainer">
+  <h1 style="color:white;">Company Search Results For "<%= @search %>"</h1>
+  <div>
+      <p style="color:white;"><I>Can't Find the Company You're Looking For?</I> <%= link_to 'Submit a Company', new_company_path%> </p>
+  </div>
+ <p class="float-right" style="color:white;">Reponse Rating:</p>
+  
+  <% @companies.each do |company| %>    
+    <div>   
+      <div class="card" id="cardSearchPage">
+        <div class="card-block">
+          <h2 class="card-text good-review-score float-right">
+            <% if company.reviews.size == 0 %> 
+              <i class="far fa-times-circle icon-4x"></i>
+            <% else %>
+              <%=Float(company.reviews.where(satisfaction: "Highly satisfied. My expectations were far surpassed.").size + company.reviews.where(satisfaction: "Average Satisfaction").size) /company.reviews.count * 10 %>
+            <% end %>
+          </h2>
+          <h4 class="card-title" id="searchCardTitle"><%= link_to company.name, company, data: { turbolinks: false }, style:"color:white"%></h4> 
+          <p class="card-title" style="color:white;" id="searchCardTitle">Website: <%=company.website %></p>        
+          <p class="card-title" style="color:white;" id="searchCardTitle"><%= link_to company, data: { turbolinks: false }, :class => "btn btn-primary" do%>
+            View Company <i class="fas fa-caret-right"></i>
           <% end %>
-        </td>
-      </tr>
-      
-    <% end %>
-      <tr>
-      
-      </tr>
-  </tbody>
-</table>
-<hr>
-<br>
+          </p>
+          
+        </div>
+      </div>
+    </div>
+  <% end %> 
+  <br />
+</div>
+
+<script>
+$(document).ready(function() {
+ // executes when HTML-Document is loaded and DOM is ready
+console.log("document is ready");
+  
+
+  $( ".card" ).hover(
+  function() {
+    $(this).addClass('shadow-lg').css('cursor', 'pointer'); 
+  }, function() {
+    $(this).removeClass('shadow-lg');
+  }
+);
+  
+// document ready  
+});
+
+</script>
+
+
+
+
+
+
+
+
+
+

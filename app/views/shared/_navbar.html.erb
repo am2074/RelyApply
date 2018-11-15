@@ -11,7 +11,6 @@
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active "><%= link_to 'Home', root_path, class: 'nav-link' %></li>
           <li class="nav-item"><%= link_to 'About', about_path, class: 'nav-link'  %></li>
-          <li class="nav-item"><%= link_to 'Submit a Company', new_company_path, class: 'nav-link'  %></li>
           <li class="nav-item"><%= link_to 'Profile', profile_path, class: 'nav-link'  %></li>
           <li class="nav-item"><%= link_to 'Sign out', destroy_user_session_path, :method => :delete, class: 'nav-link'  %></li>
         </ul>
@@ -19,15 +18,20 @@
         <ul class="navbar-nav mr-auto">
           <li class="nav-item"><%= link_to 'Home', root_path, class: 'nav-link'  %></li>
           <li class="nav-item"><%= link_to 'About', about_path, class: 'nav-link'  %></li>
-          <li class="nav-item"><%= link_to 'Submit Company', new_user_session_path, onclick: "alert('You must sign up or sign in to submit a new company.')", class: 'nav-link'  %></li>
+          <%# Old
+          <li class="nav-item"><%= link_to 'Submit Company', new_user_session_path, onclick: "alert('You must sign up or sign in to submit a new company.')", class: 'nav-link'  %>
           <li class="nav-item"><%= link_to 'Sign Up', new_user_registration_path, class: 'nav-link'  %></li>
           <li class="nav-item"><%= link_to 'Log In', new_user_session_path, class: 'nav-link'  %></li>
         </ul>
       <% end %>
-      <% unless controller.controller_name == "companies" && controller.action_name == "index" %>
+      
+  <%= link_to 'Submit a Company', new_company_path, :class => "btn btn-primary justify-content-md-around", :id => "submitCompanyPortal" %>
+   <div class="divider"/>
+  </div>
+  <% unless controller_name == 'companies' && action_name == 'index' %>
       <%= form_tag(search_companies_path, method: :get, :class => "form-inline mt-2 mt-md-0", :id => "navbarsExample05") do %>
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search Companies..." aria-label="Search" aria-describedby="basic-addon2">
+          <%= text_field_tag :search,  "",  placeholder: "Search Companies...", class: 'form-control input-lg', id: 'input-field-home'%>
             <div class="input-group-append">
                   <button class="btn" type="button" id="navBarSearchButton">
                     <i class="fas fa-search"></i>
@@ -35,7 +39,7 @@
             </div>
         </div>
       <% end %> 
-      <% end %>
+ <% end %>
     </div>
     </nav>
     <script>  $(document).on("page:change", function() {

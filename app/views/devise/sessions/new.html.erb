@@ -1,7 +1,6 @@
 <% content_for :title do %>
  Log In | RelyApply
 <% end %>
-<br />
 <div class="container" id=loginContainer>
   <div class="d-flex justify-content-center h-100" >
     <div class="card">
@@ -13,7 +12,7 @@
             <%# Email Input %>
             <div class="input-group form-group">
                 <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-user"></i></span>
+                  <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                 </div>
               <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "Email",:class => 'form-control' %>
             </div>

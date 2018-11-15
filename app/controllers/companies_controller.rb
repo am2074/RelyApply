@@ -11,12 +11,12 @@ class CompaniesController < ApplicationController
 
   def search
     if params[:search].blank?
-      #redirect_to companies_url
-      #unhash if you want to see all comapnies
+      @companies = Company.all
     else 
       @companies = Company.search(params)
     end
     @search = params[:search] 
+
   end
 
   # GET /companies/1
@@ -41,7 +41,6 @@ class CompaniesController < ApplicationController
 
     respond_to do |format|
       if @company.save
-        @company.true
         
         format.html { redirect_to @company, notice: 'Company was successfully created.' }
         format.json { render :show, status: :created, location: @company }
@@ -82,6 +81,9 @@ class CompaniesController < ApplicationController
       @company = Company.friendly.find(params[:id])
     end
 
+    def search_params
+      params.require(:companies).permit(:search)
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
       params.require(:company).permit(:name, :website)
