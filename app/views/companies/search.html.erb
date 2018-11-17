@@ -33,7 +33,7 @@
             <% if company.reviews.size == 0 %> 
               <i class="far fa-times-circle icon-4x"></i>
             <% else %>
-              <%=Float(company.reviews.where(satisfaction: "Highly satisfied. My expectations were far surpassed.").size + company.reviews.where(satisfaction: "Average Satisfaction").size) /company.reviews.count * 10 %>
+              <%=Float(company.reviews.where(satisfaction: "Highly satisfied. My expectations were far surpassed.").size + company.reviews.where(satisfaction: "Average Satisfaction").size) /company.reviews.count * 100 %>%
             <% end %>
           </h2>
           <h4 class="card-title" id="searchCardTitle"><%= link_to company.name, company, data: { turbolinks: false }, style:"color:white"%></h4> 

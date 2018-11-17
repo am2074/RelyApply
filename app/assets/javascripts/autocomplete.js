@@ -31,3 +31,6 @@ function initializeAutocomplete(id) {
     initializeAutocomplete('autocomplete_address2');
   });
 });
+
+
+

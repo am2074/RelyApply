@@ -1,9 +1,9 @@
  <%# Review Submission Form%> 
   <% if user_signed_in? %>
     <div class="well" id="reviewForm">
-      <%= simple_form_for [@company, Offer.new] do |f| %>
+      <%= simple_form_for [@company, Review.new] do |f| %>
         
-        <h3><strong>Share Your Response Time Experience After The Interview</strong> </h3>
+        <h3><strong>Submit a Review</strong> </h3>
 
           <div class="alert alert-info" role="alert">
             <u><strong>Reminder:</strong></u>
@@ -23,17 +23,7 @@
             <br />
             Around
             <%= f.select(:response_time, options_for_select([
-            ["1 day","1 day"],
-            ["2 days","2 days"],
-            ["3 days","3 days"],
-            ["4 days","4 days"],
-            ["5 days","5 days"],
-            ["6 day","6 day"],
-            ["1 week ","1 week"],
-            ["2 Weeks", "2 Weeks"],
-            ["3 Weeks", "3 Weeks"],
-            ["4 Weeks", "4 Weeks"],
-            ["Greater than 4 Weeks", "Greater than 4 Weeks"]], 
+            ["1 week","1 week"],["2 weeks","2 weeks"],["3 weeks","3 weeks"],["4 weeks", "4 weeks"],["Greater than 4 weeks","Greater than 4 weeks"]], 
             params[:response_time]),prompt: '--Select--' , class:"select") %> 
           </div> 
 
@@ -51,6 +41,15 @@
 
           <br />
 
+          <div class="field">
+            <%= f.label :application_type do %>
+              Application Type:<span class="required"></span>
+            <% end %>
+            <br />
+            <%= f.select(:application_type, options_for_select([
+              ["In Person","In Person"],["Online","Online"],["Referral","Referral"]], params[:application_type] ),prompt: '--Select--' , class:"select")  %>
+          </div>
+          
           <br />
           
           <p><I>**Optional**</I></p>
@@ -82,10 +81,9 @@
               Address: 
             <% end %>
             <br />
-            <%= h f.text_field :address, :size=>"80", placeholder: "Type full address here to auto-fill fields below", id: :autocomplete_address2 %>
+            <%= h f.text_field :address, :size=>"80", placeholder: "Type full address here to auto-fill fields below", id: :autocomplete_address %>
           </div>
 
-         
           <br />
         <div class="comments_wrapper clearfix">
           <div class="pull-left">
@@ -114,7 +112,7 @@
           </div>
         </div> 
         <div align="center">
-              <%= f.button :submit, 'Create Review', :class => "btn btn-primary", data: { confirm: "Is the information you provided correct?" } %>
+              <%= f.button :submit, :class => "btn btn-primary", data: { confirm: "Is the information you provided correct?" } %>
         </div>
       <% end %>
 

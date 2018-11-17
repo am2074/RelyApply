@@ -75,30 +75,6 @@ border-bottom: red;
 }
 
 
-table {
-  border-spacing: 0;
-   border-collapse: collapse;
-}
-
-#tableHeader {
-	
-  }
-
-thead tr th {
-     margin: 0; /* zero out margin */
-     color:white;
-     text-align: center;
-    
-}
-
-
-tbody tr td {
-     margin: 0; /* zero out margin */
-   
-     text-align: center;
-    
-}
-
 
 
 @media (max-width: 991px){
@@ -138,53 +114,6 @@ input:focus{
 outline: 0 0 0 0  !important;
 box-shadow: 0 0 0 0 !important;
 
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//Company Show
-
-#panelCompanyShow {
-	border: 1px solid grey;
-}
-
-#panelCompanyShowHeader {
-	background: #2c485c;
-	color: white;
-}
-
-#Summary {
-	border: 1px solid grey;
-}
-
-#reviewForm {
-	border: 1px solid grey;
-}
-
-
-
-#alert-info-submit {
-	border: 1px solid black;
 }
 
 
@@ -282,3 +211,173 @@ margin-left: 4px;
 
 
 
+//Company Show
+
+
+#companyShowTitleCard {
+  height: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  
+  background-color: rgba(0,0,0,0.5) !important;
+}
+
+
+#panelCompanyShow {
+  border: 1px solid grey;
+}
+
+#panelCompanyShowHeader {
+  background: #2c485c;
+  color: white;
+}
+
+#Summary {
+  border: 1px solid grey;
+}
+
+#reviewForm {
+  border: 1px solid grey;
+}
+
+
+
+#alert-info-submit {
+  border: 1px solid black;
+}
+
+.emp-profile{
+    padding: 3%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    border-radius: 0.5rem;
+    background: #fff;
+}
+.profile-img{
+    text-align: center;
+}
+.profile-img img{
+    width: 70%;
+    height: 100%;
+}
+.profile-img .file {
+    position: relative;
+    overflow: hidden;
+    margin-top: -20%;
+    width: 70%;
+    border: none;
+    border-radius: 0;
+    font-size: 15px;
+    background: #212529b8;
+}
+.profile-img .file input {
+    position: absolute;
+    opacity: 0;
+    right: 0;
+    top: 0;
+}
+.profile-head h5{
+    color: #333;
+}
+.profile-head h6{
+    color: #0062cc;
+}
+.profile-edit-btn{
+    border: none;
+    border-radius: 1.5rem;
+    width: 70%;
+    padding: 2%;
+    font-weight: 600;
+    background-color: #0062cc;
+    color: white;
+    cursor: pointer;
+}
+.profile-rating{
+    font-size: 30px;
+    color: #818182;
+    margin-top: 5%;
+}
+.proile-rating span{
+    color: #495057;
+    font-size: 15px;
+    font-weight: 600;
+}
+.profile-head .nav-tabs{
+    margin-bottom:5%;
+}
+.profile-head .nav-tabs .nav-link{
+    font-weight:600;
+    border: none;
+}
+.profile-head .nav-tabs .nav-link.active{
+    border: none;
+    border-bottom:2px solid #0062cc;
+}
+.profile-work{
+    padding: 14%;
+    margin-top: -15%;
+}
+.profile-work p{
+    font-size: 12px;
+    color: #818182;
+    font-weight: 600;
+    margin-top: 10%;
+}
+.profile-work a{
+    text-decoration: none;
+    color: #495057;
+    font-weight: 600;
+    font-size: 14px;
+}
+.profile-work ul{
+    list-style: none;
+}
+.profile-tab label{
+    font-weight: 600;
+}
+.profile-tab p{
+    font-weight: 600;
+    color: #0062cc;
+}
+
+
+table {
+  border-spacing: 0;
+   border-collapse: collapse;
+}
+
+#tableHeader {
+  
+  }
+
+thead tr th {
+     margin: 0; /* zero out margin */
+     color: white;
+     text-align: center;
+    
+}
+
+
+tbody tr td {
+     margin: 0; /* zero out margin */
+      font-weight: bold;
+     text-align: center;
+    
+}
+
+#responseScoreShowPage {
+    color:white;
+    text-align: center;
+    padding: 10px;
+    //margin-right: 5px;
+    //width: 80px;
+    //height: 60px; 
+    //line-height: 30px;*/
+    margin-top: 25px !important;
+    font-size: 20px;
+}
+
+
+#editCompanyDetailsCard {
+  background-color: white !important;
+}
