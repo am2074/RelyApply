@@ -12,6 +12,7 @@ Rails.application.config.assets.precompile += %w( bootstrap.min.js )
 Rails.application.config.assets.precompile += %w( users.css )
 Rails.application.config.assets.precompile += %w( companies.css )
 Rails.application.config.assets.precompile += %w( pages.css )
+Rails.application.config.assets.precompile += %w( reviews.css )
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.

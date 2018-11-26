@@ -22,7 +22,7 @@ class CompaniesController < ApplicationController
   # GET /companies/1
   # GET /companies/1.json
   def show  
-   
+    @company = Company.friendly.find(params[:id])
   end
 
 

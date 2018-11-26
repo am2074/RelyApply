@@ -30,6 +30,7 @@
 
   <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{Hearback::Application.credentials.GOOGLE_API_BROWSER_KEY}" %>
   <%= javascript_include_tag 'application'%>
+  <meta name="turbolinks-cache-control" content="no-cache">
 </head>
 
 <%# Body %> 

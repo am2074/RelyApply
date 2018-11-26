@@ -14,15 +14,16 @@
 //= require jquery
 //= require jquery_ujs
 //= rails-ujs
+//= require popper
 //= require bootstrap-sprockets
 //= require activestorage
 //= require turbolinks
 //= require_tree 
-//Load Google autocomplete on first try?
+
 $(function() {
   initPage();
 });
-$(window).bind('page:change', function() {
+$(window).bind('page:change','page:restore',function() {
   initPage();
 });
 function initPage() { 
@@ -35,29 +36,28 @@ function initPage() {
 }
 
 
-$(document).on 'turbolinks:load', ->
-  my_func()
+//$(document).on 'turbolinks:load', ->
+//my_func()
 
- document.addEventListener("turbolinks:load", function() {
-  my_func();
-})
+//document.addEventListener("turbolinks:load", function() {
+//my_func();
+//})
 
- $(document).on('turbolinks:load', function() {
-   console.log('(document).turbolinks:load')
-});
+//$(document).on('turbolinks:load', function() {
+//console.log('(document).turbolinks:load')
+//});
 
-$(document).on('page:load', function() {
-  $(document).trigger('ready');
-});
+//$(document).on('page:load', function() {
+//$(document).trigger('ready');
+//});
 
-$(document).ready(loadMap)
-$(document).on('page:load', loadMap)
+//$(document).ready(loadMap)
+//$(document).on('page:load', loadMap)
 
-<script type="text/javascript">
-  $('#myTab a').click(function(e) {
-  e.preventDefault();
-  $(this).tab('show');
-});
+//$('#myTab a').click(function(e) {
+//e.preventDefault();
+//$(this).tab('show');
+//});
 
 // store the currently selected tab in the hash value
 $("ul.nav-tabs > li > a").on("shown.bs.tab", function(e) {
@@ -68,7 +68,8 @@ $("ul.nav-tabs > li > a").on("shown.bs.tab", function(e) {
 // on load of the page: switch to the currently selected tab
 var hash = window.location.hash;
 $('#myTab a[href="' + hash + '"]').tab('show');
-</script>
+
+<!--<div class="col-sm-2"><%= link_to 'Account Settings', edit_user_registration_path, :class => "btn btn-primary"%> -->
 
 
 

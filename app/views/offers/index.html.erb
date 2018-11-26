@@ -1,149 +1,150 @@
 <% content_for :title do %>
   Post-Interview Response Time| RelyApply
 <% end %>
+<div class="container emp-profile">
 
-<%= link_to "< Back to Company Profile", company_path(@company)%>
+    <div class="well" id="wellProfileForReviewIndex">
+        <div id= "headerProfileForReviewIndex">  
+          <h1><strong>  <%= link_to @company.name, company_path(@company), method: :get%></strong> Post Interview Response Times</h1>
+        </div>
+    </div><!-- div class="well" id="wellProfileForReviewIndex"-->
 
-<br />
-
-<div class="well" id="wellProfileForReviewIndex">
-    <div id= "headerProfileForReviewIndex">  
-      <h1><strong>  <%= link_to @company.name, company_path(:id => @company.id),{:style=>'color:#FFFFFF;'} %></strong></h1>
-    </div>
-</div>
-
-<p>Want to add a review? Go back to <%= link_to @company.name, company_path(:id => @company.id)%>'s profile and click "Add a Review"</p>
+    <p>Want to add a review? Go back to <%= link_to @company.name, company_path(@company), method: :get%>'s profile and click "Submit Review"</p>
 
 
-<div class="text-left">
-  <div class="alert alert-info" role="alert">
-    <u><strong>Reminder:</strong></u>
-    <ul>
-      <li><p><I><strong>Post-Interview Response Times Refer to the estimated time it took for a company to contact you after an interview to give you an offer or reject you. </strong></I></p> </li>
-      <li><p><I><strong>It takes 2-3 weeks on average to hear back from a job application. Even then, it can vary based on the industry, time of the year, etc.</strong></I></p></li>
-      <li><p><I><strong>If you don't hear back within a reasonable time frame relative to the other reviews, it is highly suggested you do a follow-up or assume you didn't qualify for the job.</strong></I></p></li>
-    </ul>
-  </div>
-</div>
-
-<hr id="reviewIndexHr">
-
-<div class="container-fluid">
-  <%= search_form_for @q, url: company_offers_path(params[:company_id]) do |f| %> 
-    <h4><strong>Filter & Search</strong></h4>
-
-    <div class="row">
-       <div class="col-xs-6">
-        <%= f.label :response_time_eq, "Response Time: " %>
-        <%= f.select :response_time_eq, options_for_select([
-            ["1 day","1 day"],
-            ["2 days","2 days"],
-            ["3 days","3 days"],
-            ["4 days","4 days"],
-            ["5 days","5 days"],
-            ["6 day","6 day"],
-            ["1 week ","1 week"],
-            ["2 Weeks", "2 Weeks"],
-            ["3 Weeks", "3 Weeks"],
-            ["4 Weeks", "4 Weeks"],
-            ["Greater than 4 Weeks", "Greater than 4 Weeks"]
-            ] , @q.response_time_eq), prompt: '--Select--' %>
-      </div>
-      <div class="col-xs-6">
-        <%= f.label :position, "Position:" %>
-        <%= h f.search_field :position_cont, :placeholder => 'Search Position'%>
+    <div class="text-left">
+      <div class="alert alert-info" role="alert">
+        <u><strong>Reminder:</strong></u>
+        <ul>
+          <li><p><I><strong>Post-Interview Response Times Refer to the estimated time it took for a company to contact you after an interview to give you an offer or reject you. </strong></I></p> </li>
+          <li><p><I><strong>It takes 2-3 weeks on average to hear back from a job application. Even then, it can vary based on the industry, time of the year, etc.</strong></I></p></li>
+          <li><p><I><strong>If you don't hear back within a reasonable time frame relative to the other reviews, it is highly suggested you do a follow-up or assume you didn't qualify for the job.</strong></I></p></li>
+        </ul>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-xs-6">
-        <%= f.label :satisfaction_eq, "Satisfaction Level: " %>
-        <%= f.select :satisfaction_eq, options_for_select([
-          ["Highly satisfied","Highly Satisfied."],
-          ["Average Satisfaction","Average Satisfaction"],
-          ["Poor Satisfaction","Poor Satisfaction"]
-          ] , @q.satisfaction_eq), prompt: '--Select--'   %>
-      </div>
-      <div class="col-xs-6">
-        <%= f.label :employment_type_eq, "Employment Type: " %>
-        <%= f.select :employment_type_eq, options_for_select([
-          ["Full-Time","Full-Time"],
-          ["Part-Time","Part-Time"],
-          ["Intern","Intern"],
-          ["Temporary","Temporary"],
-          ["Contractor","Contractor"]
-          ] , @q.employment_type_eq), prompt: '--Select--'  %>
-      </div>
-    </div>
+    <hr id="reviewIndexHr">
 
-    <div class="row">
-      <div class="col-xs-6">
-        <%= f.label :Location, "Location: " %>
-        <%= h text_field_tag :search, params[:search], :placeholder => '[City, State] or Zip Code'%>
-      </div>
-    </div>
-    <br />
-    
-    <div colspan="1" align="center">
-      <%= f.submit :class => "btn btn-primary" %>  <a href="<%=company_offers_path%>" class="btn btn-primary" color="black">Clear filters</a>
-    <div>
-  <% end %>
-</div>
-</div>
-<div>
-<h2><strong>Total Post-Interview Reviews: <%= @company.offers.size %></strong></h2>
- <div class="text-right">
-    <%= sort_link(@q, :created_at, default_order: :asc) do %>
-      <strong>Sort by Date</strong>
-    <% end %>
-  </div>  
-</div>
+    <div class="container-fluid">
+      <%= search_form_for @q, url: company_offers_path(params[:company_id]) do |f| %> 
+        <div class="row">
+            <h4 class="col"><strong>Filter & Search</strong></h4>
+        </div>
 
-<div>
-  <% @offers.each do |offer| %>
-  <div class="panel panel-default" id="panelCompanyShow">
-     <div class="comments_wrapper clearfix">
-      <div class="panel-heading" id="panelCompanyShowHeader">
-       <h3 id="indexReviewMainInfo" align="center">
-          Estimated Post-Interview Response Time: <%= offer.response_time %>
-        </h3>
-      </div>
-     
-      <div class="pull-right" id="review-Submit-Time-Stamp">
-       <p><I>Post-Interview Review Submitted: <%= offer.created_at.strftime("%B %d, %Y") %></I></p>
-       </div>
-      
-      <div class="panel-body">
-        <div class="pull-left">
-          <h4><strong><u>Application Details</u></strong></h4>
-          <p><strong>Position:</strong> <%= offer.position %></p>
-          <p><strong>Employment Type:</strong><%= offer.employment_type %></p>
-  
-      </div>
-      
-      <div class="pull-right">
+        <div class="row">
+           <div class="col-sm">
+            <%= f.label :response_time_eq, "Response Time: " %>
+            <%= f.select :response_time_eq, options_for_select([
+                ["1 day","1 day"],
+                ["2 days","2 days"],
+                ["3 days","3 days"],
+                ["4 days","4 days"],
+                ["5 days","5 days"],
+                ["6 day","6 day"],
+                ["1 week ","1 week"],
+                ["2 Weeks", "2 Weeks"],
+                ["3 Weeks", "3 Weeks"],
+                ["4 Weeks", "4 Weeks"],
+                ["Greater than 4 Weeks", "Greater than 4 Weeks"]
+                ] , @q.response_time_eq), prompt: '--Select--' %>
+          </div>
+          <div class="col-sm">
+            <%= f.label :position, "Position:" %>
+            <%= h f.search_field :position_cont, :placeholder => 'Search Position'%>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm">
+            <%= f.label :satisfaction_eq, "Satisfaction Level: " %>
+            <%= f.select :satisfaction_eq, options_for_select([
+              ["Positive","Positive"],
+              ["Negative","Negative"]
+              ] , @q.satisfaction_eq), prompt: '--Select--'   %>
+          </div>
+          <div class="col-sm">
+            <%= f.label :employment_type_eq, "Employment Type: " %>
+            <%= f.select :employment_type_eq, options_for_select([
+              ["Full-Time","Full-Time"],
+              ["Part-Time","Part-Time"],
+              ["Intern","Intern"],
+              ["Temporary","Temporary"],
+              ["Contractor","Contractor"]
+              ] , @q.employment_type_eq), prompt: '--Select--'  %>
+          </div>
+        </div>
+
+        <div class="row">
+         <div class="col-sm">
+            <%= f.label :Location, "Location: " %>
+            <%= h text_field_tag :search, params[:search], :placeholder => '[City, State] or Zip Code'%>
+          </div>
+        </div>
         <br />
-        <p><strong>Location:</strong> <%= offer.address.chomp(', USA') %></p>
-        <p><strong>Response Time Satisfaction:</strong> <%= offer.satisfaction %></p>
-      </div>
-     
-    </div>
-    
-      <div colspan="1" align="center">
+        
+        <div colspan="1" align="center">
+          <%= f.submit :class => "btn btn-primary" %>  <a href="<%=company_offers_path%>" class="btn btn-primary" color="black">Clear filters</a>
+        <div>
+      <% end %>
+    </div><!--div class="container-fluid"-->
+  </div><!-- textleft -->
+
+  <hr id="reviewIndexHr">
+
+  <div>
+  <h2><strong>Total Post-Interview Reviews: <%= @company.offers.size %></strong></h2>
+   <div class="text-right">
+      <%= sort_link(@q, :created_at, default_order: :asc) do %>
+        <strong>Sort by Date</strong>
+      <% end %>
+    </div>  
+  </div>
+
+
+    <% @offers.each do |offer| %>
+    <div class="card border-secondary mb-3" id="reviewsIndexCard">
+        <div class="card-header" id="reviewsIndexCardHeader">
+          <h3>
+            Estimated Post-Interview Response Time: <%= offer.response_time %>
+          </h3>
+        </div>
+
+        <div class="card-body">
+          <p style="color:grey" ><I>Post-Interview Review Submitted: <%= offer.created_at.strftime("%B %d, %Y") %></I></p>
+          <h4><strong><u>Application Details</u></strong></h4>
+
+          <div class="row"><!--first row of card-->
+            <div class="col-md-6">
+              <p><strong>Position:</strong> <%= offer.position %></p>
+            </div>
+            <div class="col-md-6">
+              <p><strong>Employment Type:</strong><%= offer.employment_type %></p>
+            </div>
+          </div>
+        
+        <div class="row"><!--second row of card-->
+          <div class="col-md-6">
+            <p><strong>Location:</strong> <%= offer.address.chomp(', USA') %></p>
+          </div>
+          <div class="col-md-6">
+            <p><strong>Response Time Satisfaction:</strong> <%= offer.satisfaction %></p>
+          </div>
+        </div>
+      </div><!--card body div-->
+      <div style="text-align: center"> <!--links to likes and dislikes -->
         <%= link_to like_offer_path(offer), method: :put, class: "btn btn-default btn-sm" do %>
-          <span class="glyphicon glyphicon-thumbs-up" id="chevronUp"></span>
+          <i class="fas fa-thumbs-up" style="color:green"></i>
           Accurate
           (<%= offer.get_upvotes.size %>)
-          <% end %>
-        
+        <% end %>
         <%= link_to dislike_offer_path(offer), method: :put, class: "btn btn-default btn-sm" do %>
-          <span class="glyphicon glyphicon-thumbs-down" id="chevronDown"></span>
+          <i class="fas fa-thumbs-down" style="color:red"></i>
           Inaccurate
           (<%= offer.get_downvotes.size %>)
-          <% end %>
-      </div>
-   </div>   
-   </div>
+        <% end %>
+        </div><!--close div for to likes and dislikes -->
+     </div><!--div close card body-->
+    </div>
+    <br />
   <% end %>
-
-</div>
+</div><!--div class="container emp-profile"-->

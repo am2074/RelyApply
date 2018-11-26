@@ -1,3 +1,6 @@
+//= require turbolinks
+//= require_tree 
+
 $(document).on('turbolinks:load', function() {
 function initializeAutocomplete(id) {
     var element = document.getElementById(id);
@@ -23,11 +26,11 @@ function initializeAutocomplete(id) {
     }
   }
 
-  google.maps.event.addDomListener(window, 'load', function() {
+  google.maps.event.addDomListener(window, 'click', function() {
     initializeAutocomplete('autocomplete_address');
   });
 
-  google.maps.event.addDomListener(window, 'load', function() {
+  google.maps.event.addDomListener(window, 'click', function() {
     initializeAutocomplete('autocomplete_address2');
   });
 });

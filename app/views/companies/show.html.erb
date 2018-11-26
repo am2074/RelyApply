@@ -1,7 +1,8 @@
-<% content_for :title do %>
+ <% content_for :title do %>
  Company | Rely Apply
 <% end %>
 
+<%= @company.reviews.where(satisfaction: "Highly satisfied").size %>
 <div class="container emp-profile">
   <form method="post">
       <div class="row">
@@ -28,7 +29,7 @@
                         </h6>
                           <% if user_signed_in? %>
                             <p>
-                              <button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target="#editCompanyDetails" aria-expanded="false" aria-controls="editCompanyDetails">
+                              <button class="btn btn-secondary btn-sm" type="button" data-toggle="collapse" data-target="#editCompanyDetails" aria-expanded="false" aria-controls="editCompanyDetails">
                                 Edit Company Information
                               </button>
                             </p>
@@ -73,12 +74,12 @@
         </div>
             <div  class= "col-md-6">
               <h3 class="proile-rating">
-                <span class="good-review-score" id="responseScoreShowPage">      
+                <span class="good-review-score-show" id="responseScoreShowPage">      
                               Response Rating : 
                                 <% if @company.reviews.size == 0 %> 
                                   <i class="far fa-times-circle icon-4x"></i>
                                 <% else %>
-                                  <%=Float(@company.reviews.where(satisfaction: "Highly satisfied. My expectations were far surpassed.").size + @company.reviews.where(satisfaction: "Average Satisfaction").size) /@company.reviews.count * 100 %>%
+                                  <%=Float(@company.reviews.where(satisfaction: "Positive.").size/@company.reviews.count * 100) %>
                                 <% end %>
                 </span>                
               </h3>
@@ -93,15 +94,20 @@
               <!--Company Navbar --> 
               <div class="profile-head">
               <!--Company Navbar Headers --> 
-               <ul class="nav nav-tabs" id="myTab" role="tablist">
+               <ul class="nav nav-tabs" id="navbarCompanyShow" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Overall</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Submit Review</a>
                         </li>
-                        <li class="nav-link" id="profile-tab" role="tab" ><%= link_to 'Application Response Times', company_reviews_path(@company)%> <i class="fas fa-caret-right"></i></li>
-                        <li class="nav-link" id="profile-tab" role="tab" ><%= link_to 'Post-Interview Response Times', company_reviews_path(@company)%> <i class="fas fa-caret-right"></i></li>
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reviews</a>
+                          <div class="dropdown-menu">
+                            <p><%= link_to '• After Applying', company_reviews_path(@company)%></p>
+                            <p><%= link_to '• After Interviewing', company_offers_path(@company)%></p>
+                          </div>
+                        </li>
                     </ul>
               </div>
                <!--Company Navbar Tab Contents --> 
@@ -182,19 +188,32 @@
                           </tbody>
                         </table>
                     </div>
-
+      
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                      <%= render 'company_review_form', company: @company %>    
+                      <% if user_signed_in? %>
+                        <p>Share how long it took to respond:</p> 
+                        <div style="display:inline">
+                          <button class="btn-primary" data-toggle="collapse" data-target="#collapseApplicationReponseReview">After Applying</button>
+                          <div id="collapseApplicationReponseReview" class="collapse">
+                            <%= render 'company_review_form', company: @company %>  
+                          </div> 
+                          or 
+                          <button class="btn-secondary" data-toggle="collapse" data-target="#collapsePostInterview"">After The Interview</button>
+                          <div id="collapsePostInterview" class="collapse">
+                            <%= render 'company_post_review_form', company: @company %>  
+                          </div>
+                      <% else %>
+                        <div>
+                          <h4> You need to <%= link_to "Log in", new_user_session_path %> or <%= link_to "Sign up", new_user_registration_path %> to request for information changes on <%= @company.name%>'s profile </h4>
+                        </div>
+                      <% end %>
+                      </div> 
                     </div>
                 </div>
             </div>
         </div>
     </form>           
 </div>
-
-
-
-
 
 
 

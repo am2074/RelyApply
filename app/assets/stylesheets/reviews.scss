@@ -1,28 +1,6 @@
-#reviewIndex{
-	border-color: black;
-}
+//@import "bootstrap-sprockets";
+@import "bootstrap";
 
-.btn btn-warning {
-	color: black;
-}
-
-#wellProfileForReviewIndex {
-	background: #2c485c;
-}
-
-#headerProfileForReviewIndex h1{
-	display:block;
-	text-align:center;
-}
-
-#chevronUp {
-	color: green;
-}
-
-
-#chevronDown{
-	color: red;
-}
 
 
 #reviewFilter {
@@ -37,11 +15,9 @@ color:#FF0066;
 border: 0 none;
 }
 
-#indexReviewMainInfo {
-	
-}
 
 #review-Submit-Time-Stamp {
 font-size: 12px;	
 margin-right: 5px;
 }
+

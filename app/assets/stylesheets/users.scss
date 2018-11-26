@@ -1,6 +1,7 @@
 //SIGN UP AND LOGIN (USES SAME PAGES )
 
 @import url('https://fonts.googleapis.com/css?family=Numans');
+@import "bootstrap";
 
 #loginContainer{
 height: 75%;
@@ -153,3 +154,19 @@ margin-left: 4px;
   background-color: rgba(0,0,0,1) !important;
   //background-color: rgba(0,0,0,0.5) !important;
 }
+
+
+
+
+//reviewsIndexPage
+#reviewsIndexCard {
+  height: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: auto;
+  background-color: rgba(0,0,0,0) !important;
+} 
+
+#reviewsIndexCardHeader{
+background-color:#2c485c;
+} 
