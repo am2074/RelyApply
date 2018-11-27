@@ -5,7 +5,7 @@
 
     <div class="well" id="wellProfileForReviewIndex">
         <div id= "headerProfileForReviewIndex">  
-          <h1><%= link_to @company.name, company_path(@company), method: :get %></strong> Application Response Times<strong></h1>
+          <h1><%=@company.name%>'s</strong> Application Response Times<strong></h1>
         </div>
     </div><!-- div class="well" id="wellProfileForReviewIndex"-->
 
@@ -94,7 +94,7 @@
 
   <div>
     <h2><strong>Total Reviews: <%= @company.reviews.size %></strong></h2>
-     <div class="text-right">
+     <div class="text-left">
         <%= sort_link(@q, :created_at, default_order: :asc) do %>
           <strong>Sort by Date</strong>
         <% end %>

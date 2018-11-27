@@ -134,7 +134,6 @@ margin-left: 4px;
 
 #formGroupFont {
   font-size: 20px;
-  color: white;
 }
 
 #userReviewBadge {
@@ -170,3 +169,31 @@ margin-left: 4px;
 #reviewsIndexCardHeader{
 background-color:#2c485c;
 } 
+
+
+
+#userReviewCardBody p {
+  color: #444444 !important;
+}
+
+//edit Account
+
+#editAccountCard {
+  height: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: auto;
+  background-color: rgba(0,0,0,0.5) !important;
+  color: white;
+}
+
+
+//edit Reviews & Offer
+#editReviewOffer {
+  height: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: auto;
+  background-color: rgba(0,0,0,0.5) !important;
+  color: white;
+}

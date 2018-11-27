@@ -1,5 +1,12 @@
-<h1>New Offer</h1>
+<% content_for :title do %>
+ Edit Review | RelyApply
+<% end %>
 
+<h1 style="color:white;">Submit Post-Interview Review</h1>
+<% if user_signed_in? %>
 <%= render 'form', offer: @offer %>
-
-<%= link_to 'Back', offers_path %>
+<% else %>
+	<div>
+	  <h4> You need to <%= link_to "Log in", new_user_session_path %> or <%= link_to "Sign up", new_user_registration_path %> to request for information changes on <%= @company.name%>'s profile </h4>
+	</div>
+<% end %>

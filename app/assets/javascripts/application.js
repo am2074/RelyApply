@@ -69,8 +69,4 @@ $("ul.nav-tabs > li > a").on("shown.bs.tab", function(e) {
 var hash = window.location.hash;
 $('#myTab a[href="' + hash + '"]').tab('show');
 
-<!--<div class="col-sm-2"><%= link_to 'Account Settings', edit_user_registration_path, :class => "btn btn-primary"%> -->
-
-
-
 
