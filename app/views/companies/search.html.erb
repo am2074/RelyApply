@@ -33,7 +33,7 @@
             <% if company.reviews.size == 0 %> 
               <small>no rating</small>
             <% else %>
-              <%= number_to_percentage((Float(company.reviews.where(satisfaction: "Positive").size) /company.reviews.count * 100),precision: 0) %> 
+              <%= number_to_percentage((Float(company.reviews.where(satisfaction: "Positive").size + company.offers.where(satisfaction:"Positive").size)/(company.reviews.count + company.offers.count) * 100),precision: 0) %> 
             <% end %>
           </h2>
           <h4 class="card-title" id="searchCardTitle"><%= link_to company.name, company, data: { turbolinks: false }, style:"color:white"%></h4> 

@@ -21,7 +21,6 @@ class ReviewsController < ApplicationController
   # GET /reviews/1
   # GET /reviews/1.json
   def show
-     @graph = Reviews.all
   end
 
   # GET /reviews/new
