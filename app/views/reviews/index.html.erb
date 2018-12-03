@@ -118,6 +118,7 @@
         </div>
         <div class="card-body" id="cardBodyText">
           <p style="color:grey !important;" ><I>Review Submitted: <%= review.created_at.strftime("%B %d, %Y") %></I></p>
+           <h4><strong>Responsiveness:</strong></h4>
            <div class="row"><!--first row of card-->
             <div class="col-md-6" >
               <p><strong>Did you feel this company was responsive after applying?</strong> <%= review.responsiveness %></p>
@@ -126,7 +127,8 @@
               <p><strong>Were you satisifed with this company's responsiveness :</strong> <%= review.satisfaction%></p>
             </div>
           </div>
-          <h4><strong><u>Application Details</u></strong></h4>
+          <hr>
+          <h4><strong>Application Details:</strong></h4>
          
           <div class="row"><!--first row of card-->
             <div class="col-md-6">
