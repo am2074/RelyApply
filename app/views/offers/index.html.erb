@@ -34,19 +34,11 @@
         <div class="row">
            <div class="col-sm">
             <%= f.label :response_time_eq, "Response Time: " %>
-            <%= f.select :response_time_eq, options_for_select([
-                ["1 day","1 day"],
-                ["2 days","2 days"],
-                ["3 days","3 days"],
-                ["4 days","4 days"],
-                ["5 days","5 days"],
-                ["6 day","6 day"],
-                ["1 week ","1 week"],
-                ["2 Weeks", "2 Weeks"],
-                ["3 Weeks", "3 Weeks"],
-                ["4 Weeks", "4 Weeks"],
-                ["Greater than 4 Weeks", "Greater than 4 Weeks"]
-                ] , @q.response_time_eq), prompt: '--Select--' %>
+            <%= f.select :response_time_eq, options_for_select([["Less than a week","Less than a week"],
+              ["Between 1-2 weeks","Between 1-2 weeks"],
+              ["Between 2-3 weeks","Between 2-3 weeks"],
+              ["Between 3-4 weeks","Between 3-4 weeks"],
+              ["Did not respond within a month","Did not respond within a month"]], @q.response_time_eq), prompt: '--Select--' %>
           </div>
           <div class="col-sm">
             <%= f.label :position, "Position:" %>
@@ -56,11 +48,11 @@
 
         <div class="row">
           <div class="col-sm">
-            <%= f.label :satisfaction_eq, "Satisfaction Level: " %>
-            <%= f.select :satisfaction_eq, options_for_select([
-              ["Positive","Positive"],
-              ["Negative","Negative"]
-              ] , @q.satisfaction_eq), prompt: '--Select--'   %>
+            <%= f.label :responsiveness_eq, "Responsive? " %>
+            <%= f.select :responsiveness_eq, options_for_select([
+              ["Yes","Yes"],
+              ["No","No"]
+              ] , @q.responsiveness_eq), prompt: '--Select--'   %>
           </div>
           <div class="col-sm">
             <%= f.label :employment_type_eq, "Employment Type: " %>
@@ -76,6 +68,13 @@
 
         <div class="row">
          <div class="col-sm">
+            <%= f.label :satisfaction_eq, "Satisfied with Responsiveness? " %>
+            <%= f.select :satisfaction_eq, options_for_select([
+              ["Yes","Yes"],
+              ["No","No"]
+              ] , @q.satisfaction_eq), prompt: '--Select--'   %>
+          </div>
+          <div class="col-sm">
             <%= f.label :Location, "Location: " %>
             <%= h text_field_tag :search, params[:search], :placeholder => '[City, State] or Zip Code'%>
           </div>
@@ -111,6 +110,15 @@
 
         <div class="card-body">
           <p style="color:grey" ><I>Post-Interview Review Submitted: <%= offer.created_at.strftime("%B %d, %Y") %></I></p>
+          <div class="row"><!--first row of card-->
+            <div class="col-md-6">
+              <p><strong>Did you feel this company was responsive?</strong> <%= offer.responsiveness %></p>
+            </div>
+            <div class="col-md-6">
+              <p><strong>Were you satisifed with this company's responsiveness :</strong> <%= offer.satisfaction%></p>
+            </div>
+          </div>
+        
           <h4><strong><u>Application Details</u></strong></h4>
 
           <div class="row"><!--first row of card-->
@@ -118,16 +126,13 @@
               <p><strong>Position:</strong> <%= offer.position %></p>
             </div>
             <div class="col-md-6">
-              <p><strong>Employment Type:</strong><%= offer.employment_type %></p>
+              <p><strong>Employment Type:</strong> <%= offer.employment_type %></p>
             </div>
           </div>
         
         <div class="row"><!--second row of card-->
           <div class="col-md-6">
             <p><strong>Location:</strong> <%= offer.address.chomp(', USA') %></p>
-          </div>
-          <div class="col-md-6">
-            <p><strong>Response Time Satisfaction:</strong> <%= offer.satisfaction %></p>
           </div>
         </div>
       </div><!--card body div-->
@@ -137,6 +142,7 @@
           Accurate
           (<%= offer.get_upvotes.size %>)
         <% end %>
+        |
         <%= link_to dislike_offer_path(offer), method: :put, class: "btn btn-default btn-sm" do %>
           <i class="fas fa-thumbs-down" style="color:red"></i>
           Inaccurate

@@ -27,15 +27,41 @@
   </div>
   <div class="row">
     <div class="col-md-6">
+      <%= f.label :responsiveness do %>
+        Did you feel that this company was responsive at all after applying?
+      <%end %>
+    </div>
+    <div class="col-md-6">
+      <%= f.collection_radio_buttons :responsiveness, [['Yes', 'Yes'] ,['No', 'No']],:first, :last,:item_wrapper_class => 'vertical', :id =>"radioButton" %>
+    </div>
+  </div> 
+<strong>*Companies that don't respond to reject or schedule an interview after applying within a month shouldn't be considered appropriately responsive</strong>
+<hr />
+  <div class="row">
+    <div class="col-md-6">
       <%= f.label :response_time do%>
         Response Time for an Interview or Rejection:
       <%end %>
     </div>
     <div class="col-md-6">
-      <%= f.select :response_time, options_for_select([["1 week","1 week"],["2 weeks","2 weeks"],["3 weeks","3 weeks"],["Greater than 4 weeks","Greater than 4 weeks"]], :selected => @review.response_time), class:"select"%> 
+      <%= f.select :response_time, options_for_select(
+              [["Less than a week","Less than a week"],
+              ["Between 1-2 weeks","Between 1-2 weeks"],
+              ["Between 2-3 weeks","Between 2-3 weeks"],
+              ["Between 3-4 weeks","Between 3-4 weeks"],
+              ["Did not respond within a month","Did not respond within a month"]], :selected => @review.response_time), class:"select"%> 
     </div>
   </div> 
-  
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.label :satisfaction do %>
+        Were you satisfied with this company's responsiveness:
+      <% end %>
+    </div>
+    <div class="col-md-6">
+      <%= f.collection_radio_buttons :satisfaction, [['Yes', 'Yes'] ,['No', 'No']],:first, :last,:item_wrapper_class => 'vertical2', :id =>"radioButton2" %>
+    </div>
+  </div>
   <div class="row">
     <div class="col-md-6">
       <%= f.label :application_type do %>
@@ -47,17 +73,6 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-6">
-      <%= f.label :satisfaction do %>
-        Level of Satisfaction With Response Time:<span class="required"></span>
-      <% end %>
-    </div>
-    <div class="col-md-6">
-      <%= f.collection_radio_buttons :satisfaction, [['Positive', 'Positive'] ,['Negative', 'Negative']],:first, :last,:item_wrapper_class => 'vertical', :id =>"radioButton" %>
-    </div>
-  </div>
-  
   <div class="row">
     <div class="col-md-6">
       <%= f.label :position do %>

@@ -383,7 +383,7 @@ tbody tr td {
 }
 
 .good-review-score-show{
-    background-color:map-get($theme-colors, primary);
+    background-color:map-get($theme-colors, success);
     //background-color:#66CC33;
     color:white;
     text-align: center;
@@ -395,6 +395,44 @@ tbody tr td {
     margin-top: 25px !important;
 }
 
+.na-review-score-show{
+    background-color:map-get($theme-colors, secondary);
+    //background-color:#66CC33;
+    color:white;
+    text-align: center;
+    padding: 10px;
+    margin-right: 5px;
+    width: 90px;
+    height: 70px; 
+    //line-height: 30px;*/
+    margin-top: 25px !important;
+}
+
+.bad-review-score-show{
+    background-color:map-get($theme-colors, danger);
+    //background-color:#66CC33;
+    color:white;
+    text-align: center;
+    padding: 10px;
+    margin-right: 5px;
+    width: 90px;
+    height: 70px; 
+    //line-height: 30px;*/
+    margin-top: 25px !important;
+}
+
+.mixed-review-score-show{
+    //background-color:map-get($theme-colors, warning);
+    background-color: orange;
+    color:white;
+    text-align: center;
+    padding: 10px;
+    margin-right: 5px;
+    width: 90px;
+    height: 70px; 
+    //line-height: 30px;*/
+    margin-top: 25px !important;
+}
 
 input[type="radio"] { 
   //select all input type = "radio"
@@ -409,4 +447,13 @@ input[type="radio"] {
 
 #dropdownItem {
   margin-left: 12px !important;
+}
+
+
+#cardBodyText p {
+  color: #444444 !important;
+}
+
+#thumbsdown {
+  text-indent: 50px!important;
 }

@@ -3,7 +3,7 @@
 
   <% if offer.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
+      <h2><%= pluralize(offer.errors.count, "error") %> prohibited this review from being saved:</h2>
 
       <ul>
       <% offer.errors.full_messages.each do |message| %>
@@ -24,6 +24,18 @@
            <li><h6><strong><I>Response Time After Interviewing:</I> are the estimated time it takes to receive a job offer or rejection after interviewing</strong></h6></li>
         </ul>
   </div>
+   <div class="row">
+    <div class="col-md-6">
+      <%= f.label :responsiveness do %>
+        Did you feel that this company was responsive at all after applying?
+      <%end %>
+    </div>
+    <div class="col-md-6">
+      <%= f.collection_radio_buttons :responsiveness, [['Yes', 'Yes'] ,['No', 'No']],:first, :last,:item_wrapper_class => 'vertical', :id =>"radioButton" %>
+    </div>
+  </div> 
+  <strong>*Companies that don't respond to reject or schedule an interview after applying within a month shouldn't be considered appropriately responsive</strong>
+  <hr />
   <div class="row">
     <div class="col-md-6">
       <%= f.label :response_time do%>
@@ -31,23 +43,21 @@
       <%end %>
     </div>
     <div class="col-md-6">
-      <%= f.select :response_time, options_for_select([["1-3 days","1-3 days"],
-              ["4-6 days","4-6 days"],
-              ["1 week ","1 week"],
-              ["2 Weeks", "2 Weeks"],
-              ["3 Weeks", "3 Weeks"],
-              ["4 Weeks", "4 Weeks"],
-              ["Greater than 4 weeks","Greater than 4 weeks"]], :selected => @offer.response_time), class:"select"%> 
+      <%= f.select :response_time, options_for_select([["Less than a week","Less than a week"],
+              ["Between 1-2 weeks","Between 1-2 weeks"],
+              ["Between 2-3 weeks","Between 2-3 weeks"],
+              ["Between 3-4 weeks","Between 3-4 weeks"],
+              ["Did not respond within a month","Did not respond within a month"]], :selected => @offer.response_time), class:"select"%> 
     </div>
   </div> 
   <div class="row">
     <div class="col-md-6">
       <%= f.label :satisfaction do %>
-        Level of Satisfaction With Response Time:<span class="required"></span>
+        Were you satisfied with this company's responsiveness:
       <% end %>
     </div>
     <div class="col-md-6">
-       <%= f.collection_radio_buttons :satisfaction, [['Positive', 'Positive'] ,['Negative', 'Negative']],:first, :last,:item_wrapper_class => 'vertical', :id =>"radioButton" %>
+      <%= f.collection_radio_buttons :satisfaction, [['Yes', 'Yes'] ,['No', 'No']],:first, :last,:item_wrapper_class => 'vertical2', :id =>"radioButton2" %>
     </div>
   </div>
   <div class="row">

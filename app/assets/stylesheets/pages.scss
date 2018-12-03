@@ -86,6 +86,14 @@
 }
 
 
+@media (max-width: 600px) {
+   #aboutImage   {
+        display:none;
+    }
+}
+	
+
+
 /******************* Timeline Demo - 4 *****************/
 .main-timeline4{overflow:hidden;position:relative}
 .main-timeline4:before{content:"";width:5px;height:79%;background:#333;position:absolute;top:70px;left:50%;transform:translateX(-50%)}

@@ -14,7 +14,18 @@
           <br />
           
           <p><I>**Required**</I></p>
-          
+          <div class="row">
+            <div class="col-md-6">
+              <%= f.label :responsiveness do %>
+                Did you feel that this company was responsive within a reasonable time frame? 
+                *Non-responsive: If you did not qualify for the job and they didn't bother following up within a reasonable time frame.* 
+              <%end %>
+            </div>
+            <div class="col-md-6">
+           <%= f.collection_radio_buttons :responsiveness [['Yes', 'Yes'] ,['No', 'No']],:first, :last,:item_wrapper_class => 'vertical', :id =>"radioButton" %>
+            </div>
+          </div> 
+
           <div class="row">
             <div class="col-md-6">
               <%= f.label :response_time do %>

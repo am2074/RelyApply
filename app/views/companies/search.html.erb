@@ -23,18 +23,52 @@
   <div>
       <p style="color:white;"><I>Can't Find the Company You're Looking For?</I> <%= link_to 'Submit a Company', new_company_path%> </p>
   </div>
- <p class="float-right" style="color:white;">Reponse Rating:</p>
+ <p class="float-right" style="color:white;">Reponsiveness</p>
   
   <% @companies.each do |company| %>    
     <div>   
       <div class="card" id="cardSearchPage">
         <div class="card-block">
           <h2 class="card-text good-review-score float-right">
-            <% if company.reviews.size == 0 %> 
-              <small>no rating</small>
-            <% else %>
-              <%= number_to_percentage((Float(company.reviews.where(satisfaction: "Positive").size + company.offers.where(satisfaction:"Positive").size)/(company.reviews.count + company.offers.count) * 100),precision: 0) %> 
-            <% end %>
+            <% if company.reviews.size == 0 and company.offers.size == 0 %> 
+              <span class="na-review-score-show" id="responseScoreShowPage">     
+               N/A
+               </span>  
+            <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) >= 60) and ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) >= 60) %>
+              <span class="good-review-score-show" id="responseScoreShowPage">
+                <i class="fas fa-thumbs-up" style="color:white"></i>
+              </span>
+            <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) < 60) and ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) < 60) %>
+              <span class="bad-review-score-show" id="responseScoreShowPage">
+                <i class="fas fa-thumbs-down" style="color:white"></i>
+              </span>
+            <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) >= 60) and ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) < 60) %>
+              <span class="mixed-review-score-show" id="responseScoreShowPage">
+                Mixed
+              </span>
+            <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) < 60) and ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) >= 60) %>
+              <span class="mixed-review-score-show" id="responseScoreShowPage">
+                Mixed
+              </span>
+            <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) < 60) and company.offers.size == 0 %>
+              <span class="mixed-review-score-show" id="responseScoreShowPage">
+               Mixed
+              </span>
+            <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) > 60) and company.offers.size == 0 %>
+              <span class="good-review-score-show" id="responseScoreShowPage">
+                <i class="fas fa-thumbs-up" style="color:white;"></i>
+              </span>
+            <% elsif ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) < 60) and company.reviews.size == 0 %>
+              <span class="bad-review-score-show" id="responseScoreShowPage">
+                <i class="fas fa-thumbs-down" style="color:white"></i>
+              </span>
+            <% elsif ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) > 60) and company.reviews.size == 0 %>
+              <span class="good-review-score-show" id="responseScoreShowPage">
+                <i class="fas fa-thumbs-up" style="color:white"></i>
+              </span>
+              <!--%= number_to_percentage((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.count) * 100),precision: 0) -->
+          <% end %>                   
+            
           </h2>
           <h4 class="card-title" id="searchCardTitle"><%= link_to company.name, company, data: { turbolinks: false }, style:"color:white"%></h4> 
           <p class="card-title" style="color:white;" id="searchCardTitle">Website: <%=company.website %></p>        
