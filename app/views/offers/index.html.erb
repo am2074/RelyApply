@@ -138,13 +138,13 @@
         </div>
       </div><!--card body div-->
       <div style="text-align: center"> <!--links to likes and dislikes -->
-        <%= link_to like_offer_path(offer), method: :put, class: "btn btn-default btn-sm" do %>
+        <%= link_to like_offer_path(offer), method: :put, class: "btn btn-default btn-sm", id: "thumbs" do %>
           <i class="fas fa-thumbs-up" style="color:green"></i>
           Accurate
           (<%= offer.get_upvotes.size %>)
         <% end %>
         |
-        <%= link_to dislike_offer_path(offer), method: :put, class: "btn btn-default btn-sm" do %>
+        <%= link_to dislike_offer_path(offer), method: :put, class: "btn btn-default btn-sm", id: "thumbs" do %>
           <i class="fas fa-thumbs-down" style="color:red"></i>
           Inaccurate
           (<%= offer.get_downvotes.size %>)

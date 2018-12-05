@@ -457,3 +457,19 @@ input[type="radio"] {
 #thumbsdown {
   text-indent: 50px!important;
 }
+
+//Navbarhover
+#thumbs {
+  color: #444444!important;
+}
+
+#thumbs:hover{
+  color: grey !important;
+  text-decoration: underline;
+ }
+
+#thumbs:active{
+  color: white!important;
+  text-decoration: underline;
+  }
+
