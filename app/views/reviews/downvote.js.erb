@@ -1,0 +1,2 @@
+$('.ncount-<%= @review.id %>').html('Inaccurate (<%=escape_javascript @review.get_downvotes.size.to_s %>)');
+$('.vcount-<%= @review.id %>').html('Accurate (<%=escape_javascript @review.get_upvotes.size.to_s %>)');

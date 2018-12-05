@@ -76,12 +76,20 @@ class ReviewsController < ApplicationController
 
   def upvote
     @review.upvote_by current_user
-    redirect_back fallback_location: root_path
+    respond_to do |format|
+      format.html { redirect_back fallback_location: root_path }
+      format.json { render json: { count: @review.upvoted_count } }
+      format.js { render layout: false }
+    end
   end
 
   def downvote
     @review.downvote_by current_user
-    redirect_back fallback_location: root_path.hash
+     respond_to do |format|
+      format.html { redirect_back fallback_location: root_path }
+      format.json { render json: { count: @review.downvoted_count } }
+      format.js { render layout: false }
+    end
   end
 
   private

@@ -464,7 +464,7 @@ input[type="radio"] {
 }
 
 #thumbs:hover{
-  color: grey !important;
+  color: map-get($theme-colors, primary) !important;
   text-decoration: underline;
  }
 

@@ -91,7 +91,7 @@
   <hr id="reviewIndexHr">
 
   <div>
-  <h2><strong>Total Post-Interview Reviews: <%= @company.offers.size %></strong></h2>
+  <h2><strong>Total offer-Interview Reviews: <%= @company.offers.size %></strong></h2>
    <div class="text-left">
       <%= sort_link(@q, :created_at, default_order: :asc) do %>
         <strong>Sort by Date</strong>
@@ -100,16 +100,16 @@
   </div>
 
 
-    <% @offers.each do |offer| %>
+  <% @offers.each do |offer| %>
     <div class="card border-secondary mb-3" id="reviewsIndexCard">
         <div class="card-header" id="reviewsIndexCardHeader">
           <h3>
-            Estimated Post-Interview Response Time: <%= offer.response_time %>
+            Estimated offer-Interview Response Time: <%= offer.response_time %>
           </h3>
         </div>
 
-        <div class="card-body">
-          <p style="color:grey" ><I>Post-Interview Review Submitted: <%= offer.created_at.strftime("%B %d, %Y") %></I></p>
+        <div class="card-body" id="cardBodyText">
+          <p style="color:grey" ><I>offer-Interview Review Submitted: <%= offer.created_at.strftime("%B %d, %Y") %></I></p>
           <h4><strong>Responsiveness:</strong></h4>
           <div class="row"><!--first row of card-->
             <div class="col-md-6">
@@ -136,22 +136,22 @@
             <p><strong>Location:</strong> <%= offer.address.chomp(', USA') %></p>
           </div>
         </div>
-      </div><!--card body div-->
-      <div style="text-align: center"> <!--links to likes and dislikes -->
-        <%= link_to like_offer_path(offer), method: :put, class: "btn btn-default btn-sm", id: "thumbs" do %>
-          <i class="fas fa-thumbs-up" style="color:green"></i>
-          Accurate
-          (<%= offer.get_upvotes.size %>)
+
+      <div class="vote-count bind-<%= offer.id %>" style="text-align: center"> <!--links to likes and dislikes -->
+        <%= link_to like_offer_path(offer),:remote => true, method: :get, class: "vpos", id: "thumbs" do %>
+            <i class="fas fa-thumbs-up" style="color:green"></i>
+            <span class="vcount-<%= offer.id %>">Accurate(<%= offer.get_upvotes.size %>)</span>
         <% end %>
         |
-        <%= link_to dislike_offer_path(offer), method: :put, class: "btn btn-default btn-sm", id: "thumbs" do %>
-          <i class="fas fa-thumbs-down" style="color:red"></i>
-          Inaccurate
-          (<%= offer.get_downvotes.size %>)
+        <%= link_to dislike_offer_path(offer),:remote => true, method: :get, class: "npos", id: "thumbs" do %>
+            <i class="fas fa-thumbs-down" style="color:red"></i>
+            <span class="ncount-<%= offer.id %>">Inaccurate(<%= offer.get_downvotes.size %>)</span>
         <% end %>
         </div><!--close div for to likes and dislikes -->
-     </div><!--div close card body-->
-    </div>
+      </div><!--div close card body-->
+    </div> <!--div class="card border-secondary mb-3" id="reviewsIndexCard"-->
     <br />
   <% end %>
+
+
 </div><!--div class="container emp-profile"-->

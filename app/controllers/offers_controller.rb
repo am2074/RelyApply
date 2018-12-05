@@ -72,12 +72,21 @@ class OffersController < ApplicationController
   end
   def upvote
     @offer.upvote_by current_user
-    redirect_back fallback_location: root_path
+    #redirect_back fallback_location: root_path
+    respond_to do |format|
+      format.html { redirect_back fallback_location: root_path}
+      format.json { render json: { count: @offer.upvoted_count } }
+      format.js { render layout: false }
+    end
   end
 
-  def downvote
+  def downvote 
     @offer.downvote_by current_user
-    redirect_back fallback_location: root_path.hash
+    respond_to do |format|
+      format.html { redirect_back fallback_location: root_path }
+      format.json { render json: { count: @offer.downvoted_count } }
+      format.js { render layout: false }
+    end
   end
 
   private

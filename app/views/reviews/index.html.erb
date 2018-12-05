@@ -103,12 +103,12 @@
   <hr id="reviewIndexHr">
 
   <div>
-    <h2><strong>Total Reviews: <%= @company.reviews.size %></strong></h2>
-     <div class="text-left">
-        <%= sort_link(@q, :created_at, default_order: :asc) do %>
-          <strong>Sort by Date</strong>
-        <% end %>
-      </div>  
+  <h2><strong>Total Reviews: <%= @company.reviews.size %></strong></h2>
+    <div class="text-left">
+      <%= sort_link(@q, :created_at, default_order: :asc) do %>
+        <strong>Sort by Date</strong>
+      <% end %>
+    </div>  
   </div>
 
     <% @reviews.each do |review| %>
@@ -149,17 +149,15 @@
               <p><strong>Location:</strong> <%= review.address.chomp(', USA') %></p>
             </div>
           </div>
-          <div style="text-align: center"> <!--links to likes and dislikes -->
-            <%= link_to like_review_path(review), method: :put, class: "btn btn-default btn-sm", id: "thumbs" do %>
+          <div class="vote-count bind-<%= review.id %>" style="text-align: center"> <!--links to likes and dislikes -->
+            <%= link_to like_review_path(review),:remote => true, method: :put, class: "vpos", id: "thumbs" do %>
               <i class="fas fa-thumbs-up" style="color:green !important"></i>
-              Accurate
-              (<%= review.get_upvotes.size %>)
+              <span class="vcount-<%= review.id %>">Accurate(<%= review.get_upvotes.size %>)</span>
             <% end %>
             |
-            <%= link_to dislike_review_path(review), method: :put, class: "btn btn-default btn-sm", id: "thumbs" do %>
+            <%= link_to dislike_review_path(review), :remote => true, method: :put, class: "npos", id: "thumbs" do %>
               <i class="fas fa-thumbs-down" style="color:red !important;"></i>
-              Inaccurate
-              (<%= review.get_downvotes.size %>)
+              <span class="ncount-<%= review.id %>">Inaccurate(<%= review.get_downvotes.size %>)</span>
             <% end %>
           </div><!--close div for to likes and dislikes -->
         </div><!--div close card body-->

@@ -12,8 +12,8 @@ Rails.application.routes.draw do
   
   resources :offers do
    member do
-    put "like", to: "offers#upvote"
-    put "dislike", to: "s#downvote"
+    get "like", to: "offers#upvote"
+    get "dislike", to: "offers#downvote"
    end
   end
   
