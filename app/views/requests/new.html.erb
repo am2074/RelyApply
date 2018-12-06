@@ -1,1 +1,45 @@
- <% controller.redirect_to root_path %>
+<div class="d-flex justify-content-center h-100">
+<% if user_signed_in? %>
+
+<div class="card card-body" id="editCompanyDetailsCard">
+  <h3> Edit Details  Request for <%=@company.name %></h3>
+  <p><I>*Edits must first be approved by RelyApply's admins*</I></p>
+   
+  <%= simple_form_for [@company, Request.new] do |form| %>
+  
+    <div class="form-group-lg"  id="formGroupFont" style="color:white;">
+      <%= form.label :name_suggestion do%>
+        Change Company Name To
+      <%end %>
+    <%= form.text_field :name_suggestion, class:"form-control" %>
+    </div>
+  
+  <br />
+  
+    <div class="form-group-lg" id="formGroupFont"  style="color:white;">
+      <%= form.label :website_suggestion do %>
+    	Change Company Website To
+      <% end %>
+      <%= form.text_field :website_suggestion, placeholder: "Format: www.companyname.com", class: "form-control"%>
+       </div>
+   <br />
+    
+    <div class="alert alert-info"id="submitCompanyDoubleCheck">
+      <p >Please double check if all the information is correct before submitting.</p>
+    </div>
+   
+    <div class="form-group" id=loginBttn>
+   	   <%= form.submit "Submit", data: { confirm: "Is the information correct and in the right format?" }, class: "btn login_btn"%>
+       <%= link_to 'Back',root_path, class: "btn login_btn" %>
+    </div>
+  
+<% end %>
+</div>
+<% else %>
+	<div>
+	<p> You need to <%= link_to "Log in", new_user_session_path %> or <%= link_to "Sign up", new_user_registration_path %> to request for information changes on <%= @company.name%>'s profile </p>
+	</div>
+<% end %>
+
+
+</div>

@@ -104,7 +104,7 @@
     <div class="card border-secondary mb-3" id="reviewsIndexCard">
         <div class="card-header" id="reviewsIndexCardHeader">
           <h3>
-            Estimated offer-Interview Response Time: <%= offer.response_time %>
+            Estimated Post-Interview Response Time: <%= offer.response_time %>
           </h3>
         </div>
 
@@ -139,13 +139,17 @@
 
       <div class="vote-count bind-<%= offer.id %>" style="text-align: center"> <!--links to likes and dislikes -->
         <%= link_to like_offer_path(offer),:remote => true, method: :get, class: "vpos", id: "thumbs" do %>
-            <i class="fas fa-thumbs-up" style="color:green"></i>
-            <span class="vcount-<%= offer.id %>">Accurate(<%= offer.get_upvotes.size %>)</span>
+            <button class="btn btn-success">
+              <i class="fas fa-thumbs-up" style="color:white"></i>
+              <span class="vcount-<%= offer.id %>" style="color:white">Accurate(<%= offer.get_upvotes.size %>)</span>
+            </button>
         <% end %>
-        |
+        
         <%= link_to dislike_offer_path(offer),:remote => true, method: :get, class: "npos", id: "thumbs" do %>
-            <i class="fas fa-thumbs-down" style="color:red"></i>
-            <span class="ncount-<%= offer.id %>">Inaccurate(<%= offer.get_downvotes.size %>)</span>
+         <button class="btn btn-danger">
+            <i class="fas fa-thumbs-down" style="color:white"></i>
+            <span class="ncount-<%= offer.id %>" style="color:white">Inaccurate(<%= offer.get_downvotes.size %>)</span>
+         </button>
         <% end %>
         </div><!--close div for to likes and dislikes -->
       </div><!--div close card body-->

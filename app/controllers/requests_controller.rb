@@ -5,7 +5,6 @@ class RequestsController < ApplicationController
   # GET /requests.json
   def index
     @requests = Request.all
-     
   end
 
   # GET /requests/1

@@ -151,13 +151,16 @@
           </div>
           <div class="vote-count bind-<%= review.id %>" style="text-align: center"> <!--links to likes and dislikes -->
             <%= link_to like_review_path(review),:remote => true, method: :put, class: "vpos", id: "thumbs" do %>
-              <i class="fas fa-thumbs-up" style="color:green !important"></i>
+            <button class="btn btn-success">
+              <i class="fas fa-thumbs-up" style="color:white !important"></i>
               <span class="vcount-<%= review.id %>">Accurate(<%= review.get_upvotes.size %>)</span>
+            </button>
             <% end %>
-            |
             <%= link_to dislike_review_path(review), :remote => true, method: :put, class: "npos", id: "thumbs" do %>
-              <i class="fas fa-thumbs-down" style="color:red !important;"></i>
-              <span class="ncount-<%= review.id %>">Inaccurate(<%= review.get_downvotes.size %>)</span>
+             <button class="btn btn-danger">
+                <i class="fas fa-thumbs-down" sstyle="color:white !important"></i>
+                <span class="ncount-<%= review.id %>">Inaccurate(<%= review.get_downvotes.size %>)</span>
+              </button>
             <% end %>
           </div><!--close div for to likes and dislikes -->
         </div><!--div close card body-->

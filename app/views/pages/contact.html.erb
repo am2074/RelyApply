@@ -1,13 +1,67 @@
 <% content_for :title do %>
- Contact Us | RelyApply
+Contact Us | RelyApply
 <% end %>
-<h1>Pages#contact</h1>
-<p><%= number_to_phone "555-555-5555" %></p>
+<div class="card card-body" id="contactUsCard">
+  <p><I>*Edits must first be approved by RelyApply's admins*</I></p>
+    <%= simple_form_for [Message.new] do |f| %>
+      <div class="row">
+        <div class="col-md-4">
+          <%= f.label :email do %>
+           Email
+          <% end %>
+        </div>
+        <div class="col-md-3">
+          <%= f.text_field :email %>
+        </div>
+      </div>
 
-<p><%= number_to_currency "150" %></p>
+      <div class="row">
+        <div class="col-md-4">
+          <%= f.label :first_name do %>
+            First Name
+          <% end %>
+        </div>
+        <div class="col-md-4">
+          <%= f.text_field :first_name %>
+        </div>
+      </div>
 
+       <div class="row">
+        <div class="col-md-4">
+          <%= f.label :last_name do %>
+            Last Name
+          <% end %>
+        </div>
+        <div class="col-md-4">
+          <%= f.text_field :last_name %>
+        </div>
+      </div>
 
-<p><%= number_to_percentage "150" %></p>
+      <div class="row">
+        <div class="col-md-4">
+          <%= f.label :subject do %>
+            Subject
+          <% end %>
+        </div>
+        <div class="col-md-4">
+          <%= f.text_field :subject %>
+        </div>
+      </div>
 
-<p><%= number_with_delimiter "123456789" %></p>
+      <div class="row">
+        <div class="col-md-4">
+          <%= f.label :message do %>
+            Message
+          <% end %>
+        </div>
+        <div class="col-md-4">
+          <%= f.text_field :message %>
+        </div>
+      </div>
 
+      <div class="form-actions" align="center">
+        <%= f.button :submit, "Submit", :class => "btn btn-primary", data: { confirm: "Is the information you provided correct?" } %>
+      </div>
+      <% end %>
+ </div>
+  
