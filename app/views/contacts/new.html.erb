@@ -1,51 +1,50 @@
-
-<!------ Include the above in your HEAD tag ---------->
+<% content_for :title do %>
+  Contact | Rely Apply
+<% end %>
 
 <div class="container contact">
-	<div class="row">
-		<div class="col-md-3">
-			<div class="contact-info">
-				<img src="https://image.ibb.co/kUASdV/contact-image.png" alt="image" style="float:center">
-				<h2 style="color:white !important">Contact Us</h2>
-				<h5 style="color:white !important">We would love to hear from you !</h5>
-			</div>
-		</div>
-		<div class="col-md-9">
-			<div class="contact-form">
-				 <%= form_for @contact do |f| %>
-				<div class="form-group">
-				  <label class="control-label col-sm-2" for="fname">First Name:</label>
-				  <div class="col-sm-10">          
-					<%= f.text_field :first_name, required: true, class: "form-control", placeholder: "Enter First Name", id: "fname" %>
-				  </div>
-				</div>
-				<div class="form-group">
-				  <label class="control-label col-sm-2" for="lname">Last Name:</label>
-				  <div class="col-sm-10">          
-					<%= f.text_field :last_name, required: true, class: "form-control", placeholder: "Enter Last Name", id: "lname" %>
-				  </div>
-				</div>
-				<div class="form-group">
-				  <label class="control-label col-sm-2" for="email">Email:</label>
-				  <div class="col-sm-10">
-					<%= f.text_field :email, required: true, class: "form-control", placeholder: "Enter Email", id: "email" %>
-				  </div>
-				</div>
-				<div class="form-group">
-				  <label class="control-label col-sm-2" for="comment">Message:</label>
-				  <div class="col-sm-10">
-					<%= f.text_area :message, as: :text,  class:"form-control", rows: "5", id: "comment" %>
-				  </div>
-				</div>
-				<div class="form-group">        
-				  <div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn btn-default">Submit</button>
-				  </div>
-				</div>
-			</div>
-		</div>
-		<% end %>
-	</div>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="contact-info">
+        <img src="https://image.ibb.co/kUASdV/contact-image.png" alt="image" style="float:center">
+        <h2 style="color:white !important">Contact Us</h2>
+        <h5 style="color:white !important">We'll get back to you as soon as possible</h5>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="contact-form">
+         <%= form_for @contact do |f| %>
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="fname">First Name:</label>
+          <div class="col-sm-10">          
+          <%= f.text_field :first_name, required: true, class: "form-control", placeholder: "Enter First Name", id: "fname" %>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="lname">Last Name:</label>
+          <div class="col-sm-10">          
+          <%= f.text_field :last_name, required: true, class: "form-control", placeholder: "Enter Last Name", id: "lname" %>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="email">Email:</label>
+          <div class="col-sm-10">
+          <%= f.text_field :email, required: true, class: "form-control", placeholder: "Enter Email", id: "email" %>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="comment">Message:</label>
+          <div class="col-sm-10">
+          <%= f.text_area :message, as: :text,  class:"form-control", rows: "5", id: "comment" %>
+          </div>
+        </div>
+        <div class="form-group">        
+          <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-default">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
 </div>
-
-

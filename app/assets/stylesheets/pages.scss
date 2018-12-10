@@ -159,7 +159,8 @@ body{
 	}
 	.contact{
 		padding: 4%;
-		height: 400px;
+		height: auto;
+		//height: 400px;
 	}
 	.col-md-3{
 		background: #ff9b00;
@@ -172,6 +173,7 @@ body{
 	}
 	.contact-info img{
 		margin-bottom: 15%;
+		margin-left: 30%;
 	}
 	.contact-info h2{
 		margin-bottom: 10%;
@@ -194,3 +196,10 @@ body{
 	.contact-form button:focus{
 		box-shadow:none;
 	}
+
+@media (max-width:767px){
+  body .contact-info img{
+		margin-bottom: 15%;
+		margin-left: 5%;
+	}
+}
