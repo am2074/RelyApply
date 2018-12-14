@@ -9,11 +9,18 @@
       <h4 style="color:white;"><%= @users.email %></h4>
     </div>
   </div>
+<% if current_user.provider =="facebook" %>
+<% else %>
   <div class="row">
     <div class="col-md-6">  
       <%= link_to 'Account Settings', edit_user_registration_path, :class => "btn btn-primary" %>
     </div>
   </div> 
+<% end %>
+
+
+
+
 </div>
 
 <div class="container emp-profile">

@@ -6,6 +6,12 @@
     <div class="card">
         <div class="card-header">
           <h3>Log In</h3>
+          <%#Omniauth Logins %>
+          <div class="d-flex justify-content-end social_icon">
+            <%= link_to user_facebook_omniauth_authorize_path do %>
+              <span><i class="fab fa-facebook-square"></i></span>
+            <% end %>
+          </div>
         </div>
         <div class="card-body">
           <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>

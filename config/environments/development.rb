@@ -76,4 +76,6 @@ config.action_mailer.smtp_settings = {
   password:             'enfwbflntqunaweu',
   authentication:       'plain',
   enable_starttls_auto: true }
+ENV['FACEBOOK_APP_ID'] = Hearback::Application.credentials.FACEBOOK_APP_ID;
+ENV['FACEBOOK_SECRET'] = Hearback::Application.credentials.FACEBOOK_SECRET;
 end
