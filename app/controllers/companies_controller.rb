@@ -1,6 +1,7 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update, :destroy, :ranking]
   before_action :all_companies, only: [:index, :search]
+  before_action :force_json, only: :autocomplete
   before_action :authenticate_user!, except: [:index, :show, :search]
   load_and_authorize_resource
   
@@ -16,7 +17,12 @@ class CompaniesController < ApplicationController
       @companies = Company.search(params)
     end
     @search = params[:search] 
+  end
 
+  def autocomplete
+    @companies = Company.order(:name).where("name Ilike ?","%#{params[:term]}%").limit(5)
+
+    render json: @companies.map(&:name)
   end
 
   # GET /companies/1
@@ -42,7 +48,7 @@ class CompaniesController < ApplicationController
     @company = Company.new(company_params)
 
     respond_to do |format|
-      if @company.save
+      if @company.save && verify_recaptcha(model: @company)
         
         format.html { redirect_to @company, notice: 'Company was successfully created.' }
         format.json { render :show, status: :created, location: @company }
@@ -94,4 +100,7 @@ class CompaniesController < ApplicationController
     def all_companies
       @companies = Company.all
     end 
+    def force_json
+      request.format = :json
+    end
 end

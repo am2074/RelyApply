@@ -12,6 +12,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
 //= rails-ujs
 //= require popper
@@ -68,5 +69,3 @@ $("ul.nav-tabs > li > a").on("shown.bs.tab", function(e) {
 // on load of the page: switch to the currently selected tab
 var hash = window.location.hash;
 $('#myTab a[href="' + hash + '"]').tab('show');
-
-

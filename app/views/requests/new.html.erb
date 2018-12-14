@@ -29,7 +29,8 @@
     </div>
    
     <div class="form-group" id=loginBttn>
-   	   <%= form.submit "Submit", data: { confirm: "Is the information correct and in the right format?" }, class: "btn login_btn"%>
+
+   	   <%= invisible_recaptcha_tags text: 'Submit',class: "btn login_btn",  data: { confirm: "Is the information correct and in the right format?" } %>
        <%= link_to 'Back',root_path, class: "btn login_btn" %>
     </div>
   

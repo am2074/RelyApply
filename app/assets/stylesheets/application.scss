@@ -264,3 +264,19 @@ section .section-title {
     margin-bottom: 10px;
 }
 }
+
+@media (min-width: 320px) and (max-width: 480px) {
+#g-recaptcha {
+transform:scale(0.77);
+-webkit-transform:scale(0.77);
+transform-origin:0 0;
+-webkit-transform-origin:0 0;
+}
+}
+
+@media (min-width: 320px) and (max-width: 480px){
+#rc-imageselect {
+transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;
+}
+}
+

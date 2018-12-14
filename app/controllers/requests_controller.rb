@@ -29,7 +29,7 @@ class RequestsController < ApplicationController
     @request.user = current_user
 
     respond_to do |format|
-      if @request.save
+      if @request.save && verify_recaptcha(model: @request)
         format.html { redirect_to @company, notice: 'Request was successfully created.' }
         format.json { render :show, status: :created, location: @request }
       else

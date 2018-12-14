@@ -1,5 +1,5 @@
 <% content_for :title do %>
-  Contact | Rely Apply
+  Contact Us| Rely Apply
 <% end %>
 
 <div class="container contact">
@@ -14,6 +14,9 @@
     <div class="col-md-9">
       <div class="contact-form">
          <%= form_for @contact do |f| %>
+
+         
+        <%= hidden_field_tag id:'g-recaptcha-response'%>
         <div class="form-group">
           <label class="control-label col-sm-2" for="fname">First Name:</label>
           <div class="col-sm-10">          
@@ -38,9 +41,10 @@
           <%= f.text_area :message, as: :text,  class:"form-control", rows: "5", id: "comment" %>
           </div>
         </div>
+  
         <div class="form-group">        
           <div class="col-sm-offset-2 col-sm-10">
-          <button type="submit" class="btn btn-default">Submit</button>
+          <%= invisible_recaptcha_tags text: 'Submit',class: "btn btn-default", id:"g-recaptcha-response" %>
           </div>
         </div>
       </div>

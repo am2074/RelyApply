@@ -6,7 +6,7 @@
   <div class="col-12">
    <%= form_tag(search_companies_path, method: :get, enforce_utf8: false) do %>
         <div class="input-group input-group-lg">
-          <%= text_field_tag :search,  "",  placeholder: "Search Companies...", class: 'form-control input-lg', id: 'input-field-home'%>
+          <%= text_field_tag :search,  "",  placeholder: "Search Companies...", class: 'form-control input-lg', id: 'input-field-home', data: {behavior:"autocomplete", autocomplete_source: autocomplete_companies_path} %>
             <div class="input-group-append">
               <%=button_tag( :class => "btn btn-lg btn-default",  id: "navBarSearchButton") do %>
                   <i class="fas fa-search"></i>
@@ -23,7 +23,7 @@
   <div>
       <p style="color:white;"><I>Can't Find the Company You're Looking For?</I> <%= link_to 'Submit a Company', new_company_path%> </p>
   </div>
- <p class="float-right" style="color:white;">Reponsiveness</p>
+ <p class="float-right" id="responsivenessOnMobile" style="color:white;">Reponsiveness</p>
   
   <% @companies.each do |company| %>    
     <div>   
@@ -35,11 +35,11 @@
                N/A
                </span>  
             <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) >= 60) and ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) >= 60) %>
-              <span class="good-review-score-show" id="responseScoreShowPage">
+              <span class="good-review-score-show" id="responseScoreShowPage" style="border-radius: 50% !important;">
                 <i class="fas fa-thumbs-up" style="color:white"></i>
               </span>
             <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) < 60) and ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) < 60) %>
-              <span class="bad-review-score-show" id="responseScoreShowPage">
+              <span class="bad-review-score-show" id="responseScoreShowPage" style="border-radius: 50% !important;">
                 <i class="fas fa-thumbs-down" style="color:white"></i>
               </span>
             <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) >= 60) and ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) < 60) %>
@@ -51,19 +51,19 @@
                 Mixed
               </span>
             <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) < 60) and company.offers.size == 0 %>
-              <span class="mixed-review-score-show" id="responseScoreShowPage">
-               Mixed
+              <span class="bad-review-score-show" id="responseScoreShowPage" style="border-radius: 50% !important;">
+               <i class="fas fa-thumbs-down" style="color:white"></i>
               </span>
             <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) > 60) and company.offers.size == 0 %>
-              <span class="good-review-score-show" id="responseScoreShowPage">
+              <span class="good-review-score-show" id="responseScoreShowPage" style="border-radius: 50% !important;">
                 <i class="fas fa-thumbs-up" style="color:white;"></i>
               </span>
             <% elsif ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) < 60) and company.reviews.size == 0 %>
-              <span class="bad-review-score-show" id="responseScoreShowPage">
+              <span class="bad-review-score-show" id="responseScoreShowPage" style="border-radius: 50% !important;">
                 <i class="fas fa-thumbs-down" style="color:white"></i>
               </span>
             <% elsif ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) > 60) and company.reviews.size == 0 %>
-              <span class="good-review-score-show" id="responseScoreShowPage">
+              <span class="good-review-score-show" id="responseScoreShowPage" style="border-radius: 50% !important;">
                 <i class="fas fa-thumbs-up" style="color:white"></i>
               </span>
               <!--%= number_to_percentage((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.count) * 100),precision: 0) -->
@@ -71,9 +71,63 @@
             
           </h2>
           <h4 class="card-title" id="searchCardTitle"><%= link_to company.name, company, data: { turbolinks: false }, style:"color:white"%></h4> 
-          <p class="card-title" style="color:white;" id="searchCardTitle">Website: <%=company.website %></p>        
+          <p class="card-title" style="color:white;" id="searchCardTitle"><%=company.website %></p>        
+          <p class="card-title" style="color:white;" id="searchCardTitle">
+            <% if company.reviews.size == 0 and company.offers.size == 0 %> 
+              <span style="display: none" id="mobileResponsiveness">
+              Responsiveness:
+                N/A
+              </span>
+              
+            <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) >= 60) and ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) >= 60) %>
+              <span style="display: none" id="mobileResponsiveness">
+              Responsiveness:
+                 <i class="fas fa-thumbs-up" style="color:green"></i>
+              </span>
+            <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) < 60) and ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) < 60) %>
+              <span style="display: none" id="mobileResponsiveness">
+              Responsiveness:
+                 <i class="fas fa-thumbs-down" style="color:red"></i>
+              </span>
+            <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) >= 60) and ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) < 60) %>
+              <span style="display: none" id="mobileResponsiveness">
+              Responsiveness:
+                 Mixed
+              </span>
+              
+            <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) < 60) and ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) >= 60) %>
+              <span style="display: none" id="mobileResponsiveness">
+              Responsiveness: 
+                Mixed
+              </span>
+              
+            <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) < 60) and company.offers.size == 0 %>
+              <span style="display: none" id="mobileResponsiveness">
+              Responsiveness:
+                 <i class="fas fa-thumbs-down" style="color:red"></i>
+              </span>
+            <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) > 60) and company.offers.size == 0 %>
+              <span style="display: none" id="mobileResponsiveness">
+              Responsiveness:
+                 <i class="fas fa-thumbs-up" style="color:green"></i>
+              </span>
+              
+            <% elsif ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) < 60) and company.reviews.size == 0 %>
+              <span style="display: none" id="mobileResponsiveness">
+              Responsiveness:
+                 <i class="fas fa-thumbs-down" style="color:red"></i>
+              </span>
+              
+            <% elsif ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) > 60) and company.reviews.size == 0 %>
+              <span style="display: none" id="mobileResponsiveness">
+              Responsiveness:
+                 <i class="fas fa-thumbs-up" style="color:green"></i>
+              </span>
+            
+          <% end %>      
+        </p>
           <p class="card-title" style="color:white;" id="searchCardTitle"><%= link_to company, data: { turbolinks: false }, :class => "btn btn-primary" do%>
-            View Company <i class="fas fa-caret-right"></i>
+            View Company <i class="fas fa-caret-right"></i>             
           <% end %>
           </p>
           

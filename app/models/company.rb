@@ -11,6 +11,12 @@ class Company < ApplicationRecord
 		#companies
 	end
 
-	
+	def company_name
+		company.try(:name)
+	end
+
+	def company_name=(name)
+		self.company = Company.find_by_name(name) if name.present?
+	end
 end
 #Old #companies = Company.where("name LIKE ? or website LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%") if params[:search].present?

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :messages
- resources :contacts, only: [:new, :create]
+ resources :contacts, only: [:new, :create, :index]
   resources :requests
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :pages
@@ -35,7 +35,8 @@ Rails.application.routes.draw do
   	resources :reviews
   	 collection do 
   	 	get :search #creates new path for the search input
-  	 end
+  	  get :autocomplete
+     end
     resources :offers
      collection do 
       get :search #creates new path for the search input

@@ -31,7 +31,7 @@
   <% unless controller_name == 'companies' && action_name == 'index' %>
       <%= form_tag(search_companies_path, method: :get, :class => "form-inline mt-2 mt-md-0", :id => "navbarsExample05") do %>
         <div class="input-group">
-          <%= text_field_tag :search,  "",  placeholder: "Search Companies...", class: 'form-control input-lg', id: 'input-field-home'%>
+          <%= text_field_tag :search,  "",  placeholder: "Search Companies...", class: 'form-control input-lg', id: 'input-field-home', data: {behavior:"autocomplete", autocomplete_source: autocomplete_companies_path} %>
             <div class="input-group-append">
                   <button class="btn" type="button" id="navBarSearchButton">
                     <i class="fas fa-search"></i>

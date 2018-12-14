@@ -72,3 +72,4 @@ gem 'bootstrap', '~> 4.1.3'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'popper_js', '~> 1.14.3'
 gem 'font_awesome5_rails'
+gem "recaptcha", require: "recaptcha/rails"
