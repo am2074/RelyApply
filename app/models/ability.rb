@@ -15,6 +15,7 @@ class Ability
         can :manage, Offer, user_id: user.id
         can :read, :all
         can :search, :all
+        can :autocomplete, :all
         can [:upvote,:downvote], [Review]
         can [:create], [Request]
       end

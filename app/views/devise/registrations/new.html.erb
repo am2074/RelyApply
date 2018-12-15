@@ -9,8 +9,13 @@
           <h3>Sign Up</h3>
           <%#Omniauth Logins %>
           <div class="d-flex justify-content-end social_icon">
+            <%# Facebook %>
             <%= link_to user_facebook_omniauth_authorize_path do %>
               <span><i class="fab fa-facebook-square"></i></span>
+            <% end %>
+            <%# Google %>
+            <%= link_to  user_google_oauth2_omniauth_authorize_path do %>
+              <span><i class="fab fa-google-plus-square"></i></span>
             <% end %>
           </div>
           <em style="color:white">
