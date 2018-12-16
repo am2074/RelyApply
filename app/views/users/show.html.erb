@@ -48,6 +48,11 @@
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
               <div>
               <br />
+              
+             <% if   @users.reviews.includes(:company).count. == 0 %>
+            <br/>
+                <p style="color: grey">You currently have no application response time reviews</p>
+             <% else %>
               <% @users.reviews.includes(:company).each do |review| %>
                  <!-- links to edit or destory review -->
 
@@ -108,10 +113,15 @@
                   </div> <!--div class="card border-secondary mb-3" id="reviewsIndexCard"-->
                     <br />       
                   <% end %>
+               <% end %>
               </div> <!--div for users each do -->
             </div> <!--div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"-->
                     <!-- Post Interview User Reviews --> 
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+             <% if   @users.offers.includes(:company).count. == 0 %>
+                <br/>
+                <p style="color: grey">You currently have no post-interview reviews</p>
+             <% else %>
               <% @users.offers.includes(:company).each do |offer| %>
                  <!-- links to edit or destory review -->
                 <div colspan="1" align="right">
@@ -165,6 +175,7 @@
                     </div><!--div close card body-->
                   </div> <!--div class="card border-secondary mb-3" id="reviewsIndexCard"-->
                     <br />       
+                  <% end %>
                   <% end %>
               </div> <!--div for users each do -->
             </div><!--div for profile tab-->
