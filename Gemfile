@@ -76,3 +76,5 @@ gem "recaptcha", require: "recaptcha/rails"
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-linkedin-oauth2'
+gem "validate_url"
+gem 'cookies_eu'

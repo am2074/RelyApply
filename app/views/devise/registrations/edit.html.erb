@@ -6,6 +6,7 @@
     <div class="card" id="editAccountCard">
       <div class="card-header">
         <h2 style="color:white;"><strong>Edit Account</strong></h2>
+        <small style="color:white">You agree to our <%= link_to 'Terms of Use', tos_path %> and <%= link_to 'Privacy Policy', privacy_path %> when you edit your account settings</small>
       </div>
       <div class="card-body">
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>

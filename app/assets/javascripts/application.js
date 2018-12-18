@@ -19,6 +19,7 @@
 //= require bootstrap-sprockets
 //= require activestorage
 //= require turbolinks
+//= require cookies_eu
 //= require_tree 
 
 $(function() {

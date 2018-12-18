@@ -20,48 +20,52 @@
   </div>
   <br />
   <div class="alert alert-info" role="alert">
-            <u><strong>Reminder:</strong></u>
+            <u><strong>Please Read Before Filling Out Your Review:</strong></u>
               <ul>
-                 <li><h6><strong><I>Response Times</I> are the estimated time it takes to hear back for scheduling an interview or rejection</strong></h6></li>
+                 <li><h6>The information you put below are your opinionsrthat are based on what you felt was a meaningful response after applying</h6></li>
+                 <li><h6>Normally, if it's been over a month, the position you applied for may have been filled. However, some companies don't bother telling applicants.</h6></li>
+                 <li><h6>Companies usually get back within a couple of weeks on average. Depending on the industry, average meaningful response times can vary</h6></li>
               </ul>
   </div>
   <div class="row">
     <div class="col-md-6">
       <%= f.label :responsiveness do %>
-        Did you feel that this company was responsive at all after applying?
+        Did you feel that <%= @company.name %> was responsive enough?
       <%end %>
     </div>
     <div class="col-md-6">
       <%= f.collection_radio_buttons :responsiveness, [['Yes', 'Yes'] ,['No', 'No']],:first, :last,:item_wrapper_class => 'vertical', :id =>"radioButton" %>
     </div>
   </div> 
-<strong>*Companies that don't respond to reject or schedule an interview after applying within a month shouldn't be considered appropriately responsive</strong>
 <hr />
   <div class="row">
     <div class="col-md-6">
       <%= f.label :response_time do%>
-        Response Time for an Interview or Rejection:
+        Time it took to get what you felt was a meaningful response?
       <%end %>
     </div>
     <div class="col-md-6">
       <%= f.select :response_time, options_for_select(
-              [["Less than a week","Less than a week"],
-              ["Between 1-2 weeks","Between 1-2 weeks"],
-              ["Between 2-3 weeks","Between 2-3 weeks"],
-              ["Between 3-4 weeks","Between 3-4 weeks"],
-              ["Did not respond within a month","Did not respond within a month"]]),:prompt => '--Select--', class:"select"%> 
+              [["Around less than a week","Around less than a week"],
+              ["Around 1-2 weeks","Around 1-2 weeks"],
+              ["Around 2-3 weeks","Between 2-3 weeks"],
+              ["Around 3-4 weeks","Around 3-4 weeks"],
+              ["Not within a month","Not within a month"]]),:prompt => '--Select--', class:"select"%> 
     </div>
   </div> 
+  <hr />
   <div class="row">
     <div class="col-md-6">
       <%= f.label :satisfaction do %>
-        Were you satisfied with this company's responsiveness:
+        Were you satisfied with this  <%= @company.name %>'s responsiveness:
       <% end %>
     </div>
     <div class="col-md-6">
       <%= f.collection_radio_buttons :satisfaction, [['Yes', 'Yes'] ,['No', 'No']],:first, :last,:item_wrapper_class => 'vertical2', :id =>"radioButton2" %>
     </div>
   </div>
+  <hr />
+  <h6><u> Application Details</u></h6>
   <div class="row">
     <div class="col-md-6">
       <%= f.label :application_type do %>

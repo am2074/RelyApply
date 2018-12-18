@@ -19,47 +19,50 @@
   </div>
   <br />
    <div class="alert alert-info" role="alert">
-      <u><strong>Reminder:</strong></u>
+      <u><strong>Please Read Before Filling Out Your Review:</strong></u>
         <ul>
-           <li><h6><strong><I>Response Time After Interviewing:</I> are the estimated time it takes to receive a job offer or rejection after interviewing</strong></h6></li>
+           <li>The information you put below are your opinionsrthat are based on what you felt was a meaningful response after interviewing</li>
+          <li><p><I><strong>If you don't hear back within a reasonable time frame relative to the other reviews, it is highly suggested you do a follow-up or assume you didn't qualify for the job.</strong></I></p></li>
         </ul>
   </div>
    <div class="row">
     <div class="col-md-6">
       <%= f.label :responsiveness do %>
-        Did you feel that this company was responsive at all after applying?
+         Did you feel that <%= @company.name %> was responsive enough after interviewing?
       <%end %>
     </div>
     <div class="col-md-6">
       <%= f.collection_radio_buttons :responsiveness, [['Yes', 'Yes'] ,['No', 'No']],:first, :last,:item_wrapper_class => 'vertical', :id =>"radioButton" %>
     </div>
   </div> 
-  <strong>*Companies that don't respond to reject or schedule an interview after applying within a month shouldn't be considered appropriately responsive</strong>
   <hr />
   <div class="row">
     <div class="col-md-6">
       <%= f.label :response_time do%>
-        Response Time After Interviewing:
+       Time it took to get what you felt was a meaningful response after interviewing?
       <%end %>
     </div>
     <div class="col-md-6">
-      <%= f.select :response_time, options_for_select([["Less than a week","Less than a week"],
-              ["Between 1-2 weeks","Between 1-2 weeks"],
-              ["Between 2-3 weeks","Between 2-3 weeks"],
-              ["Between 3-4 weeks","Between 3-4 weeks"],
-              ["Did not respond within a month","Did not respond within a month"]]),:prompt => '--Select--',  class:"select"%> 
+      <%= f.select :response_time, options_for_select([["Around less than a week","Around less than a week"],
+              ["Around 1-2 weeks","Around 1-2 weeks"],
+              ["Around 2-3 weeks","Around 2-3 weeks"],
+              ["Around 3-4 weeks","Around 3-4 weeks"],
+              ["Not within a month","Not within a month"]]),:prompt => '--Select--',  class:"select"%> 
     </div>
   </div> 
+  <hr />
   <div class="row">
     <div class="col-md-6">
       <%= f.label :satisfaction do %>
-        Were you satisfied with this company's responsiveness:
+        Were you satisfied with <%= @company.name %>'s responsiveness after interviewing:
       <% end %>
     </div>
     <div class="col-md-6">
       <%= f.collection_radio_buttons :satisfaction, [['Yes', 'Yes'] ,['No', 'No']],:first, :last,:item_wrapper_class => 'vertical2', :id =>"radioButton2" %>
     </div>
   </div>
+  <hr />
+  <h6><ul>Position Details</ul></h6>
   <div class="row">
     <div class="col-md-6">
       <%= f.label :position do %>
@@ -84,7 +87,9 @@
 
   <div class="row">
     <div class="col-md-6">
-      <%= f.label 'Address' %>
+      <%= f.label 'Address' do %>
+      Location:
+      <% end %>
     </div>
     <div class="col-md-6">
       <%= f.text_field :address,  :size=>"40", placeholder: "Type address to autofill", id: :autocomplete_address %>
@@ -92,7 +97,9 @@
   </div>
   <div class="row">
     <div class="col-md-6">
-      <%= f.label 'Street' %>
+      <%= f.label 'Street' do %>
+      Street:
+      <% end %>
     </div>
     <div class="col-md-6">
       <%= f.text_field :street_number, id: :street_number, readonly: true%>
@@ -100,7 +107,9 @@
   </div>
   <div class="row">
     <div class="col-md-6">
-      <%= f.label 'Route' %>
+      <%= f.label 'Route' do %>
+      Route: 
+      <% end %>
     </div>
     <div class="col-md-6">
       <%= f.text_field :route, id: :route, readonly: true %>
@@ -108,7 +117,9 @@
   </div>
   <div class="row">
     <div class="col-md-6">
-      <%= f.label 'City' %>
+      <%= f.label 'City' do %>
+      City:
+      <% end %>
     </div>
     <div class="col-md-6">
       <%= f.text_field :locality, id: :locality, readonly: true %>
@@ -116,7 +127,9 @@
   </div>
   <div class="row">
     <div class="col-md-6">
-      <%= f.label 'State' %>
+      <%= f.label 'State' do %>
+     State:
+     <% end %>
     </div>
     <div class="col-md-6">
       <%= f.text_field :administrative_area_level_1, id: :administrative_area_level_1, readonly: true%>
@@ -124,7 +137,9 @@
   </div>
   <div class="row">
     <div class="col-md-6">
-      <%= f.label 'Zip Code' %>
+      <%= f.label 'Zip Code' do%>
+      Zip Code:
+       <% end %>
     </div>
     <div class="col-md-6">
       <%= f.number_field :postal_code, id: :postal_code,readonly: true %>
@@ -132,7 +147,9 @@
   </div>
   <div class="row">
     <div class="col-md-6">
-      <%= f.label 'Country' %>
+      <%= f.label 'Country' do %>
+      Country:
+       <% end %>
     </div>
     <div class="col-md-6">
       <%= f.text_field :country, id: :country,readonly: true %>

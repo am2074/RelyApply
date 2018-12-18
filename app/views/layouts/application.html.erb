@@ -32,12 +32,14 @@
   <%= javascript_include_tag 'application'%>
   <meta name="turbolinks-cache-control" content="no-cache">
 <script src='https://www.google.com/recaptcha/api.js'></script>
+
 </head>
 
 <%# Body %> 
 <body>
 <%# NavBar %>
 <%= render 'shared/navbar'%>
+<%= render 'cookies_eu/consent_banner' %>
 
 <%# Flash %>
 <div class="container-fluid" data-trigger="focus">

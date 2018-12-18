@@ -47,6 +47,9 @@ Rails.application.routes.draw do
   root to:'companies#index'
   get 'about', to: 'pages#about'
   get 'contact', to: 'pages#contact'
+  get 'tos', to: 'pages#tos'
+  get 'privacy', to: 'pages#privacy'
+  get 'cookie_policy', to: 'pages#cookie_policy'
   get 'profile', to: 'users#show'
   
   match 'users/:id' => 'users#show', via: :get

@@ -16,9 +16,9 @@
       <div class="alert alert-info" role="alert">
         <u><strong>Reminder:</strong></u>
         <ul>
-          <li><p><I><strong>Post-Interview Response Times Refer to the estimated time it took for a company to contact you after an interview to give you an offer or reject you. </strong></I></p> </li>
-          <li><p><I><strong>It takes 2-3 weeks on average to hear back from a job application. Even then, it can vary based on the industry, time of the year, etc.</strong></I></p></li>
-          <li><p><I><strong>If you don't hear back within a reasonable time frame relative to the other reviews, it is highly suggested you do a follow-up or assume you didn't qualify for the job.</strong></I></p></li>
+          <li><h6>The information below is based on what users have submitted in their reviews</li>
+          <li><h6>Their opinions are based on what they felt was a meaningful response after an application or an interview</h6></li>
+          <li><h6>If you don't hear back within a reasonable time frame relative to the other reviews, it is highly suggested you do a follow-up or assume you didn't qualify for the job.</h6></li>
         </ul>
       </div>
     </div>
@@ -34,11 +34,11 @@
         <div class="row">
            <div class="col-sm">
             <%= f.label :response_time_eq, "Response Time: " %>
-            <%= f.select :response_time_eq, options_for_select([["Less than a week","Less than a week"],
-              ["Between 1-2 weeks","Between 1-2 weeks"],
-              ["Between 2-3 weeks","Between 2-3 weeks"],
-              ["Between 3-4 weeks","Between 3-4 weeks"],
-              ["Did not respond within a month","Did not respond within a month"]], @q.response_time_eq), prompt: '--Select--' %>
+            <%= f.select :response_time_eq, options_for_select([["Around less than a week","Around less than a week"],
+              ["Around 1-2 weeks","Around 1-2 weeks"],
+              ["Around 2-3 weeks","Around 2-3 weeks"],
+              ["Around 3-4 weeks","Around 3-4 weeks"],
+              ["Not within a month","Not within a month"]], @q.response_time_eq), prompt: '--Select--' %>
           </div>
           <div class="col-sm">
             <%= f.label :position, "Position:" %>

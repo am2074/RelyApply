@@ -6,9 +6,10 @@ class User < ApplicationRecord
 	devise :database_authenticatable, :registerable,
     	:recoverable, :rememberable, :validatable,:omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
 
-  has_many :reviews
-  has_many :offers
-  has_many :requests
+  has_many :reviews, dependent: :destroy
+  has_many :offers, dependent: :destroy
+  has_many :requests, dependent: :destroy
+  validates :user_agreement, acceptance: { accept: 'yes' }
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email

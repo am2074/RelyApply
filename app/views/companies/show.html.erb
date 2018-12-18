@@ -96,14 +96,14 @@
                         <li class="nav-item dropdown">
                           <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Submit Review</a>
                           <div class="dropdown-menu">
-                            <p> <%= link_to '• Application', new_company_review_path(@company), :id=>"dropdownItem" %></p>
+                            <p> <%= link_to '• Post-Application', new_company_review_path(@company), :id=>"dropdownItem" %></p>
                             <p><%= link_to '• Post-Interview', new_company_offer_path(@company), :id=>"dropdownItem" %></p>
                           </div>
                         </li>
                         <li class="nav-item dropdown">
                           <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reviews</a>
                           <div class="dropdown-menu">
-                            <p><%= link_to '• Application', company_reviews_path(@company), :id=>"dropdownItem"%></p>
+                            <p><%= link_to '• Post-Application', company_reviews_path(@company), :id=>"dropdownItem"%></p>
                             <p><%= link_to '• Post-Interview', company_offers_path(@company), :id=>"dropdownItem"%></p>
                           </div>
                         </li>
@@ -115,44 +115,45 @@
                       <div class="alert alert-info" role="alert">
                         <u><strong>Reminder:</strong></u>
                           <ul>
-                             <li><h6><strong><I>Response Time</I> is the <u>estimated time</u> it takes to hear back for scheduling an interview, giving an offer, giving applicant meaningful updates, or a rejection</strong></h6></li>
+                             <li><h6><strong>The information below is based on what users have submitted in their reviews</li>
+                            <li>Their opinions are based on what they felt was a meaningful response after an application or an interview</li>
                           </ul>
                         </div>
                       <!-- Response Times Tables -->    
                       <div class= "col-md-12" align="center">
-                        <h2>Application Response Times</h2>
+                        <h2>Post-Application Responsiveness</h2>
                       </div>
                       <br />
                       <!-- Table A: Response Times Tables -->    
                       <div class="col-md-12">
                         <table class="table">
                           <thead class="bg-primary">
-                            <th>Application Response Time (~)</th>
+                            <th>After Applying (~)</th>
                             <th># Reported</th>
                           </thead>
                           <tbody>
                             <tr>
-                              <td>Less than a week</td>
-                              <td><%= @company.reviews.where(response_time: "Less than a week").size %></td>
+                              <td>Around less than a week</td>
+                              <td><%= @company.reviews.where(response_time: "Around less than a week").size %></td>
                             </tr>
                               <tr>
-                              <td>Between 1-2 weeks</td>
-                              <td><%= @company.reviews.where(response_time: "Between 1-2 weeks").size %></td>
+                              <td>Around 1-2 weeks</td>
+                              <td><%= @company.reviews.where(response_time: "Around 1-2 weeks").size %></td>
                             </tr>
                             <tr>
-                              <td>Between 2-3 weeks</td>
-                              <td><%= @company.reviews.where(response_time: "Between 2-3 weeks").size %></td>
+                              <td>Around 2-3 weeks</td>
+                              <td><%= @company.reviews.where(response_time: "Around 2-3 weeks").size %></td>
                             </tr>
                              <tr>
-                              <td>Between 3-4 weeks</td>
-                              <td><%= @company.reviews.where(response_time: "Between 3-4 weeks").size %></td>
+                              <td>Around 3-4 weeks</td>
+                              <td><%= @company.reviews.where(response_time: "Around 3-4 weeks").size %></td>
                             </tr>
                             <tr>
-                              <td>Did not respond within a month</td>
-                              <td><%= @company.reviews.where(response_time: "Did not respond within a month").size %></td>
+                              <td>Not within a month</td>
+                              <td><%= @company.reviews.where(response_time: "Not within a month").size %></td>
                             </tr>
                             <tr class="bg-primary" style="color:white;">
-                              <td>  Average Response Time:</td>
+                              <td>  Average:</td>
                               <td> 
                                 <% if @company.reviews.size == 0 %> 
                                   n/a
@@ -168,7 +169,7 @@
                               <td> Average Satisfaction:</td>
                               <td> 
                                 <% if @company.reviews.size == 0 %> 
-                                review
+                                n/a
                                 <% else %>
                                   <%= number_to_percentage((@company.reviews.where(responsiveness: "Yes").count.to_f) / (@company.reviews.count.to_f)* 100, precision:0)%>
                                 <% end %>
@@ -180,38 +181,38 @@
                       <br />
                       <!-- Table B: Post-Interview Response Times -->  
                       <div class= "col-md-12" align="center">
-                        <h2>Post-Interview Response Times</h2>
+                        <h2>Post-Interview Responsiveness</h2>
                       </div>
                       <br />
                       <div class="col-md-12">
                         <table class="table">
                           <thead class="bg-secondary">
-                            <th>Post-Interview Response Time (~)</th>
+                            <th>After Interviewing</th>
                             <th># Reported</th>
                           </thead>
                           <tbody>
                             <tr>
-                              <td>Less than a week</td>
-                              <td><%= @company.offers.where(response_time: "Less than a week").size %></td>
+                              <td>Around less than a week</td>
+                              <td><%= @company.offers.where(response_time: "Around Less than a week").size %></td>
                             </tr>
                             <tr>
-                              <td>Between 1-2 weeks</td>
-                              <td><%= @company.offers.where(response_time: "Between 1-2 weeks").size %></td>
+                              <td>Around 1-2 weeks</td>
+                              <td><%= @company.offers.where(response_time: "Around 1-2 weeks").size %></td>
                             </tr>
                             <tr>
-                              <td>Between 2-3 weeks</td>
-                              <td><%= @company.offers.where(response_time: "Between 2-3 weeks").size %></td>
+                              <td>Around 2-3 weeks</td>
+                              <td><%= @company.offers.where(response_time: "Around 2-3 weeks").size %></td>
                             </tr>
                               <tr>
-                              <td>Between 3-4 weeks</td>
-                              <td><%= @company.offers.where(response_time: "Between 3-4 weeks").size %></td>
+                              <td>Around 3-4 weeks</td>
+                              <td><%= @company.offers.where(response_time: "Around 3-4 weeks").size %></td>
                             </tr>
                             <tr>
-                              <td>Did not respond within a month</td>
+                              <td>Not within a month</td>
                               <td><%= @company.offers.where(response_time: "Did not respond within a month").size %></td>
                             </tr>
                             <tr class="bg-secondary" style="color:white;">
-                              <td>  Average Response Time:</td>
+                              <td>  Average:</td>
                               <td> 
                                 <% if @company.offers.size == 0 %> 
                                   n/a

@@ -35,11 +35,11 @@
            <div class="col-sm">
             <%= f.label :response_time_eq, "Response Time: " %>
             <%= f.select :response_time_eq, options_for_select([
-              ["Less than a week","Less than a week"],
-              ["Between 1-2 weeks","Between 1-2 weeks"],
-              ["Between 2-3 weeks","Between 2-3 weeks"],
-              ["Between 3-4 weeks","Between 3-4 weeks"],
-              ["Did not respond within a month", "Did not respond within a month"]
+              ["Around less than a week","Around less than a week"],
+              ["Around 1-2 weeks","Around 1-2 weeks"],
+              ["Around 2-3 weeks","Around 2-3 weeks"],
+              ["Around 3-4 weeks","Around 3-4 weeks"],
+              ["Not within a month", "Not within a month"]
               ] , @q.response_time_eq), prompt: '--Select--' %>
           </div>
           <div class="col-sm">
