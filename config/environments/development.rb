@@ -78,6 +78,4 @@ config.action_mailer.smtp_settings = {
   enable_starttls_auto: true }
 ENV['FACEBOOK_APP_ID'] = Hearback::Application.credentials.FACEBOOK_APP_ID;
 ENV['FACEBOOK_SECRET'] = Hearback::Application.credentials.FACEBOOK_SECRET;
-ENV['GOOGLE_SIGN_IN_CLIENT_ID'] = Hearback::Application.credentials.GOOGLE_SIGN_IN_CLIENT_ID;
-ENV['GOOGLE_SIGN_IN_SECRET'] = Hearback::Application.credentials.GOOGLE_SIGN_IN_SECRET;
 end
