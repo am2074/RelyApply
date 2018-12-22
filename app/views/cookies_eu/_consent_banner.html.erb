@@ -1,6 +1,6 @@
 <% if cookies && cookies['cookie_eu_consented'] != 'true' %>
   <div class="cookies-eu js-cookies-eu">
-    <span class="cookies-eu-content-holder">Cookies help us deliver our services. By using our services, you agree to our use of cookies and our <%= link_to 'Cookie Policy', cookie_policy_path %></span>
+    <span class="cookies-eu-content-holder">Cookies help us deliver our services. By using our services, you agree to our use of cookies and our cookies policy. If you choose to reject their use, please read our  <%= link_to 'Privacy Policy', privacy_path %> to find out how.</span>
     <span class="cookies-eu-button-holder">
     <button class="cookies-eu-ok js-cookies-eu-ok"> <%= t('cookies_eu.ok') %> </button>
     <% if defined?(link).present? %>
