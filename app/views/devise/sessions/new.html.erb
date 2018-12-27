@@ -6,15 +6,10 @@
     <div class="card">
         <div class="card-header">
           <h3>Log In</h3>
-        <small style="color:white">You agree to our <%= link_to 'Terms of Use', tos_path %> and <%= link_to 'Privacy Policy', privacy_path %> by continuing</small>
+        <small style="color:white">You agree to our <%= link_to 'Terms of Use', tos_path %> and <%= link_to 'Privacy and Cookie Policy', privacy_path %> by continuing.</small>
           
           <%#Omniauth Logins %>
           <div class="d-flex justify-content-end social_icon">
-            <%# Facebook %>
-            <%= link_to user_facebook_omniauth_authorize_path do %>
-              <span><i class="fab fa-facebook-square"></i></span>
-            <% end %>
-            <%# Google %>
           </div>
         </div>
         <div class="card-body">
@@ -45,6 +40,17 @@
               <%= f.submit "Log in",class: "btn login_btn"%>
             </div>
           <% end %>
+             <div class="form-group col-12" style="color:white;">
+            <hr>
+            </div>
+           <%# Google %>
+           <%= link_to user_google_oauth2_omniauth_authorize_path, class: "btn btn-block btn-social btn-google" do %>
+            <span><i class="fab fa-google"></i></i></span> Sign in with Google
+           <% end %>
+        <%# Facebook %>
+        <%= link_to user_facebook_omniauth_authorize_path, class: "btn btn-block btn-social btn-facebook" do %>
+          <span><i class="fab fa-facebook-square"></i></span>  Sign in with Facebook
+        <% end %>
         </div>
         <div class="card-footer">
           <%# Sign Up Link %>

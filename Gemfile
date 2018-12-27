@@ -78,3 +78,4 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-linkedin-oauth2'
 gem "validate_url"
 gem 'cookies_eu'
+gem 'bootstrap-social-rails'
