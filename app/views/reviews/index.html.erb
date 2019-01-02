@@ -118,7 +118,82 @@
         </div>
         <div class="card-body" id="cardBodyText">
           <p style="color:grey !important;" ><I>Review Submitted: <%= review.created_at.strftime("%B %d, %Y") %></I></p>
+
+        <% if user_signed_in? and current_user.reviews.count == 0 %> <!-- if statement if users have 0 reviews -->
+          <div class="alert alert-info" role="alert">
+              <h4>This review's details are hidden. To show these details, please submit a review  of your own for any company (post-application or post-interview).</h4> 
+          </div><!--alert-alert-info-->
+          <h4><strong>Responsiveness:</strong></h4>
+
+           <div class="row"><!--first row of card-->
+            <div class="col-md-6" >
+              <p><strong>Did you feel this company was responsive after applying?</strong> <i class="fas fa-ellipsis-h"></i></p>
+            </div>
+            <div class="col-md-6">
+              <p><strong>Were you satisifed with this company's responsiveness :</strong> <i class="fas fa-ellipsis-h"></i></p>
+            </div>
+          </div>
+          <hr>
+          <h4><strong>Application Details:</strong></h4>
+         
+          <div class="row"><!--first row of card-->
+            <div class="col-md-6">
+              <p><strong>Position:</strong><i class="fas fa-ellipsis-h"></i></p>
+            </div>
+            <div class="col-md-6">
+              <p><strong>Employment Type:</strong><i class="fas fa-ellipsis-h"></i></p>
+            </div>
+          </div>
+
+          <div class="row"> <!--second row of card-->
+            <div class="col-md-6">
+              <p><strong>Application Type:</strong><i class="fas fa-ellipsis-h"></i></p>
+            </div>
+          </div>
+          <div class="row"> <!--second row of card-->
+            <div class="col-md-6">
+              <p><strong>Location:</strong><i class="fas fa-ellipsis-h"></i></p>
+            </div>
+          </div>
+        <% elsif not user_signed_in? %>
+            <div class="alert alert-info" role="alert">
+              <h4>This review's details are hidden. To show these details, please <%= link_to 'Sign Up', new_user_registration_path %> or <%= link_to 'Log In', new_user_session_path %> and make sure you submitted a review  of your own for any company (post-application or post-interview).</h4> 
+          </div><!--alert-alert-info-->
+          <h4><strong>Responsiveness:</strong></h4>
+
+           <div class="row"><!--first row of card-->
+            <div class="col-md-6" >
+              <p><strong>Did you feel this company was responsive after applying?</strong> <i class="fas fa-ellipsis-h"></i></p>
+            </div>
+            <div class="col-md-6">
+              <p><strong>Were you satisifed with this company's responsiveness :</strong> <i class="fas fa-ellipsis-h"></i></p>
+            </div>
+          </div>
+          <hr>
+          <h4><strong>Application Details:</strong></h4>
+         
+          <div class="row"><!--first row of card-->
+            <div class="col-md-6">
+              <p><strong>Position:</strong><i class="fas fa-ellipsis-h"></i></p>
+            </div>
+            <div class="col-md-6">
+              <p><strong>Employment Type:</strong><i class="fas fa-ellipsis-h"></i></p>
+            </div>
+          </div>
+
+          <div class="row"> <!--second row of card-->
+            <div class="col-md-6">
+              <p><strong>Application Type:</strong><i class="fas fa-ellipsis-h"></i></p>
+            </div>
+          </div>
+          <div class="row"> <!--second row of card-->
+            <div class="col-md-6">
+              <p><strong>Location:</strong><i class="fas fa-ellipsis-h"></i></p>
+            </div>
+          </div>
+        <% else %><!-- if statement if users have 1 reviews -->
            <h4><strong>Responsiveness:</strong></h4>
+
            <div class="row"><!--first row of card-->
             <div class="col-md-6" >
               <p><strong>Did you feel this company was responsive after applying?</strong> <%= review.responsiveness %></p>
@@ -163,6 +238,7 @@
               </button>
             <% end %>
           </div><!--close div for to likes and dislikes -->
+        <% end %><!-- end statement for review access depending if user submitted their own review -->
         </div><!--div close card body-->
       </div> 
       <br />       

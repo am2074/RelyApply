@@ -22,18 +22,21 @@
         <div class="col-md-6">
           <div class="profile-head">
                         <h2>
-                            <%= @company.name %>
-
+                            <u><%= @company.name %></u>
                         </h2>
+                      <% if @company.verified == true %> 
+                        <p>
+                            <strong>Verified</strong> <i class="fas fa-check-circle" style="color:green"></i>
+                        </p>
+                      <% end %> 
+
                         <h6>
                             <%= link_to @company.website, "http://#{@company.website}" %>
                         </h6>
-                         
-                            <p>
-                               <%= link_to 'Edit Company Profile', new_company_request_path(@company), :class => "btn btn-primary" %>
-                            </p>
-                          
-                           
+                      <br />
+                        <p>
+                           <%= link_to 'Edit Company Profile', new_company_request_path(@company), :class => "btn btn-primary" %>
+                        </p>
           </div>
         </div>
             <div  class= "col-md-6">

@@ -71,6 +71,11 @@
             
           </h2>
           <h4 class="card-title" id="searchCardTitle"><%= link_to company.name, company, data: { turbolinks: false }, style:"color:white"%></h4> 
+          <% if company.verified == true %> 
+          <p class="card-title" style="color:white;" id="searchCardTitle">
+            <strong>Verified</strong> <i class="fas fa-check" style="color:green"></i>
+          </p>
+          <% end %> 
           <p class="card-title" style="color:white;" id="searchCardTitle"><%=company.website %></p>        
           <p class="card-title" style="color:white;" id="searchCardTitle">
             <% if company.reviews.size == 0 and company.offers.size == 0 %> 
