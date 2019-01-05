@@ -1,254 +1,241 @@
- <% content_for :title do %>
- Company | Rely Apply
+<% content_for :title do %>
+  Company | Rely Apply
 <% end %>
-
 
 <div class="container emp-profile">
   <form method="post">
-      <div class="row">
-          <!--
+    <div class="row">
+          <!-- Omitted Profile Company Picture Section
             <div class="col-md-4">
-               Company Profile: Profile Picture 
+              Company Profile: Profile Picture 
                 <div class="profile-img">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
-                    <div class="file btn btn-lg btn-primary">
-                        Change Photo
-                        <input type="file" name="file"/>
-                    </div>
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
+                  <div class="file btn btn-lg btn-primary">
+                    Change Photo
+                    <input type="file" name="file"/>
+                  </div>
                 </div>
             </div>
              -->
-             <!-- Company Profile: Name, Website, Rating --> 
-        <div class="col-md-6">
-          <div class="profile-head">
-                        <h2>
-                            <u><%= @company.name %></u>
-                        </h2>
-                      <% if @company.verified == true %> 
-                        <p>
-                            <strong>Verified</strong> <i class="fas fa-check-circle" style="color:green"></i>
-                        </p>
-                      <% end %> 
-
-                        <h6>
-                            <%= link_to @company.website, "http://#{@company.website}" %>
-                        </h6>
-                      <br />
-                        <p>
-                           <%= link_to 'Edit Company Profile', new_company_request_path(@company), :class => "btn btn-primary" %>
-                        </p>
-          </div>
+      <!-- Company Profile: Name, Website, Rating --> 
+      <div class="col-md-6">
+        <div class="profile-head">
+          <h2>
+            <u><%= @company.name %></u>
+          </h2>
+          <% if @company.verified == true %> 
+            <p>
+              <strong>Verified</strong> <i class="fas fa-check-circle" style="color:green"></i>
+            </p>
+          <% end %> 
+          <h6>
+            <%= link_to @company.website, "http://#{@company.website}" %>
+          </h6>
+          <br />
+          <p>
+            <%= link_to 'Edit Company Profile', new_company_request_path(@company), :class => "btn btn-primary" %>
+          </p>
         </div>
-            <div  class= "col-md-6">
-              <h3 class="proile-rating">             
-                                <% if @company.reviews.size == 0 and @company.offers.size == 0 %> 
-                                  <span class="na-review-score-show" id="responseScoreShowPage">     
-                                    Responsiveness: N/A
-                                   </span>  
-                                <% elsif ((Float(@company.reviews.where(responsiveness: "Yes").size)/(@company.reviews.size) * 100) >= 60) and ((Float(@company.offers.where(responsiveness: "Yes").size)/(@company.offers.size) * 100) >= 60) %>
-                                  <span class="good-review-score-show" id="responseScoreShowPage">
-                                    Responsiveness: <i class="fas fa-thumbs-up" style="color:white"></i>
-                                  </span>
-                                <% elsif ((Float(@company.reviews.where(responsiveness: "Yes").size)/(@company.reviews.size) * 100) < 60) and ((Float(@company.offers.where(responsiveness: "Yes").size)/(@company.offers.size) * 100) < 60) %>
-                                  <span class="bad-review-score-show" id="responseScoreShowPage">
-                                    Responsiveness: <i class="fas fa-thumbs-down"></i>
-                                  </span>
-                                <% elsif ((Float(@company.reviews.where(responsiveness: "Yes").size)/(@company.reviews.size) * 100) >= 60) and ((Float(@company.offers.where(responsiveness: "Yes").size)/(@company.offers.size) * 100) < 60) %>
-                                  <span class="mixed-review-score-show" id="responseScoreShowPage">
-                                    Responsiveness: Mixed
-                                  </span>
-                                <% elsif ((Float(@company.reviews.where(responsiveness: "Yes").size)/(@company.reviews.size) * 100) < 60) and ((Float(@company.offers.where(responsiveness: "Yes").size)/(@company.offers.size) * 100) >= 60) %>
-                                  <span class="mixed-review-score-show" id="responseScoreShowPage">
-                                    Responsiveness: Mixed
-                                  </span>
-                                <% elsif ((Float(@company.reviews.where(responsiveness: "Yes").size)/(@company.reviews.size) * 100) < 60) and @company.offers.size == 0 %>
-                                  <span class="bad-review-score-show" id="responseScoreShowPage">
-                                    Responsiveness: <i class="fas fa-thumbs-down"></i>
-                                  </span>
-                                <% elsif ((Float(@company.reviews.where(responsiveness: "Yes").size)/(@company.reviews.size) * 100) > 60) and @company.offers.size == 0 %>
-                                  <span class="good-review-score-show" id="responseScoreShowPage">
-                                    Responsiveness: <i class="fas fa-thumbs-up"></i>
-                                  </span>
-                                <% elsif ((Float(@company.offers.where(responsiveness: "Yes").size)/(@company.offers.size) * 100) < 60) and @company.reviews.size == 0 %>
-                                  <span class="bad-review-score-show" id="responseScoreShowPage">
-                                    Responsiveness: <i class="fas fa-thumbs-down"></i>
-                                  </span>
-                                <% elsif ((Float(@company.offers.where(responsiveness: "Yes").size)/(@company.offers.size) * 100) > 60) and @company.reviews.size == 0 %>
-                                  <span class="good-review-score-show" id="responseScoreShowPage">
-                                    Responsiveness: <i class="fas fa-thumbs-up"></i>
-                                  </span>
-                                  <!--%= number_to_percentage((Float(@company.reviews.where(responsiveness: "Yes").size)/(@company.reviews.count) * 100),precision: 0) -->
-                              <% end %>                   
-              </h3>
-            </div>
-
-            <!-- Edit Company Profile Button 
-            <div class="col-md-3 float-right">
-                <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
-            </div> -->
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-              <!--Company Navbar --> 
-              <div class="profile-head">
-              <!--Company Navbar Headers --> 
-               <ul class="nav nav-tabs" id="navbarCompanyShow" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Overall</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Submit Review</a>
-                          <div class="dropdown-menu">
-                            <p> <%= link_to '• Post-Application', new_company_review_path(@company), :id=>"dropdownItem" %></p>
-                            <p><%= link_to '• Post-Interview', new_company_offer_path(@company), :id=>"dropdownItem" %></p>
-                          </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reviews</a>
-                          <div class="dropdown-menu">
-                            <p><%= link_to '• Post-Application', company_reviews_path(@company), :id=>"dropdownItem"%></p>
-                            <p><%= link_to '• Post-Interview', company_offers_path(@company), :id=>"dropdownItem"%></p>
-                          </div>
-                        </li>
-                    </ul>
+      </div><!-- Line 21 -->
+      <div  class= "col-md-6">
+        <h3 class="proile-rating">             
+          <% if @company.reviews.size == 0 and @company.offers.size == 0 %> 
+            <span class="na-review-score-show" id="responseScoreShowPage">     
+              Responsiveness: N/A
+            </span>  
+          <% elsif ((Float(@company.reviews.where(responsiveness: "Yes").size)/(@company.reviews.size) * 100) >= 60) and ((Float(@company.offers.where(responsiveness: "Yes").size)/(@company.offers.size) * 100) >= 60) %>
+            <span class="good-review-score-show" id="responseScoreShowPage">
+              Responsiveness: <i class="fas fa-thumbs-up" style="color:white"></i>
+            </span>
+          <% elsif ((Float(@company.reviews.where(responsiveness: "Yes").size)/(@company.reviews.size) * 100) < 60) and ((Float(@company.offers.where(responsiveness: "Yes").size)/(@company.offers.size) * 100) < 60) %>
+            <span class="bad-review-score-show" id="responseScoreShowPage">
+              Responsiveness: <i class="fas fa-thumbs-down"></i>
+            </span>
+          <% elsif ((Float(@company.reviews.where(responsiveness: "Yes").size)/(@company.reviews.size) * 100) >= 60) and ((Float(@company.offers.where(responsiveness: "Yes").size)/(@company.offers.size) * 100) < 60) %>
+            <span class="mixed-review-score-show" id="responseScoreShowPage">
+              Responsiveness: Mixed
+            </span>
+          <% elsif ((Float(@company.reviews.where(responsiveness: "Yes").size)/(@company.reviews.size) * 100) < 60) and ((Float(@company.offers.where(responsiveness: "Yes").size)/(@company.offers.size) * 100) >= 60) %>
+            <span class="mixed-review-score-show" id="responseScoreShowPage">
+              Responsiveness: Mixed
+            </span>
+          <% elsif ((Float(@company.reviews.where(responsiveness: "Yes").size)/(@company.reviews.size) * 100) < 60) and @company.offers.size == 0 %>
+            <span class="bad-review-score-show" id="responseScoreShowPage">
+              Responsiveness: <i class="fas fa-thumbs-down"></i>
+            </span>
+          <% elsif ((Float(@company.reviews.where(responsiveness: "Yes").size)/(@company.reviews.size) * 100) > 60) and @company.offers.size == 0 %>
+            <span class="good-review-score-show" id="responseScoreShowPage">
+              Responsiveness: <i class="fas fa-thumbs-up"></i>
+            </span>
+          <% elsif ((Float(@company.offers.where(responsiveness: "Yes").size)/(@company.offers.size) * 100) < 60) and @company.reviews.size == 0 %>
+            <span class="bad-review-score-show" id="responseScoreShowPage">
+              Responsiveness: <i class="fas fa-thumbs-down"></i>
+            </span>
+          <% elsif ((Float(@company.offers.where(responsiveness: "Yes").size)/(@company.offers.size) * 100) > 60) and @company.reviews.size == 0 %>
+            <span class="good-review-score-show" id="responseScoreShowPage">
+              Responsiveness: <i class="fas fa-thumbs-up"></i>
+            </span>
+          <% end %><!-- Line 42 -->                   
+          </h3><!--Line 41 -->  
+      </div><!-- Line 40 -->
+    </div><!-- Line 7 -->
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Company Navbar --> 
+        <div class="profile-head">
+          <!-- Company Navbar Headers --> 
+          <ul class="nav nav-tabs" id="navbarCompanyShow" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Overall</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Submit Review</a>
+              <div class="dropdown-menu">
+                <p><%= link_to '• Post-Application', new_company_review_path(@company), :id=>"dropdownItem" %></p>
+                <p><%= link_to '• Post-Interview', new_company_offer_path(@company), :id=>"dropdownItem" %></p>
               </div>
-               <!--Company Navbar Tab Contents --> 
-                <div class="tab-content profile-tab" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                      <div class="alert alert-info" role="alert">
-                        <u><strong>Reminder:</strong></u>
-                          <ul>
-                             <li><h6><strong>The information below is based on what users have submitted in their reviews</li>
-                            <li>Their opinions are based on what they felt was a meaningful response after an application or an interview</li>
-                          </ul>
-                        </div>
-                      <!-- Response Times Tables -->    
-                      <div class= "col-md-12" align="center">
-                        <h2>Post-Application Responsiveness</h2>
-                      </div>
-                      <br />
-                      <!-- Table A: Response Times Tables -->    
-                      <div class="col-md-12">
-                        <table class="table">
-                          <thead class="bg-primary">
-                            <th>After Applying (~)</th>
-                            <th># Reported</th>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>Around less than a week</td>
-                              <td><%= @company.reviews.where(response_time: "Around less than a week").size %></td>
-                            </tr>
-                              <tr>
-                              <td>Around 1-2 weeks</td>
-                              <td><%= @company.reviews.where(response_time: "Around 1-2 weeks").size %></td>
-                            </tr>
-                            <tr>
-                              <td>Around 2-3 weeks</td>
-                              <td><%= @company.reviews.where(response_time: "Around 2-3 weeks").size %></td>
-                            </tr>
-                             <tr>
-                              <td>Around 3-4 weeks</td>
-                              <td><%= @company.reviews.where(response_time: "Around 3-4 weeks").size %></td>
-                            </tr>
-                            <tr>
-                              <td>Not within a month</td>
-                              <td><%= @company.reviews.where(response_time: "Not within a month").size %></td>
-                            </tr>
-                            <tr class="bg-primary" style="color:white;">
-                              <td>  Average:</td>
-                              <td> 
-                                <% if @company.reviews.size == 0 %> 
-                                  n/a
-                                <% elsif (Float(@company.reviews.where(responsiveness: "Yes").size)/(@company.reviews.size) * 100) >= 60 %>
-                                  <%= render 'average_response', company: @company %>
-                                <!-- render 'average_days', company: @company !-->
-                                <% elsif (Float(@company.reviews.where(responsiveness: "Yes").size)/(@company.reviews.size) * 100) < 60 %>
-                                  Response Rating Too Low 
-                                <% end %>
-                              </td>
-                            </tr>
-                            <tr class="bg-primary" style="color:white;">
-                              <td> Average Satisfaction:</td>
-                              <td> 
-                                <% if @company.reviews.size == 0 %> 
-                                n/a
-                                <% else %>
-                                  <%= number_to_percentage((@company.reviews.where(responsiveness: "Yes").count.to_f) / (@company.reviews.count.to_f)* 100, precision:0)%>
-                                <% end %>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <br />
-                      <!-- Table B: Post-Interview Response Times -->  
-                      <div class= "col-md-12" align="center">
-                        <h2>Post-Interview Responsiveness</h2>
-                      </div>
-                      <br />
-                      <div class="col-md-12">
-                        <table class="table">
-                          <thead class="bg-secondary">
-                            <th>After Interviewing</th>
-                            <th># Reported</th>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>Around less than a week</td>
-                              <td><%= @company.offers.where(response_time: "Around Less than a week").size %></td>
-                            </tr>
-                            <tr>
-                              <td>Around 1-2 weeks</td>
-                              <td><%= @company.offers.where(response_time: "Around 1-2 weeks").size %></td>
-                            </tr>
-                            <tr>
-                              <td>Around 2-3 weeks</td>
-                              <td><%= @company.offers.where(response_time: "Around 2-3 weeks").size %></td>
-                            </tr>
-                              <tr>
-                              <td>Around 3-4 weeks</td>
-                              <td><%= @company.offers.where(response_time: "Around 3-4 weeks").size %></td>
-                            </tr>
-                            <tr>
-                              <td>Not within a month</td>
-                              <td><%= @company.offers.where(response_time: "Did not respond within a month").size %></td>
-                            </tr>
-                            <tr class="bg-secondary" style="color:white;">
-                              <td>  Average:</td>
-                              <td> 
-                                <% if @company.offers.size == 0 %> 
-                                  n/a
-                                <% elsif (Float(@company.offers.where(responsiveness: "Yes").size)/(@company.reviews.size) * 100) >= 60 %>
-                                  <%= render 'post_interview_average_response', company: @company %>
-                                <!-- render 'average_days', company: @company !-->
-                                <% elsif (Float(@company.offers.where(responsiveness: "Yes").size)/(@company.reviews.size) * 100) < 60 %>
-                                  Response Rating Too Low 
-                                <% end %>
-                              </td>
-                            </tr>
-                            <tr class="bg-secondary" style="color:white;">
-                              <td>Average Satisfaction:</td>
-                              <td> 
-                                <% if @company.offers.size == 0 %> 
-                                  n/a
-                                <% else %>
-                                   <%= number_to_percentage((@company.offers.where(responsiveness: "Yes").count.to_f) / (@company.offers.count.to_f)* 100, precision:0)%>
-                                <% end %>
-                              </td>
-                            </tr>                                 
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-      
-                   
-                    </div>
-                </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reviews</a>
+              <div class="dropdown-menu">
+                <p><%= link_to '• Post-Application', company_reviews_path(@company), :id=>"dropdownItem"%></p>
+                <p><%= link_to '• Post-Interview', company_offers_path(@company), :id=>"dropdownItem"%></p>
+              </div>
+            </li>
+          </ul>
+        </div><!-- Line 85 -->
+        <!-- Company Navbar Tab Contents --> 
+        <div class="tab-content profile-tab" id="myTabContent">
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <div class="alert alert-info" role="alert">
+              <u><strong>Reminder:</strong></u>
+                <ul>
+                  <li>The information below is based on what users have submitted in their reviews</li>
+                  <li>Their opinions are based on what they felt was a meaningful response after an application or an interview</li>
+                </ul>
             </div>
-        </div>
-    </form>           
-</div>
+            <!-- Response Times Tables -->    
+            <div class= "col-md-12" align="center">
+              <h2>Post-Application Responsiveness</h2>
+            </div>
+            <br />
+            <!-- Table A: Response Times Tables -->    
+            <div class="col-md-12">
+              <table class="table">
+                <thead class="bg-primary">
+                  <th>After Applying (~)</th>
+                  <th># Reported</th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Around less than a week</td>
+                    <td><%= @company.reviews.where(response_time: "Around less than a week").size %></td>
+                  </tr>
+                    <tr>
+                    <td>Around 1-2 weeks</td>
+                    <td><%= @company.reviews.where(response_time: "Around 1-2 weeks").size %></td>
+                  </tr>
+                  <tr>
+                    <td>Around 2-3 weeks</td>
+                    <td><%= @company.reviews.where(response_time: "Around 2-3 weeks").size %></td>
+                  </tr>
+                   <tr>
+                    <td>Around 3-4 weeks</td>
+                    <td><%= @company.reviews.where(response_time: "Around 3-4 weeks").size %></td>
+                  </tr>
+                  <tr>
+                    <td>Not within a month</td>
+                    <td><%= @company.reviews.where(response_time: "Not within a month").size %></td>
+                  </tr>
+                  <tr class="bg-primary" style="color:white">
+                    <td>Average:</td>
+                    <td> 
+                      <% if @company.reviews.size == 0 %> 
+                        n/a
+                      <% elsif (Float(@company.reviews.where(responsiveness: "Yes").size)/(@company.reviews.size) * 100) >= 60 %>
+                        <%= render 'average_response', company: @company %>
+                      <% elsif (Float(@company.reviews.where(responsiveness: "Yes").size)/(@company.reviews.size) * 100) < 60 %>
+                        Response Rating Too Low 
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr class="bg-primary" style="color:white">
+                    <td>Average Satisfaction:</td>
+                    <td> 
+                      <% if @company.reviews.size == 0 %> 
+                      n/a
+                      <% else %>
+                        <%= number_to_percentage((@company.reviews.where(responsiveness: "Yes").count.to_f) / (@company.reviews.count.to_f)* 100, precision:0)%>
+                      <% end %>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div><!--Line 123 -->
+            <br />
+            <!-- Table B: Post-Interview Response Times -->  
+            <div class= "col-md-12" align="center">
+              <h2>Post-Interview Responsiveness</h2>
+            </div>
+            <br />
+            <div class="col-md-12">
+              <table class="table">
+                <thead class="bg-secondary">
+                  <th>After Interviewing</th>
+                  <th># Reported</th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Around less than a week</td>
+                    <td><%= @company.offers.where(response_time: "Around Less than a week").size %></td>
+                  </tr>
+                  <tr>
+                    <td>Around 1-2 weeks</td>
+                    <td><%= @company.offers.where(response_time: "Around 1-2 weeks").size %></td>
+                  </tr>
+                  <tr>
+                    <td>Around 2-3 weeks</td>
+                    <td><%= @company.offers.where(response_time: "Around 2-3 weeks").size %></td>
+                  </tr>
+                    <tr>
+                    <td>Around 3-4 weeks</td>
+                    <td><%= @company.offers.where(response_time: "Around 3-4 weeks").size %></td>
+                  </tr>
+                  <tr>
+                    <td>Not within a month</td>
+                    <td><%= @company.offers.where(response_time: "Did not respond within a month").size %></td>
+                  </tr>
+                  <tr class="bg-secondary" style="color:white">
+                    <td>Average:</td>
+                    <td> 
+                      <% if @company.offers.size == 0 %> 
+                        n/a
+                      <% elsif (Float(@company.offers.where(responsiveness: "Yes").size)/(@company.reviews.size) * 100) >= 60 %>
+                        <%= render 'post_interview_average_response', company: @company %>
+                      <% elsif (Float(@company.offers.where(responsiveness: "Yes").size)/(@company.reviews.size) * 100) < 60 %>
+                        Response Rating Too Low 
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr class="bg-secondary" style="color:white">
+                    <td>Average Satisfaction:</td>
+                    <td> 
+                      <% if @company.offers.size == 0 %> 
+                        n/a
+                      <% else %>
+                         <%= number_to_percentage((@company.offers.where(responsiveness: "Yes").count.to_f) / (@company.offers.count.to_f)* 100, precision:0)%>
+                      <% end %>
+                    </td>
+                  </tr>                                 
+                </tbody>
+              </table><!-- Line 183 -->
+            </div><!-- Line 182 -->
+          </div><!-- Line 109 -->
+        </div><!-- Line 108 -->
+      </div><!-- Line 83 -->
+    </div><!-- Line 7 -->     
+  </form><!-- Line 6 -->     
+</div><!-- Line 5 -->     
 
 
 

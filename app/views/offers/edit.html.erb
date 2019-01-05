@@ -3,8 +3,6 @@
 <% end %>
 
 <h1 style="color: white">Editing Post-Interview Review</h1>
-
-
   <% if user_signed_in? && current_user.id == @offer.user_id %>
 	<%= render 'form', offer: @offer %>
   <% else %> 

@@ -1,17 +1,14 @@
 <% content_for :title do %>
  Reviews | RelyApply
 <% end %>
+
 <div class="container emp-profile">
-
-    <div class="well" id="wellProfileForReviewIndex">
-        <div id= "headerProfileForReviewIndex">  
-          <h1><%=@company.name%>'s</strong> Application Response Times<strong></h1>
-        </div>
-    </div><!-- div class="well" id="wellProfileForReviewIndex"-->
-
-    <p>Want to add a review? Go back to <%= link_to @company.name, company_path(@company), method: :get%>'s profile and click "Submit Review"</p>
-
-
+  <div class="well" id="wellProfileForReviewIndex">
+    <div id= "headerProfileForReviewIndex">  
+      <h1><%=@company.name%>'s</strong> Application Response Times<strong></h1>
+    </div>
+  </div><!-- div class="well" id="wellProfileForReviewIndex"-->
+  <p>Want to add a review? Go back to <%= link_to @company.name, company_path(@company), method: :get%>'s profile and click "Submit Review"</p>
   <div class="text-left">
     <div class="alert alert-info" role="alert">
       <u><strong>Reminder:</strong></u>
@@ -22,11 +19,8 @@
       </ul>
     </div><!--alert-alert-info-->
   </div>
-
-  <hr id="reviewIndexHr">
-
-  <div class="container-fluid">
-    
+    <hr id="reviewIndexHr">
+    <div class="container-fluid">
       <%= search_form_for @q, url: company_reviews_path(params[:company_id]) do |f| %> 
         <div class="row">
           <h4 class="col"><strong>Filter & Search</strong></h4>
@@ -47,7 +41,6 @@
             <%= h f.search_field :position_cont, :placeholder => 'Search Position'%>
           </div>
         </div>
-
         <div class="row">
           <div class="col-sm">
             <%= f.label :responsiveness_eq, "Responsiveness?" %>
@@ -64,7 +57,6 @@
               ] , @q.satisfaction_eq), prompt: '--Select--'   %>
           </div>
         </div>
-
         <div class="row">
           <div class="col-sm">
            <%= f.label :application_type_eq, "Application Type: " %>
@@ -92,16 +84,13 @@
           </div>
         </div>
         <br />
-        
         <div colspan="1" align="center">
           <%= f.submit :class => "btn btn-primary" %>  <a href="<%=company_reviews_path%>" class="btn btn-primary" color="black">Clear filters</a>
         <div>
       <% end %>
     </div> <!--div class="container-fluid"-->
   </div><!--textleft -->
-
   <hr id="reviewIndexHr">
-
   <div>
   <h2><strong>Total Reviews: <%= @company.reviews.size %></strong></h2>
     <div class="text-left">
@@ -110,139 +99,58 @@
       <% end %>
     </div>  
   </div>
-
-    <% @reviews.each do |review| %>
-      <div class="card border-secondary mb-3" id="reviewsIndexCard">
-        <div class="card-header" id="reviewsIndexCardHeader">
-          <h3>Estimated Response Time: <%= review.response_time %></h3>
+  <% @reviews.each do |review| %>
+    <div class="card border-secondary mb-3" id="reviewsIndexCard">
+      <div class="card-header" id="reviewsIndexCardHeader">
+        <h3>Estimated Response Time: <%= review.response_time %></h3>
+      </div>
+      <div class="card-body" id="cardBodyText">
+        <p style="color:grey !important;" ><I>Review Submitted: <%= review.created_at.strftime("%B %d, %Y") %></I></p>
+         <h4><strong>Responsiveness:</strong></h4>
+         <div class="row"><!--first row of card-->
+          <div class="col-md-6" >
+            <p><strong>Did you feel this company was responsive after applying?</strong> <%= review.responsiveness %></p>
+          </div>
+          <div class="col-md-6">
+            <p><strong>Were you satisifed with this company's responsiveness :</strong> <%= review.satisfaction%></p>
+          </div>
         </div>
-        <div class="card-body" id="cardBodyText">
-          <p style="color:grey !important;" ><I>Review Submitted: <%= review.created_at.strftime("%B %d, %Y") %></I></p>
-
-        <% if user_signed_in? and current_user.reviews.count == 0 %> <!-- if statement if users have 0 reviews -->
-          <div class="alert alert-info" role="alert">
-              <h4>This review's details are hidden. To show these details, please submit a review  of your own for any company (post-application or post-interview).</h4> 
-          </div><!--alert-alert-info-->
-          <h4><strong>Responsiveness:</strong></h4>
-
-           <div class="row"><!--first row of card-->
-            <div class="col-md-6" >
-              <p><strong>Did you feel this company was responsive after applying?</strong> <i class="fas fa-ellipsis-h"></i></p>
-            </div>
-            <div class="col-md-6">
-              <p><strong>Were you satisifed with this company's responsiveness :</strong> <i class="fas fa-ellipsis-h"></i></p>
-            </div>
+        <hr>
+        <h4><strong>Application Details:</strong></h4>
+        <div class="row"><!--first row of card-->
+          <div class="col-md-6">
+            <p><strong>Position:</strong> <%= review.position %></p>
           </div>
-          <hr>
-          <h4><strong>Application Details:</strong></h4>
-         
-          <div class="row"><!--first row of card-->
-            <div class="col-md-6">
-              <p><strong>Position:</strong><i class="fas fa-ellipsis-h"></i></p>
-            </div>
-            <div class="col-md-6">
-              <p><strong>Employment Type:</strong><i class="fas fa-ellipsis-h"></i></p>
-            </div>
+          <div class="col-md-6">
+            <p><strong>Employment Type:</strong><%= review.employment_type %></p>
           </div>
-
-          <div class="row"> <!--second row of card-->
-            <div class="col-md-6">
-              <p><strong>Application Type:</strong><i class="fas fa-ellipsis-h"></i></p>
-            </div>
+        </div>
+        <div class="row"> <!--second row of card-->
+          <div class="col-md-6">
+            <p><strong>Application Type:</strong> <%= review.application_type%></p>
           </div>
-          <div class="row"> <!--second row of card-->
-            <div class="col-md-6">
-              <p><strong>Location:</strong><i class="fas fa-ellipsis-h"></i></p>
-            </div>
+        </div>
+        <div class="row"> <!--second row of card-->
+          <div class="col-md-6">
+            <p><strong>Location:</strong> <%= review.address.chomp(', USA') %></p>
           </div>
-        <% elsif not user_signed_in? %>
-            <div class="alert alert-info" role="alert">
-              <h4>This review's details are hidden. To show these details, please <%= link_to 'Sign Up', new_user_registration_path %> or <%= link_to 'Log In', new_user_session_path %> and make sure you submitted a review  of your own for any company (post-application or post-interview).</h4> 
-          </div><!--alert-alert-info-->
-          <h4><strong>Responsiveness:</strong></h4>
-
-           <div class="row"><!--first row of card-->
-            <div class="col-md-6" >
-              <p><strong>Did you feel this company was responsive after applying?</strong> <i class="fas fa-ellipsis-h"></i></p>
-            </div>
-            <div class="col-md-6">
-              <p><strong>Were you satisifed with this company's responsiveness :</strong> <i class="fas fa-ellipsis-h"></i></p>
-            </div>
-          </div>
-          <hr>
-          <h4><strong>Application Details:</strong></h4>
-         
-          <div class="row"><!--first row of card-->
-            <div class="col-md-6">
-              <p><strong>Position:</strong><i class="fas fa-ellipsis-h"></i></p>
-            </div>
-            <div class="col-md-6">
-              <p><strong>Employment Type:</strong><i class="fas fa-ellipsis-h"></i></p>
-            </div>
-          </div>
-
-          <div class="row"> <!--second row of card-->
-            <div class="col-md-6">
-              <p><strong>Application Type:</strong><i class="fas fa-ellipsis-h"></i></p>
-            </div>
-          </div>
-          <div class="row"> <!--second row of card-->
-            <div class="col-md-6">
-              <p><strong>Location:</strong><i class="fas fa-ellipsis-h"></i></p>
-            </div>
-          </div>
-        <% else %><!-- if statement if users have 1 reviews -->
-           <h4><strong>Responsiveness:</strong></h4>
-
-           <div class="row"><!--first row of card-->
-            <div class="col-md-6" >
-              <p><strong>Did you feel this company was responsive after applying?</strong> <%= review.responsiveness %></p>
-            </div>
-            <div class="col-md-6">
-              <p><strong>Were you satisifed with this company's responsiveness :</strong> <%= review.satisfaction%></p>
-            </div>
-          </div>
-          <hr>
-          <h4><strong>Application Details:</strong></h4>
-         
-          <div class="row"><!--first row of card-->
-            <div class="col-md-6">
-              <p><strong>Position:</strong> <%= review.position %></p>
-            </div>
-            <div class="col-md-6">
-              <p><strong>Employment Type:</strong><%= review.employment_type %></p>
-            </div>
-          </div>
-
-          <div class="row"> <!--second row of card-->
-            <div class="col-md-6">
-              <p><strong>Application Type:</strong> <%= review.application_type%></p>
-            </div>
-          </div>
-          <div class="row"> <!--second row of card-->
-            <div class="col-md-6">
-              <p><strong>Location:</strong> <%= review.address.chomp(', USA') %></p>
-            </div>
-          </div>
-          <div class="vote-count bind-<%= review.id %>" style="text-align: center"> <!--links to likes and dislikes -->
-            <%= link_to like_review_path(review),:remote => true, method: :put, class: "vpos", id: "thumbs" do %>
-            <button class="btn btn-success">
-              <i class="fas fa-thumbs-up" style="color:white !important"></i>
-              <span class="vcount-<%= review.id %>">Accurate(<%= review.get_upvotes.size %>)</span>
-            </button>
-            <% end %>
-            <%= link_to dislike_review_path(review), :remote => true, method: :put, class: "npos", id: "thumbs" do %>
-             <button class="btn btn-danger">
-                <i class="fas fa-thumbs-down" sstyle="color:white !important"></i>
-                <span class="ncount-<%= review.id %>">Inaccurate(<%= review.get_downvotes.size %>)</span>
+        </div>
+        <div class="vote-count bind-<%= review.id %>" style="text-align: center"> <!--links to likes and dislikes -->
+          <%= link_to like_review_path(review),:remote => true, method: :get, class: "vpos", id: "thumbs" do %>
+              <button class="btn btn-success">
+                <i class="fas fa-thumbs-up" style="color:white"></i>
+                <span class="vcount-<%= review.id %>" style="color:white">Accurate(<%= review.get_upvotes.size %>)</span>
               </button>
-            <% end %>
-          </div><!--close div for to likes and dislikes -->
-        <% end %><!-- end statement for review access depending if user submitted their own review -->
-        </div><!--div close card body-->
-      </div> 
-      <br />       
-    <% end %>
-   
-
+          <% end %>
+          <%= link_to dislike_review_path(review),:remote => true, method: :get, class: "npos", id: "thumbs" do %>
+           <button class="btn btn-danger">
+              <i class="fas fa-thumbs-down" style="color:white"></i>
+              <span class="ncount-<%= review.id %>" style="color:white">Inaccurate(<%= review.get_downvotes.size %>)</span>
+           </button>
+           <% end %>
+        </div><!--close div for to likes and dislikes -->
+      </div><!--div close card body-->
+    </div> 
+    <br />       
+  <% end %>
 </div><!--div class="container emp-profile"-->

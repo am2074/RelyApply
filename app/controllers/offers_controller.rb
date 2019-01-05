@@ -71,7 +71,11 @@ class OffersController < ApplicationController
     end
   end
   def upvote
-    @offer.upvote_by current_user
+   if !current_user.liked? @offer
+      @offer.upvote_by current_user
+    elsif current_user.liked? @offer
+      @offer.unliked_by current_user
+    end
     #redirect_back fallback_location: root_path
     respond_to do |format|
       format.html { redirect_back fallback_location: root_path}
@@ -81,7 +85,11 @@ class OffersController < ApplicationController
   end
 
   def downvote 
-    @offer.downvote_by current_user
+    if !current_user.disliked? @offer
+      @offer.downvote_by current_user
+    elsif current_user.disliked? @offer
+      @offer.undisliked_by current_user
+    end
     respond_to do |format|
       format.html { redirect_back fallback_location: root_path }
       format.json { render json: { count: @offer.downvoted_count } }

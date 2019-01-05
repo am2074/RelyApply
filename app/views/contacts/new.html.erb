@@ -9,46 +9,43 @@
         <img src="https://image.ibb.co/kUASdV/contact-image.png" alt="image" style="float:center">
         <h2 style="color:white !important">Contact Us</h2>
         <h5 style="color:white !important">We'll get back to you as soon as possible</h5>
-      </div>
-    </div>
+      </div><!-- Line 8 -->
+    </div><!-- Line 7 -->
     <div class="col-md-9">
       <div class="contact-form">
-         <%= form_for @contact do |f| %>
-
-         
-        <%= hidden_field_tag id:'g-recaptcha-response'%>
-        <div class="form-group">
-          <label class="control-label col-sm-2" for="fname">First Name:</label>
-          <div class="col-sm-10">          
-          <%= f.text_field :first_name, required: true, class: "form-control", placeholder: "Enter First Name", id: "fname" %>
+        <%= form_for @contact do |f| %>
+          <%= hidden_field_tag id:'g-recaptcha-response'%>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="fname">First Name:</label>
+            <div class="col-sm-10">          
+              <%= f.text_field :first_name, required: true, class: "form-control", placeholder: "Enter First Name", id: "fname" %>
+            </div><!-- Line 20 -->
+          </div><!-- Line 18 -->
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="lname">Last Name:</label>
+            <div class="col-sm-10">          
+              <%= f.text_field :last_name, required: true, class: "form-control", placeholder: "Enter Last Name", id: "lname" %>
+            </div><!-- Line 26 -->
+          </div><!-- Line 24 -->
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Email:</label>
+            <div class="col-sm-10">
+              <%= f.text_field :email, required: true, class: "form-control", placeholder: "Enter Email", id: "email" %>
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label class="control-label col-sm-2" for="lname">Last Name:</label>
-          <div class="col-sm-10">          
-          <%= f.text_field :last_name, required: true, class: "form-control", placeholder: "Enter Last Name", id: "lname" %>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="comment">Message:</label>
+            <div class="col-sm-10">
+              <%= f.text_area :message, as: :text,  class:"form-control", rows: "5", id: "comment" %>
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label class="control-label col-sm-2" for="email">Email:</label>
-          <div class="col-sm-10">
-          <%= f.text_field :email, required: true, class: "form-control", placeholder: "Enter Email", id: "email" %>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="control-label col-sm-2" for="comment">Message:</label>
-          <div class="col-sm-10">
-          <%= f.text_area :message, as: :text,  class:"form-control", rows: "5", id: "comment" %>
-          </div>
-        </div>
-  
-        <div class="form-group">        
-          <div class="col-sm-offset-2 col-sm-10">
-          <%= invisible_recaptcha_tags text: 'Submit',class: "btn btn-default", id:"g-recaptcha-response" %>
-          </div>
-        </div>
-      </div>
-    </div>
-    <% end %>
-  </div>
-</div>
+          <div class="form-group">        
+            <div class="col-sm-offset-2 col-sm-10">
+              <%= invisible_recaptcha_tags text: 'Submit',class: "btn btn-default", id:"g-recaptcha-response" %>
+            </div><!-- Line 43 -->
+          </div><!-- Line 42 -->
+        <% end %><!-- Line 16 -->
+      </div><!-- Line 15 -->
+    </div><!-- Line 14 -->
+  </div><!-- Line 6 -->
+</div><!-- Line 5 -->

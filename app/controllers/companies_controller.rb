@@ -46,7 +46,6 @@ class CompaniesController < ApplicationController
   # POST /companies.json
   def create
     @company = Company.new(company_params)
-
     respond_to do |format|
       if @company.save && verify_recaptcha(model: @company)
         
@@ -100,6 +99,7 @@ class CompaniesController < ApplicationController
     def all_companies
       @companies = Company.all
     end 
+    
     def force_json
       request.format = :json
     end

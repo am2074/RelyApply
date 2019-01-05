@@ -1,56 +1,56 @@
 <!-- Footer -->
-    <section id="footer">
-        <div class="container">
-            <div class="row text-center text-xs-center text-sm-left text-md-left">
-                <div class="col-xs-12 col-sm-4 col-md-4">
-                <% if user_signed_in? -%>
-                    <h5>Quick links</h5>
-                    <ul class="list-unstyled quick-links">
-                        <li><i class="fa fa-angle-double-right" style="color:white"></i> <%= link_to 'Home', root_path %></li>
-                        <li><i class="fa fa-angle-double-right" style="color:white"></i> <%= link_to 'Submit a Company', new_company_path %></li>
-                        <li><i class="fa fa-angle-double-right" style="color:white"></i> <%= link_to 'Profile', profile_path %></li>
-                        <li><i class="fa fa-angle-double-right" style="color:white"></i> <%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
-                    </ul>
-                <% else %>
-                    <h5>Quick links</h5>
-                    <ul class="list-unstyled quick-links">
-                        <li><i class="fa fa-angle-double-right" style="color:white"></i> <%= link_to 'Home', root_path %></li>
-                        <li><i class="fa fa-angle-double-right" style="color:white"></i> <%= link_to 'Submit a Company', new_company_path %></li>
-                         <li><i class="fa fa-angle-double-right" style="color:white"></i> <%= link_to 'Sign Up', new_user_registration_path %></li>
-                        <li><i class="fa fa-angle-double-right" style="color:white"></i> <%= link_to 'Log In', new_user_session_path %></li>
-                <% end %>
-                </div>
-                <div class="col-xs-12 col-sm-4 col-md-4">
-                    <h5>Info</h5>
-                    <ul class="list-unstyled quick-links">
-                        <li><i class="fa fa-angle-double-right" style="color:white"></i> <%= link_to 'About', about_path%></li>               
-                        <li><i class="fa fa-angle-double-right" style="color:white"></i> <%= link_to 'Privacy and Cookie Policy', privacy_path%></li>
-                        <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>FAQ</a></li>
-                    </ul>
-                </div>
-                <div class="col-xs-12 col-sm-4 col-md-4">
-                    <h5>Contact Us</h5>
-                    <ul class="list-unstyled quick-links">
-                        <li><i class="fa fa-angle-double-right" style="color:white"></i> <%= link_to 'Send Us A Message', new_contact_path%></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
-                    <ul class="list-unstyled list-inline social text-center">
-                        <li class="list-inline-item"><a href="javascript:void();"><i class="fab fa-facebook-square"></i></a></li>
-                        <li class="list-inline-item"><a href="javascript:void();"><i class="fab fa-linkedin"></i></i></a></li>
-                    </ul>
-                </div>
-                </hr>
-            </div>  
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
-                    <p><u><a href="https://www.relyapply.com/">RelyApply</a></u>Copyright © 2018, RelyApply, Inc. "RelyApply" and logo are proprietary trademarks of RelyApply, Inc.</p>
-                    <p class="h6">&copy All right Reversed.<a class="text-green ml-2" href="https://www.sunlimetech.com" target="_blank">RelyApply</a></p>
-                </div>
-                </hr>
-            </div>  
-        </div>
-    </section>
-    <!-- ./Footer -->
+<section id="footer">
+  <div class="container">
+      <div class="row text-center text-xs-center text-sm-left text-md-left">
+          <div class="col-xs-12 col-sm-4 col-md-4">
+          <% if user_signed_in? -%>
+              <h5>Quick links</h5>
+              <ul class="list-unstyled quick-links">
+                  <li><i class="fa fa-angle-double-right" style="color:white"></i> <%= link_to 'Home', root_path %></li>
+                  <li><i class="fa fa-angle-double-right" style="color:white"></i> <%= link_to 'Submit a Company', new_company_path %></li>
+                  <li><i class="fa fa-angle-double-right" style="color:white"></i> <%= link_to 'Profile', profile_path %></li>
+                  <li><i class="fa fa-angle-double-right" style="color:white"></i> <%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
+              </ul>
+          <% else %>
+              <h5>Quick links</h5>
+              <ul class="list-unstyled quick-links">
+                  <li><i class="fa fa-angle-double-right" style="color:white"></i> <%= link_to 'Home', root_path %></li>
+                  <li><i class="fa fa-angle-double-right" style="color:white"></i> <%= link_to 'Submit a Company', new_company_path %></li>
+                   <li><i class="fa fa-angle-double-right" style="color:white"></i> <%= link_to 'Sign Up', new_user_registration_path %></li>
+                  <li><i class="fa fa-angle-double-right" style="color:white"></i> <%= link_to 'Log In', new_user_session_path %></li>
+          <% end %>
+          </div>
+          <div class="col-xs-12 col-sm-4 col-md-4">
+              <h5>Info</h5>
+              <ul class="list-unstyled quick-links">
+                  <li><i class="fa fa-angle-double-right" style="color:white"></i> <%= link_to 'About', about_path%></li>               
+                  <li><i class="fa fa-angle-double-right" style="color:white"></i> <%= link_to 'Privacy and Cookie Policy', privacy_path%></li>
+                  <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>FAQ</a></li>
+              </ul>
+          </div>
+          <div class="col-xs-12 col-sm-4 col-md-4">
+              <h5>Contact Us</h5>
+              <ul class="list-unstyled quick-links">
+                  <li><i class="fa fa-angle-double-right" style="color:white"></i> <%= link_to 'Send Us A Message', new_contact_path%></li>
+              </ul>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+              <ul class="list-unstyled list-inline social text-center">
+                  <li class="list-inline-item"><a href="javascript:void();"><i class="fab fa-facebook-square"></i></a></li>
+                  <li class="list-inline-item"><a href="javascript:void();"><i class="fab fa-linkedin"></i></i></a></li>
+              </ul>
+          </div>
+          </hr>
+      </div>  
+      <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+              <p><u><a href="https://www.relyapply.com/">RelyApply</a></u>Copyright © 2018, RelyApply, Inc. "RelyApply" and logo are proprietary trademarks of RelyApply, Inc.</p>
+              <p class="h6">&copy All right Reversed.<a class="text-green ml-2" href="https://www.sunlimetech.com" target="_blank">RelyApply</a></p>
+          </div>
+          </hr>
+      </div>  
+  </div>
+</section>
+<!-- ./Footer -->

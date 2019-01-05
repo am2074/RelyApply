@@ -3,146 +3,122 @@
 <% end %>
 
 <% if user_signed_in? %>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-6">
-      <h4 style="color:white;"><%= @users.email %></h4>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6">
+        <h4 style="color:white;"><%= @users.email %></h4>
+      </div>
     </div>
-  </div>
-<% if current_user.provider =="facebook" %>
-  <%= link_to 'Account Settings', edit_user_registration_path, :class => "btn btn-primary" %>
-<% elsif current_user.provider == "google_oauth2" %>
-<div class="col-md-6">  
+    <% if current_user.provider =="facebook" %>
       <%= link_to 'Account Settings', edit_user_registration_path, :class => "btn btn-primary" %>
-    </div>
-<% else %>
-  <div class="row">
-    <div class="col-md-6">  
-      <%= link_to 'Account Settings', edit_user_registration_path, :class => "btn btn-primary" %>
-    </div>
-  </div> 
-<% end %>
-
-
-
-
-</div>
-
-<div class="container emp-profile">
-  <form method="post">
-      <h3> My Reviews</h3>
+    <% elsif current_user.provider == "google_oauth2" %>
+      <div class="col-md-6">  
+        <%= link_to 'Account Settings', edit_user_registration_path, :class => "btn btn-primary" %>
+      </div>
+    <% else %>
+      <div class="row">
+        <div class="col-md-6">  
+          <%= link_to 'Account Settings', edit_user_registration_path, :class => "btn btn-primary" %>
+        </div>
+      </div> 
+    <% end %>
+  </div><!--Line 6 -->
+  <div class="container emp-profile">
+    <form method="post">
+      <h3>My Reviews</h3>
       <div class="row">
         <div class="col-md-12">
-          <!--Navbar header: Applying and Interview-->
+           <!--Navbar header: Applying and Interview-->
            <ul class="nav nav-tabs" id="navbarCompanyShow" role="tablist">
               <li class="nav-item">
-                  <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Post-Applying</a>
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Post-Application</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Post-Interview</a>
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Post-Interview</a>
               </li>
-          </ul>
-        </div>
-      </div>
+            </ul>
+        </div><!--Line 30 -->
+      </div><!--Line 29 -->
       <div class="row">
         <div class="col-md-12">
-              <!-- Tab Content -->
+          <!-- Tab Content -->
           <div class="tab-content profile-tab" id="myTabContent">
             <!--Post application User Reviews -->
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-              <div>
               <br />
-              
-             <% if   @users.reviews.includes(:company).count. == 0 %>
-            <br/>
+              <% if @users.reviews.includes(:company).count. == 0 %>
+                <br/>
                 <p style="color: grey">You currently have no application response time reviews</p>
-             <% else %>
-              <% @users.reviews.includes(:company).each do |review| %>
-                 <!-- links to edit or destory review -->
-
-                <div colspan="1" align="right">
-                  <% if review.user == current_user %>
-                    <%= link_to 'Edit', edit_review_path(review), class: "btn btn-sm btn-default"%>
-                    <%= link_to 'Delete', review, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-default" %>
-                  <% end %>
-                </div>
-
-                  <div class="card border-secondary mb-3" id="reviewsIndexCard">
-
-                    <div class="card-header" id="reviewsIndexCardHeader" >
-                      <h3>Company: <%= review.company.name %>      
-                    </div>
-                    <div class="card-body" id="userReviewCardBody">
-                      <p style="color:grey !important" ><I>Review Submitted: <%= review.created_at.strftime("%B %d, %Y") %></I></p>
-                      <h4><strong><u>Application Details</u></strong></h4>
-
-                      <div class="row"><!--first row of card-->
-                        <div class="col-md-6">
+              <% else %>
+                <% @users.reviews.includes(:company).each do |review| %>
+                  <!-- Links to edit or destory review -->
+                  <div colspan="1" align="right">
+                    <% if review.user == current_user %>
+                      <%= link_to 'Edit', edit_review_path(review), class: "btn btn-sm btn-default"%>
+                      <%= link_to 'Delete', review, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-default" %>
+                    <% end %><!-- Line 56 -->
+                  </div>
+                    <div class="card border-secondary mb-3" id="reviewsIndexCard">
+                      <div class="card-header" id="reviewsIndexCardHeader" >
+                        <h3>Company: <%= review.company.name %>      
+                      </div>
+                      <div class="card-body" id="userReviewCardBody">
+                        <p style="color:grey !important" ><I>Review Submitted: <%= review.created_at.strftime("%B %d, %Y") %></I></p>
+                        <h4><strong><u>Application Details</u></strong></h4>
+                        <div class="row"><!--First row of card-->
+                          <div class="col-md-6">
                           <p>Estimated Response Time: <%= review.response_time %></p>
                         </div>
                         <div class="col-md-6">
                           <p><strong>Position:</strong> <%= review.position %></p>
+                          </div>
                         </div>
-                      </div>
-
-                      <div class="row"> <!--second row of card-->
-                        <div class="col-md-6">
-                          <p><strong>Employment Type:</strong> <%= review.employment_type %></p>
+                        <div class="row"> <!--econd row of card-->
+                          <div class="col-md-6">
+                            <p><strong>Employment Type:</strong> <%= review.employment_type %></p>
+                          </div>
+                          <div class="col-md-6">
+                            <p><strong>Response Time Satisfaction:</strong> <%= review.satisfaction %></p>
+                          </div>
                         </div>
-                        <div class="col-md-6">
-                          <p><strong>Response Time Satisfaction:</strong> <%= review.satisfaction %></p>
+                        <div class="row"> <!--Second row of card-->
+                          <div class="col-md-6">
+                            <p><strong>Application Type:</strong> <%= review.application_type%></p>
+                          </div>
+                          <div class="col-md-6">
+                            <p><strong>Location:</strong> <%= review.address.chomp(', USA') %></p>
+                          </div>
                         </div>
-                      </div>
-                      <div class="row"> <!--second row of card-->
-                        <div class="col-md-6">
-                          <p><strong>Application Type:</strong> <%= review.application_type%></p>
-                        </div>
-                        <div class="col-md-6">
-                          <p><strong>Location:</strong> <%= review.address.chomp(', USA') %></p>
-                        </div>
-                      </div>
-                      <div style="text-align: center"> <!--links to likes and dislikes -->
-                          <i class="fas fa-thumbs-up" style="color:green"></i>
-                          Accurate
-                          (<%= review.get_upvotes.size %>)
-                      
-                        |
-
-                          <i class="fas fa-thumbs-down" style="color:red"></i>
-                          Inaccurate
-                          (<%= review.get_downvotes.size %>)
-                
-                      </div><!--close div for to likes and dislikes -->
-                    </div><!--div close card body-->
-                  </div> <!--div class="card border-secondary mb-3" id="reviewsIndexCard"-->
-                    <br />       
-                  <% end %>
-               <% end %>
-              </div> <!--div for users each do -->
-            </div> <!--div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"-->
-                    <!-- Post Interview User Reviews --> 
+                        <div style="text-align: center"> <!--Links to likes and dislikes -->
+                            <i class="fas fa-thumbs-up" style="color:green"></i> Accurate (<%= review.get_upvotes.size %>) | <i class="fas fa-thumbs-down" style="color:red"></i> Inaccurate (<%= review.get_downvotes.size %>)
+                        </div><!-- div for to likes and dislikes -->
+                      </div><!--Line 65: div close card body-->
+                    </div> <!-- Line 63: div class="card border-secondary mb-3" id="reviewsIndexCard"-->
+                  <br />       
+                <% end %><!-- Line 53 -->
+              <% end %><!--Line 49: if @users.reviews.includes(:company).count. == 0 -->
+            </div> <!-- Line 47: div for users each do -->
+            <!-- Post Interview User Reviews --> 
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-             <% if   @users.offers.includes(:company).count. == 0 %>
+              <% if @users.offers.includes(:company).count. == 0 %>
                 <br/>
                 <p style="color: grey">You currently have no post-interview reviews</p>
-             <% else %>
-              <% @users.offers.includes(:company).each do |offer| %>
-                 <!-- links to edit or destory review -->
-                <div colspan="1" align="right">
-                  <% if offer.user == current_user %>
-                    <%= link_to 'Edit', edit_offer_path(offer), class: "btn btn-sm btn-default"%>
-                    <%= link_to 'Delete', offer, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-default" %>
-                  <% end %>
-                </div>
-
+              <% else %>
+                <% @users.offers.includes(:company).each do |offer| %>
+                   <!-- links to edit or destory review -->
+                  <div colspan="1" align="right">
+                    <% if offer.user == current_user %>
+                      <%= link_to 'Edit', edit_offer_path(offer), class: "btn btn-sm btn-default" %>
+                      <%= link_to 'Delete', offer, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-default" %>
+                    <% end %>
+                  </div>
                   <div class="card border-secondary mb-3" id="reviewsIndexCard">
                     <div class="card-header" id="reviewsIndexCardHeader">
                       <h3>Company: <%= offer.company.name %></h3>
                     </div>
-                    <div class="card-body" id="userReviewCardBody">
+                  <div class="card-body" id="userReviewCardBody">
                       <p style="color:grey !important" ><I>Review Submitted: <%= offer.created_at.strftime("%B %d, %Y") %></I></p>
                       <h4><strong><u>Application Details</u></strong></h4>
-
                       <div class="row"><!--first row of card-->
                         <div class="col-md-6">
                           <p>Estimated Post-Interview Response Time: <%= offer.response_time %></p>
@@ -151,13 +127,12 @@
                           <p><strong>Response Time Satisfaction: </strong> <%= offer.satisfaction %></p>
                         </div>
                       </div>
-
                       <div class="row"> <!--second row of card-->
                         <div class="col-md-6">
-                           <p><strong>Position: </strong> <%= offer.position %></p>
+                          <p><strong>Position: </strong> <%= offer.position %></p>
                         </div>
                         <div class="col-md-6">
-                           <p><strong>Employment Type: </strong><%= offer.employment_type %></p>
+                          <p><strong>Employment Type: </strong><%= offer.employment_type %></p>
                         </div>
                       </div>
                       <div class="row"> <!--second row of card-->
@@ -166,26 +141,17 @@
                         </div>
                       </div>
                       <div style="text-align: center"> <!--links to likes and dislikes -->
-                          <i class="fas fa-thumbs-up" style="color:green"></i>
-                          Accurate
-                          (<%= offer.get_upvotes.size %>)
-                          
-                        |
-                          <i class="fas fa-thumbs-down" style="color:red"></i>
-                          Inaccurate
-                          (<%= offer.get_downvotes.size %>)
-                
+                        <i class="fas fa-thumbs-up" style="color:green"></i> Accurate (<%= offer.get_upvotes.size %>) | <i class="fas fa-thumbs-down" style="color:red"></i> Inaccurate (<%= offer.get_downvotes.size %>)
                       </div><!--close div for to likes and dislikes -->
-                    </div><!--div close card body-->
-                  </div> <!--div class="card border-secondary mb-3" id="reviewsIndexCard"-->
-                    <br />       
-                  <% end %>
-                  <% end %>
-              </div> <!--div for users each do -->
+                    </div><!--Line 119: div close card body -->
+                  </div> <!--Line 115: div class="card border-secondary mb-3" id="reviewsIndexCard" -->
+                  <br />       
+                <% end %><!--Line 108: users.offers.includes(company).each do -->
+              <% end %><!--Line 104: users.offers.includes(company).each do -->
             </div><!--div for profile tab-->
-          </div><!--div for myTabContent-->
-        </div><!--div for col m12 line 37-->
-      </div><!--div for row line 36-->
-  </form>           
-</div><!-- div class="container emp-profile"-->
-<% end %>
+          </div><!--Line 103: div for myTabContent: Post-Interview Reviews-->
+        </div><!-- line 37: div for col m12  -->
+      </div><!--Line 36: div for row line -->
+    </form><!-- Line 27 -->          
+  </div><!-- div class="container emp-profile"-->
+<% end %><!-- Line 5 -->

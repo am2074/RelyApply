@@ -8,7 +8,6 @@
         <div class="card-header">
           <h3>Sign Up</h3>
           <small style="color:white">You agree to our <%= link_to 'Terms of Use', tos_path %> and <%= link_to 'Privacy and Cookie Policy', privacy_path %> by continuing.</small>
-         
           <%#Omniauth Logins %>
           <div class="d-flex justify-content-end social_icon">
           </div>
@@ -31,11 +30,8 @@
             <%# PW Input %>
             <div class="input-group form-group">
                 <div class="input-group-prepend">
-                   
                   <span class="input-group-text"><i class="fas fa-key"></i></span>
                 </div>
-             
-
               <%= f.password_field :password, class: "form-control", required: true, placeholder: "Password" %>
             </div>
             <%# Remember Me Checkbox %>
@@ -45,7 +41,6 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fas fa-check"></i></span>
                 </div>
-
                <%= f.password_field :password_confirmation, class: "form-control", required: true,placeholder: "Confirm Password" %>
             </div>
             <%# Submit Button %>
@@ -62,7 +57,6 @@
         <%= link_to user_facebook_omniauth_authorize_path, class: "btn btn-block btn-social btn-facebook" do %>
           <span><i class="fab fa-facebook-square"></i></span>  Sign in with Facebook
         <% end %>
-
         </div>
         <div class="card-footer">
           <%# Sign Up Link %>
@@ -71,7 +65,6 @@
               <%- if controller_name != 'sessions' %>
                 <%= link_to "Log in", new_session_path(resource_name) %><br />
               <% end -%>
-
           </div>
           <%#Forgot PW Link%>
           <div class="d-flex justify-content-center">

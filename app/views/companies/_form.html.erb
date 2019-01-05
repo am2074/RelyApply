@@ -2,45 +2,31 @@
   <% if company.errors.any? %>
     <div style="color:white" id="error_explanation">
       <h2><%= pluralize(company.errors.count, "error") %> prohibited this company from being saved:</h2>
-
       <ul>
-      <% company.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% company.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
-  <div class="form-group-lg"  id="formGroupFont" style="color:white;">
-    <%= form.label :name do%>
-     Company Name
-    <%end %>
-
+  <div class="form-group-lg" id="formGroupFont" style="color:white">
+    <%= form.label :name do %>
+      Company Name
+    <% end %>
     <%= form.text_field :name, class:"form-control" %>
   </div>
-
   <br />
-  <div class="form-group-lg" id="formGroupFont"  style="color:white;">
-    <%= form.label :website %> <em style="color:white;"><small>(Please include http:// or https://)</small></em>
-     
-    <%= form.text_field :website, placeholder: "https://www.companyname.com", class: "form-control"%>
-    
+  <div class="form-group-lg" id="formGroupFont" style="color:white">
+    <%= form.label :website %> <em style="color:white"><small>(Please include http:// or https://)</small></em>
+    <%= form.text_field :website, placeholder: "https://www.companyname.com", class: "form-control" %>
   </div>
-
-    
-
   <br />
-
-  <div class="alert alert-info"id="submitCompanyDoubleCheck">
-    <p >Please double check if all the information is correct before submitting.</p>
-    
+  <div class="alert alert-info" id="submitCompanyDoubleCheck">
+    <p>Please double check if all the information is correct before submitting.</p>
   </div>
-  
-
-    <br>
-
-   <div class="form-group" id=loginBttn>
-              <%= invisible_recaptcha_tags text: 'Submit',class: "btn login_btn",  data: { confirm: "Is the information correct and in the right format?" } %>
-               <%= link_to 'Back',root_path, class: "btn login_btn" %>
+  <br>
+  <div class="form-group" id="loginBttn">
+    <%= invisible_recaptcha_tags text: 'Submit', class: "btn login_btn", data: { confirm: "Is the information correct and in the right format?" } %>
+    <%= link_to 'Back', root_path, class: "btn login_btn" %>
   </div>
-  
 <% end %>

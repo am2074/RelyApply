@@ -2,9 +2,9 @@
  New Review | RelyApply
 <% end %>
 
-<h1 style="color:white;">New Review for <%= @company.name %></h1>
+<h1 style="color:white">New Review for <%= @company.name %></h1>
 <% if user_signed_in? %>
-<%= render 'new_review_form', review: @review %>
+	<%= render 'new_review_form', review: @review %>
 <% else %>
 	<div>
 	  <h4> You need to <%= link_to "Log in", new_user_session_path %> or <%= link_to "Sign up", new_user_registration_path %> to request for information changes on <%= @company.name%>'s profile </h4>

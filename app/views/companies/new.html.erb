@@ -2,22 +2,14 @@
  New Company | RelyApply
 <% end %>
 
-
 <div class="container" id=loginContainer>
   <div class="d-flex justify-content-center h-100" >
     <div class="card" id="submitCompanyCard">
-        <div class="card-header" id="submitCompanyHeader">
-          <h3>Submit a Company</h3>
-        </div>
-        <div class="card-body">
-        	
-			<%= render 'form', company: @company %>
-
-
-        <div class="card-footer" >
-          
-          </div>
-        </div>
+      <div class="card-header" id="submitCompanyHeader">
+        <h3>Submit a Company</h3>
+      </div>
+      <div class="card-body">
+        <%= render 'form', company: @company %>
       </div>
     </div>
   </div>

@@ -2,16 +2,15 @@
 <html>
 <%# Head %>
 <head>
-   <title><%= yield :title %></title>
+  <title><%= yield :title %></title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1.0, maximum-scale=1, user-scalable=no">
   <meta name="description" content="#">
   <meta name="keywords" content="#">
+  <meta name="turbolinks-cache-control" content="no-cache">
   <!-- Page Title -->
-
-
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900" rel="stylesheet">
   <!-- Simple line Icon -->
@@ -25,46 +24,31 @@
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <%= csrf_meta_tags %>
   <%= favicon_link_tag 'favicon/favicon.ico' %>
-  <%# Was 'reload for stylesheet link tag' %> 
   <%=stylesheet_link_tag    'application','users','companies', 'pages', media: 'all', 'data-turbolinks-track': true %>
-
   <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{Hearback::Application.credentials.GOOGLE_API_BROWSER_KEY}" %>
   <%= javascript_include_tag 'application'%>
-  <meta name="turbolinks-cache-control" content="no-cache">
-<script src='https://www.google.com/recaptcha/api.js'></script>
-
+  <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
-
-<%# Body %> 
 <body>
-<%# NavBar %>
-<%= render 'shared/navbar'%>
-<%= render 'cookies_eu/consent_banner' %>
-
-<%# Flash %>
-<div class="container-fluid" data-trigger="focus">
-  <% flash.each do |name, msg| %>
-   <div id="flash">
-    <%= content_tag(:div, class: "alert alert-info", id:"flash-Messages" ) do %>
-    <%=msg%>
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <!-- NavBar -->
+  <%= render 'shared/navbar'%>
+  <%= render 'cookies_eu/consent_banner' %>
+  <!--Flash -->
+  <div class="container-fluid" data-trigger="focus">
+    <% flash.each do |name, msg| %>
+      <div id="flash">
+        <%= content_tag(:div, class: "alert alert-info", id:"flash-Messages" ) do %>
+          <%=msg%>
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <% end %>
+       </div>
     <% end %>
-  <% end %>
+    <div class="container" data-trigger="focus">
+      <%= yield %>
+    </div>
   </div>
-  
-  <div class="container" data-trigger="focus">
-    
-    <%= yield %>
-    
-  </div>
-</div>
-<br />
-<br />
-<br />
 <%= render 'shared/footer'%>
 </body>
-
-
 </html>
 
 

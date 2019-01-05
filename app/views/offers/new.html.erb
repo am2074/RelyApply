@@ -4,9 +4,9 @@
 
 <h1 style="color:white;">Submit Post-Interview Review</h1>
 <% if user_signed_in? %>
-<%= render 'new_offer_form', offer: @offer %>
+  <%= render 'new_offer_form', offer: @offer %>
 <% else %>
-	<div>
-	  <h4> You need to <%= link_to "Log in", new_user_session_path %> or <%= link_to "Sign up", new_user_registration_path %> to request for information changes on <%= @company.name%>'s profile </h4>
-	</div>
+  <div>
+	<h4> You need to <%= link_to "Log in", new_user_session_path %> or <%= link_to "Sign up", new_user_registration_path %> to request for information changes on <%= @company.name%>'s profile </h4>
+  </div>
 <% end %>

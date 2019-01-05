@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   load_and_authorize_resource
-  before_action :set_review, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
+  before_action :set_review, only: [:show, :edit, :update, :destroy, :upvote, :downvote, :vote]
   before_action :company_friendly_params, only: [:index, :new, :create]
   before_action :authenticate_user!, except: [:index, :show]
 
@@ -30,7 +30,6 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/1/edit
   def edit
-     
   end
 
   # POST /reviews
@@ -38,7 +37,6 @@ class ReviewsController < ApplicationController
   def create
     @review = @company.reviews.new(review_params)
     @review.user = current_user
-
     respond_to do |format|
       if @review.save
         format.html { redirect_to @company, notice: 'Review was successfully created.' }
@@ -73,18 +71,26 @@ class ReviewsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+      
   def upvote
-    @review.upvote_by current_user
-    respond_to do |format|
-      format.html { redirect_back fallback_location: root_path }
-      format.json { render json: { count: @review.upvoted_count } }
-      format.js { render layout: false }
+    if !current_user.liked? @review
+      @review.upvote_by current_user
+    elsif current_user.liked? @review
+      @review.unliked_by current_user
     end
+      respond_to do |format|
+        format.html { redirect_back fallback_location: root_path }
+        format.json { render json: { count: @review.upvoted_count } }
+        format.js { render layout: false }
+      end
   end
 
   def downvote
-    @review.downvote_by current_user
+    if !current_user.disliked? @review
+      @review.downvote_by current_user
+    elsif current_user.disliked? @review
+      @review.undisliked_by current_user
+    end
      respond_to do |format|
       format.html { redirect_back fallback_location: root_path }
       format.json { render json: { count: @review.downvoted_count } }
@@ -99,7 +105,7 @@ class ReviewsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-     def review_params
+    def review_params
       params.require(:review).permit(:review_id, :position, :employment_type, :satisfaction, :responsiveness, :company_id, :user_id,:response_time, :application_type, :street_number, :company_id, :address, :locality, :route, :administrative_area_level_1, :country, :postal_code)
     end
 

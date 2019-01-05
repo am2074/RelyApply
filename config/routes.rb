@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   resources :pages
   resources :reviews do
    member do
-    put "like", to: "reviews#upvote"
-    put "dislike", to: "reviews#downvote"
+    get "like", to: "reviews#upvote"
+    get "dislike", to: "reviews#downvote"
    end
   end
   

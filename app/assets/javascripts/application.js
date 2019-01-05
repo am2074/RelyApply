@@ -1,4 +1,3 @@
-
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
@@ -22,6 +21,7 @@
 //= require cookies_eu
 //= require_tree 
 
+//autocomplete function
 $(function() {
   initPage();
 });
@@ -37,30 +37,6 @@ function initPage() {
 
 }
 
-
-//$(document).on 'turbolinks:load', ->
-//my_func()
-
-//document.addEventListener("turbolinks:load", function() {
-//my_func();
-//})
-
-//$(document).on('turbolinks:load', function() {
-//console.log('(document).turbolinks:load')
-//});
-
-//$(document).on('page:load', function() {
-//$(document).trigger('ready');
-//});
-
-//$(document).ready(loadMap)
-//$(document).on('page:load', loadMap)
-
-//$('#myTab a').click(function(e) {
-//e.preventDefault();
-//$(this).tab('show');
-//});
-
 // store the currently selected tab in the hash value
 $("ul.nav-tabs > li > a").on("shown.bs.tab", function(e) {
   var id = $(e.target).attr("href").substr(1);
@@ -70,6 +46,7 @@ $("ul.nav-tabs > li > a").on("shown.bs.tab", function(e) {
 // on load of the page: switch to the currently selected tab
 var hash = window.location.hash;
 $('#myTab a[href="' + hash + '"]').tab('show');
+
 //omniauth facebook
   window.fbAsyncInit = function() {
     FB.init({
@@ -82,3 +59,7 @@ $('#myTab a[href="' + hash + '"]').tab('show');
     FB.AppEvents.logPageView();   
       
   };
+
+ function visitorVote() {
+  alert("Please sign up or log in to like or dislike a review");
+}

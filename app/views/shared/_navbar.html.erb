@@ -1,11 +1,9 @@
 <header>
-
-  <nav class="navbar navbar-expand-lg navbar-dark " id=navbar>
-      <div id="logo" class="navbar-brand"><%= link_to "RelyApply", root_path %></div>
+  <nav class="navbar navbar-expand-lg navbar-dark " id="navbar">
+    <div id="logo" class="navbar-brand"><%= link_to "RelyApply", root_path %></div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="true" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
     <div class="collapse navbar-collapse" id="navbarsExample05">
       <% if user_signed_in? -%>
         <ul class="navbar-nav mr-auto">
@@ -18,39 +16,35 @@
         <ul class="navbar-nav mr-auto">
           <li class="nav-item"><%= link_to 'Home', root_path, class: 'nav-link'  %></li>
           <li class="nav-item"><%= link_to 'About', about_path, class: 'nav-link'  %></li>
-          <%# Old
-          <li class="nav-item"><%= link_to 'Submit Company', new_user_session_path, onclick: "alert('You must sign up or sign in to submit a new company.')", class: 'nav-link'  %>
           <li class="nav-item"><%= link_to 'Sign Up', new_user_registration_path, class: 'nav-link'  %></li>
           <li class="nav-item"><%= link_to 'Log In', new_user_session_path, class: 'nav-link'  %></li>
         </ul>
       <% end %>
-      
-  <%= link_to 'Submit a Company', new_company_path, :class => "btn btn-primary justify-content-md-around", :id => "submitCompanyPortal" %>
+    <%= link_to 'Submit a Company', new_company_path, :class => "btn btn-primary justify-content-md-around", :id => "submitCompanyPortal" %>
    <div class="divider"/>
-  </div>
-  <% unless controller_name == 'companies' && action_name == 'index' %>
+   </div>
+    <% unless controller_name == 'companies' && action_name == 'index' %>
       <%= form_tag(search_companies_path, method: :get, :class => "form-inline mt-2 mt-md-0", :id => "navbarsExample05") do %>
         <div class="input-group">
-          <%= text_field_tag :search,  "",  placeholder: "Search Companies...", class: 'form-control input-lg', id: 'input-field-home', data: {behavior:"autocomplete", autocomplete_source: autocomplete_companies_path} %>
+          <%= text_field_tag :search,  "",  placeholder: "Search Companies...", class: 'form-control input-lg', id: 'input-field-home', data: { behavior:"autocomplete", autocomplete_source: autocomplete_companies_path } %>
           <div class="input-group-append">
               <%=button_tag( :class => "btn",  id: "navBarSearchButton") do %>
                 <i class="fas fa-search"></i>
               <%end %>
-            </div>
-            
+          </div>        
         </div>
       <% end %> 
- <% end %>
-    </div>
-    </nav>
-    <script>  $(document).on("page:change", function() {
-     $(".navbar .dropdown").hover((function() {
-         $(this).find(".dropdown-menu").first().stop(true, true).delay(150).slideDown();
-    }), function() {
-         $(this).find(".dropdown-menu").first().stop(true, true).delay(50).slideUp();
+    <% end %>
+  </nav>
+  <script>  
+    $(document).on("page:change", function() {
+      $(".navbar .dropdown").hover((function() {
+        $(this).find(".dropdown-menu").first().stop(true, true).delay(150).slideDown();
+      }), function() {
+        $(this).find(".dropdown-menu").first().stop(true, true).delay(50).slideUp();
+      });
     });
-  });
-</script>
+  </script>
 </header>
 
 

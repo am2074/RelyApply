@@ -1,13 +1,13 @@
 <% content_for :title do %>
  Log In | RelyApply
 <% end %>
+
 <div class="container" id=loginContainer>
   <div class="d-flex justify-content-center h-100" >
     <div class="card">
         <div class="card-header">
           <h3>Log In</h3>
         <small style="color:white">You agree to our <%= link_to 'Terms of Use', tos_path %> and <%= link_to 'Privacy and Cookie Policy', privacy_path %> by continuing.</small>
-          
           <%#Omniauth Logins %>
           <div class="d-flex justify-content-end social_icon">
           </div>

@@ -4,10 +4,9 @@
 
 <h1 style="color: white">Editing Review</h1>
 <div>
-	<% if user_signed_in? && current_user.id == @review.user_id %>
+  <% if user_signed_in? && current_user.id == @review.user_id %>
 		<%= render 'form', review: @review %>
-
-<% else %> 
-<% controller.redirect_to root_path %>
-
-<% end %>
+	<% else %> 
+    <% controller.redirect_to root_path %>
+	<% end %>
+</div>
