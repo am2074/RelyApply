@@ -10,10 +10,10 @@ class ReviewsController < ApplicationController
     @reviews = Review.where(company_id: params[:company_id]) 
     if params[:search].present?
       @q = @company.reviews.near(params[:search], 200, :order => 'distance' ).ransack(params[:q])
-      @reviews = @q.result(:distinct => true).includes(:company)
+      @reviews = @q.result(:distinct => true)
     else 
       @q = @company.reviews.ransack(params[:q])
-      @reviews = @q.result(:distinct => true).includes(:company)
+      @reviews = @q.result(:distinct => true)
     end
   end
 

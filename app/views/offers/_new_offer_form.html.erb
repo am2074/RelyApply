@@ -22,6 +22,7 @@
             <li>If you don't hear back within a reasonable time frame relative to the other reviews, it is highly suggested you do a follow-up or assume you didn't qualify for the job.</li>
           </ul>
     </div>
+    <h6><strong>Responsiveness</strong></h6>
     <div class="row">
       <div class="col-md-6">
         <%= f.label :responsiveness do %>
@@ -41,17 +42,17 @@
       </div>
       <div class="col-md-6">
         <%= f.select :response_time, options_for_select([["Around less than a week","Around less than a week"],
-              ["Around 1-2 weeks","Around 1-2 weeks"],
-              ["Around 2-3 weeks","Around 2-3 weeks"],
-              ["Around 3-4 weeks","Around 3-4 weeks"],
-              ["Not within a month","Not within a month"]]), :prompt => '--Select--', class:"select"%> 
+          ["Around 1-2 weeks","Around 1-2 weeks"],
+          ["Around 2-3 weeks","Around 2-3 weeks"],
+          ["Around 3-4 weeks","Around 3-4 weeks"],
+          ["Not within a month","Not within a month"]]), :prompt => '--Select--', class:"select"%> 
       </div>
     </div> 
     <hr />
     <div class="row">
       <div class="col-md-6">
         <%= f.label :satisfaction do %>
-          Were you satisfied with <%= @company.name %>'s responsiveness after interviewing:
+          Were you satisfied with <%= @company.name %>'s responsiveness after interviewing?
         <% end %>
       </div>
       <div class="col-md-6">
@@ -59,7 +60,7 @@
       </div>
     </div>
     <hr />
-    <h6><ul>Position Details</ul></h6>
+    <h6><strong>Position Details</strong></h6>
     <div class="row">
       <div class="col-md-6">
         <%= f.label :position do %>
@@ -80,16 +81,20 @@
         <%= f.select(:employment_type, options_for_select([["Full-Time","Full-Time"], ["Part-Time","Part-Time"], ["Intern","Intern"], ["Temporary","Temporary"], ["Contractor","Contractor"]], :selected => @offer.employment_type), :prompt => '--Select--', class:"select") %>
       </div>
     </div>
+    <hr id="reviewIndexHr">
     <div class="row">
       <div class="col-md-6">
         <%= f.label 'Address' do %>
-        Location:
+          <strong>Location:</strong>
         <% end %>
       </div>
-      <div class="col-md-6">
-        <%= f.text_field :address, :size=>"40", placeholder: "Type address to autofill", id: :autocomplete_address %>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <%= f.text_field :address, placeholder: "Type address to autofill below...", id: :autocomplete_address, class: "addressField" %>
       </div>
     </div>
+    <br />
     <div class="row">
       <div class="col-md-6">
         <%= f.label 'Street' do %>

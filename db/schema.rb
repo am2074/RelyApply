@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_08_215705) do
+ActiveRecord::Schema.define(version: 2019_01_09_184202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 2019_01_08_215705) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.boolean "verified"
+    t.integer "reviews_count", default: 0
+    t.integer "offers_count", default: 0
     t.index ["name"], name: "index_companies_on_name"
     t.index ["slug"], name: "index_companies_on_slug", unique: true
   end
@@ -66,41 +68,6 @@ ActiveRecord::Schema.define(version: 2019_01_08_215705) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "policy_manager_portability_requests", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "state"
-    t.string "attachment"
-    t.string "attachment_file_name"
-    t.string "attachment_file_size"
-    t.datetime "attachment_content_type"
-    t.string "attachment_file_content_type"
-    t.datetime "expire_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_policy_manager_portability_requests_on_user_id"
-  end
-
-  create_table "policy_manager_terms", force: :cascade do |t|
-    t.text "description"
-    t.string "rule"
-    t.string "state"
-    t.datetime "accepted_at"
-    t.datetime "rejected_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "policy_manager_user_terms", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "term_id"
-    t.string "state"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["state"], name: "index_policy_manager_user_terms_on_state"
-    t.index ["term_id"], name: "index_policy_manager_user_terms_on_term_id"
-    t.index ["user_id"], name: "index_policy_manager_user_terms_on_user_id"
-  end
-
   create_table "requests", force: :cascade do |t|
     t.integer "company_id"
     t.string "name_suggestion"
@@ -132,13 +99,6 @@ ActiveRecord::Schema.define(version: 2019_01_08_215705) do
     t.float "latitude"
     t.float "longitude"
     t.string "responsiveness"
-    t.integer "cached_votes_total", default: 0
-    t.integer "cached_votes_score", default: 0
-    t.integer "cached_votes_up", default: 0
-    t.integer "cached_votes_down", default: 0
-    t.integer "cached_weighted_score", default: 0
-    t.integer "cached_weighted_total", default: 0
-    t.float "cached_weighted_average", default: 0.0
     t.index ["company_id"], name: "index_reviews_on_company_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end

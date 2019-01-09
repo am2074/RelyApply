@@ -18,11 +18,12 @@
     <div class="alert alert-info" role="alert">
       <u><strong>Please Read Before Filling Out Your Review:</strong></u>
         <ul>
-          <li><h6>The information you put below are your opinionsrthat are based on what you felt was a meaningful response after applying</h6></li>
+          <li><h6>You are sharing your opinions based on what you felt was a meaningful response after applying</h6></li>
           <li><h6>Normally, if it's been over a month, the position you applied for may have been filled. However, some companies don't bother telling applicants.</h6></li>
           <li><h6>Companies usually get back within a couple of weeks on average. Depending on the industry, average meaningful response times can vary</h6></li>
         </ul>
     </div>
+    <h6><strong>Responsiveness</strong></h6>
     <div class="row">
       <div class="col-md-6">
         <%= f.label :responsiveness do %>
@@ -53,7 +54,7 @@
     <div class="row">
       <div class="col-md-6">
         <%= f.label :satisfaction do %>
-          Were you satisfied with this  <%= @company.name %>'s responsiveness:
+          Were you satisfied with this  <%= @company.name %>'s responsiveness?
         <% end %>
       </div>
       <div class="col-md-6">
@@ -61,7 +62,7 @@
       </div>
     </div>
     <hr />
-    <h6><u> Application Details</u></h6>
+    <h6><strong>Application Details</strong></h6>
     <div class="row">
       <div class="col-md-6">
         <%= f.label :application_type do %>
@@ -92,14 +93,20 @@
         <%= f.select(:employment_type, options_for_select([["Full-Time","Full-Time"],["Part-Time","Part-Time"],["Intern","Intern"],["Temporary","Temporary"],["Contractor","Contractor"]],:selected => @review.employment_type), :prompt => '--Select--', class:"select") %>
       </div>
     </div>
+    <hr id="reviewIndexHr">
     <div class="row">
       <div class="col-md-6">
-        <%= f.label 'Address' %>
-      </div>
-      <div class="col-md-6">
-        <%= f.text_field :address,  :size=>"33", placeholder: "Type address to autofill", id: :autocomplete_address2 %>
+        <%= f.label 'Address' do %>
+          <strong>Location</strong>
+        <% end %>
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-12" >
+        <%= f.text_field :address,  :size=>"30", placeholder: "Type address to autofill below...", id: :autocomplete_address2, class: "addressField" %>
+      </div>
+    </div>
+    <br />
     <div class="row">
       <div class="col-md-6">
         <%= f.label 'Street' %>

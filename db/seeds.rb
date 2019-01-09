@@ -1,5 +1,5 @@
 company_list = [
-	["Bahama Breeze","https://www.bahamabreeze.com"],
+	["Bahama Breeze","http://www.bahamabreeze.com"],
 	["Wheelhouse IT","https://www.wheelhouseit.com"],
 	["Cleveland Clinic","https://www.clevelandclinic.org"],
 	["Quiksilver","https://quicksilver.com"],
@@ -1069,7 +1069,7 @@ company_list = [
 	["Miami International University of Art and Design","https://mymiu.edu"],
 	["New College of Florida","https://ncf.edu"],
 	["North Florida Community College","https://nfcc.edu"],
-	["Nova Southeastern University","https://nova.edu"],
+	["Nova Southeastern University","http://nova.edu"],
 	["National University of Health Sciences","https://nuhs.edu"],
 	["Northwest Florida State College","https://nwfsc.edu"],
 	["Palm Beach State College","https://palmbeachstate.edu"],

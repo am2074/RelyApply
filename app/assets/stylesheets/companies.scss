@@ -241,6 +241,19 @@ margin-left: 4px;
 }
 
 
+.addressField {
+  width: 95% !important;
+  }
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .addressField {
+  size: 400 !important;
+  }
+}
+
+#addressField {
+  size: 40;
+}
 
 #alert-info-submit {
   border: 1px solid black;
@@ -475,8 +488,8 @@ input[type="radio"] {
 
 
 @media (min-width: 320px) and (max-width: 480px) {
-#responsivenessOnMobile { display: none !important;
-}
+  #responsivenessOnMobile { display: none !important;
+  }
 
 
 #responseScoreShowPage {display: none !important;}

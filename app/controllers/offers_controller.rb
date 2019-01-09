@@ -9,10 +9,10 @@ class OffersController < ApplicationController
      @offers = Offer.where(company_id: params[:company_id]) 
     if params[:search].present?
       @q = @company.offers.near(params[:search], 200, :order => 'distance' ).ransack(params[:q])
-      @offers = @q.result(:distinct => true).includes(:company)
+      @offers = @q.result(:distinct => true)
     else 
       @q = @company.offers.ransack(params[:q])
-      @offers = @q.result(:distinct => true).includes(:company)
+      @offers = @q.result(:distinct => true)
     end
   end
 

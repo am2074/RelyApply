@@ -3,7 +3,7 @@ class Company < ApplicationRecord
     friendly_id :name, use: :slugged
 	has_many :reviews
 	has_many :requests
-	has_many :offers, counter_cache: true
+	has_many :offers
 	validates_presence_of :name, :website
 	validates_uniqueness_of :name, :case_sensitive => false
 	validates :website, url: true
