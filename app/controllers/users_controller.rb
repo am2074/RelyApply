@@ -5,8 +5,8 @@ before_action :set_user
   def show 
   end
 
-	def user_reviews
-	end
+  def user_reviews
+  end
 
 
 private 

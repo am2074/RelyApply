@@ -79,3 +79,7 @@ gem 'omniauth-linkedin-oauth2'
 gem "validate_url"
 gem 'cookies_eu'
 gem 'bootstrap-social-rails'
+gem 'will_paginate'
+#Performance gems'
+gem 'bullet', group: :development
+gem 'rack-mini-profiler'

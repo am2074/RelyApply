@@ -50,6 +50,7 @@ Rails.application.routes.draw do
   get 'tos', to: 'pages#tos'
   get 'privacy', to: 'pages#privacy'
   get 'profile', to: 'users#show'
+  get 'testing', to: 'pages#testing'
   
   match 'users/:id' => 'users#show', via: :get
 

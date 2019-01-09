@@ -12,16 +12,15 @@ class CompaniesController < ApplicationController
 
   def search
     if params[:search].blank?
-      @companies = Company.all
+      @companies = Company.all.paginate(:page => params[:page], :per_page => 5)
     else 
-      @companies = Company.search(params)
+      @companies = Company.search(params).paginate(:page => params[:page], :per_page => 5)
     end
     @search = params[:search] 
   end
 
   def autocomplete
     @companies = Company.order(:name).where("name Ilike ?","%#{params[:term]}%").limit(5)
-
     render json: @companies.map(&:name)
   end
 
