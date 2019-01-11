@@ -64,33 +64,63 @@
                       </div>
                       <div class="card-body" id="userReviewCardBody">
                         <p style="color:grey !important" ><I>Review Submitted: <%= review.created_at.strftime("%B %d, %Y") %></I></p>
-                        <h4><strong><u>Application Details</u></strong></h4>
+                        <h5><strong>Responsiveness</strong></h5>
                         <div class="row"><!--First row of card-->
                           <div class="col-md-6">
-                          <p>Estimated Response Time: <%= review.response_time %></p>
+                            <p><strong>Response Time:</strong></p>
+                          </div>
+                          <div class="col-md-6">
+                            <%= review.response_time %>
+                          </div>
                         </div>
-                        <div class="col-md-6">
-                          <p><strong>Position:</strong> <%= review.position %></p>
+                        <br>
+                        <div class="row"><!--first row of card-->
+                          <div class="col-md-6" >
+                            <p><strong>Were you satisfied with their level of responsiveness?</strong></p>
+                          </div>
+                          <div class="col-md-6" >
+                            <%= review.responsiveness %>
+                          </div>
+                        </div>
+                        <hr>
+                        <h5><strong>Application Details</strong></h5>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <% if review.position.blank? %> 
+                              <p><strong>Position:</strong> n/a </p>
+                            <% else %>
+                              <p><strong>Position:</strong> <%= review.position %> </p>
+                            <% end %>
+                          </div>
+                          <div class="col-md-6">
+                            <% if review.employment_type.blank? %> 
+                              <p><strong>Employment Type:</strong> n/a</p>
+                            <% else %>
+                              <p><strong>Employment Type:</strong> <%= review.employment_type %></p>
+                            <% end %>
                           </div>
                         </div>
                         <div class="row"> <!--econd row of card-->
                           <div class="col-md-6">
-                            <p><strong>Employment Type:</strong> <%= review.employment_type %></p>
-                          </div>
-                          <div class="col-md-6">
-                            <p><strong>Response Time Satisfaction:</strong> <%= review.satisfaction %></p>
+                            <% if review.application_type.blank? %> 
+                             <p><strong>Application Type:</strong> n/a</p>
+                            <% else %>
+                              <p><strong>Application Type:</strong> <%= review.application_type%></p>
+                            <% end %>
                           </div>
                         </div>
                         <div class="row"> <!--Second row of card-->
                           <div class="col-md-6">
-                            <p><strong>Application Type:</strong> <%= review.application_type%></p>
-                          </div>
-                          <div class="col-md-6">
-                            <p><strong>Location:</strong> <%= review.address.chomp(', USA') %></p>
+                            <% if review.address.blank? %> 
+                              <p><strong>Location:</strong> n/a</p>
+                            <% else %>
+                              <p><strong>Location:</strong> <%= review.address.chomp(', USA') %></p>
+                            <% end %>                 
                           </div>
                         </div>
+                        <hr>
                         <div style="text-align: center"> <!--Links to likes and dislikes -->
-                            <i class="fas fa-thumbs-up" style="color:green"></i> Accurate (<%= review.get_upvotes.size %>) | <i class="fas fa-thumbs-down" style="color:red"></i> Inaccurate (<%= review.get_downvotes.size %>)
+                          <%= review.get_upvotes.size %> thought this review was helpful
                         </div><!-- div for to likes and dislikes -->
                       </div><!--Line 65: div close card body-->
                     </div> <!-- Line 63: div class="card border-secondary mb-3" id="reviewsIndexCard"-->
@@ -118,30 +148,68 @@
                     </div>
                   <div class="card-body" id="userReviewCardBody">
                       <p style="color:grey !important" ><I>Review Submitted: <%= offer.created_at.strftime("%B %d, %Y") %></I></p>
-                      <h4><strong><u>Application Details</u></strong></h4>
+                      <h5><strong>Responsiveness</strong></h5>
                       <div class="row"><!--first row of card-->
                         <div class="col-md-6">
-                          <p>Estimated Post-Interview Response Time: <%= offer.response_time %></p>
+                          <p><strong>Post-Interview Response Time:</strong></p>
                         </div>
                         <div class="col-md-6">
-                          <p><strong>Response Time Satisfaction: </strong> <%= offer.satisfaction %></p>
+                          <%= offer.response_time %>
+                        </div>
+                      </div>
+                      <br>
+                      <div class="row">
+                        <div class="col-md-6">
+                         <p><strong>Were you satisfied with their level of responsiveness?</strong></p>
+                        </div>
+                        <div class="col-md-6">
+                          <%= offer.responsiveness %>
+                        </div>
+                      </div>
+                      <hr>
+                      <h5><strong>Application Details</strong></h5>
+                      <div class="row"> <!--second row of card-->
+                        <div class="col-md-6">
+                          <% if offer.position.blank? %> 
+                            <p><strong>Position:</strong> n/a</p>
+                          <% else %>
+                            <p><strong>Position:</strong> <%= offer.position %></p>
+                          <% end %>
+                        </div>
+                        <div class="col-md-6">
+                          <% if offer.employment_type.blank? %> 
+                            <p><strong>Employment Type:</strong> n/a </p>
+                          <% else %>
+                            <p><strong>Employment Type:</strong> <%= offer.employment_type %></p>
+                          <% end %>
                         </div>
                       </div>
                       <div class="row"> <!--second row of card-->
                         <div class="col-md-6">
-                          <p><strong>Position: </strong> <%= offer.position %></p>
-                        </div>
-                        <div class="col-md-6">
-                          <p><strong>Employment Type: </strong><%= offer.employment_type %></p>
-                        </div>
-                      </div>
-                      <div class="row"> <!--second row of card-->
-                        <div class="col-md-6">
-                          <p><strong>Location:</strong> <%= offer.address %></p>
+                          <% if offer.address.blank? %> 
+                           <p><strong>Location:</strong> n/a</p>
+                         <% else %>
+                          <p><strong>Location:</strong> <%= offer.address.chomp(', USA') %></p>
+                         <% end %>
                         </div>
                       </div>
+                      <hr>
+                      <h5><strong>Interview Details</strong></h5>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <p><strong>Did you have less experience than the job required?</strong></p>
+                        </div>
+                       <div class="col-md-6">
+                         <% if offer.experience.blank? %> 
+                           <p>n/a</p>
+                         <% else %>
+                           <p><%= offer.experience %></p>
+                         <% end %>
+                        </div>
+                      </div>
+                      <hr>
                       <div style="text-align: center"> <!--links to likes and dislikes -->
-                        <i class="fas fa-thumbs-up" style="color:green"></i> Accurate (<%= offer.get_upvotes.size %>) | <i class="fas fa-thumbs-down" style="color:red"></i> Inaccurate (<%= offer.get_downvotes.size %>)
+                        <%= offer.get_upvotes.size %> thought this review was helpful
                       </div><!--close div for to likes and dislikes -->
                     </div><!--Line 119: div close card body -->
                   </div> <!--Line 115: div class="card border-secondary mb-3" id="reviewsIndexCard" -->

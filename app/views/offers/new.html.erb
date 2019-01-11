@@ -2,7 +2,7 @@
  New Review | RelyApply
 <% end %>
 
-<h1 style="color:white;">Submit Post-Interview Review</h1>
+<h1 style="color:white;">New Review for <%= @company.name %></h1>
 <% if user_signed_in? %>
   <%= render 'new_offer_form', offer: @offer %>
 <% else %>

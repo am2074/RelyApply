@@ -10,7 +10,7 @@ company_list = [
 	["Twin Peaks Sports Bar & Restaurant","https://twinpeaksrestaurant.com"],
 	["Miller's Ale House","https://millersalehouse.com"],
 	["Dave & Buster's","https://www.daveandbusters.com/"],
-	["Another Broken egg Cafe","https://anotherbrokenegg.com/"],
+	["Another Broken Egg Cafe","https://anotherbrokenegg.com/"],
 	["Chili's Grill & Bar","https://www.chilis.com"],
 	["Denny's","https://www.dennys.com"],
 	["Yard House","https://www.yardhouse.com/home"],

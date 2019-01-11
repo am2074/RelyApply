@@ -11,52 +11,56 @@
       </div>
     <% end %>
     <div>
-      <h2>Post-Interview Response Time</h2>
-        <hr id="reviewIndexHr">
+      <h1><%= @offer.company.name %></h1>
+      <hr id="reviewIndexHr">
     </div>
-    <br />
-    <div class="alert alert-info" role="alert">
-      <u><strong>Reminder:</strong></u>
-        <ul>
-           <li><h6><strong><I>Response Time After Interviewing:</I> are the estimated time it takes to receive a job offer or rejection after interviewing</strong></h6></li>
-        </ul>
+    <p><I>Please make sure you have read our guidelines before submitting changes</I></p>
+    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Guidelines
+    </a>
+    <div class="collapse" id="collapseExample">
+      <div class="text-left">
+        <div class="alert alert-info" role="alert">
+          <ul>
+            <ul>
+            <li><h6>You are sharing your opinions based on what you felt was a meaningful response after applying.</h6></li>
+            <li><h6>Normally, if it's been over a month, the position you applied for may have been filled. However, some companies don't bother telling applicants.</h6></li>
+            <li><h6>Companies usually get back within a couple of weeks on average. Depending on the industry, average meaningful response times can vary.</h6></li>
+            <li><h6>We ask users to please be honest with their reviews.</h6></li>
+            <li><h6>Sections marked with "*" are required.</h6></li>
+          </ul>
+          </ul>
+        </div><!--alert-alert-info-->
+      </div>
     </div>
+    <hr>
+    <h6><strong>Responsiveness</strong></h6>
     <div class="row">
       <div class="col-md-6">
         <%= f.label :responsiveness do %>
-          Did you feel that this company was responsive at all after applying?
+          *Were you satisfied with their level of responsiveness?
         <% end %>
       </div>
       <div class="col-md-6">
         <%= f.collection_radio_buttons :responsiveness, [['Yes', 'Yes'] ,['No', 'No']],:first, :last, :item_wrapper_class => 'vertical', :id =>"radioButton" %>
       </div>
     </div> 
-    <strong>*Companies that don't respond to reject or schedule an interview after applying within a month shouldn't be considered appropriately responsive</strong>
-    <hr />
     <div class="row">
       <div class="col-md-6">
         <%= f.label :response_time do %>
-          Response Time After Interviewing:
+          *Amount of time to get what you felt was a meaningful response after interviewing:
         <% end %>
       </div>
       <div class="col-md-6">
         <%= f.select :response_time, options_for_select([["Less than a week","Less than a week"],
-                ["Between 1-2 weeks","Between 1-2 weeks"],
-                ["Between 2-3 weeks","Between 2-3 weeks"],
-                ["Between 3-4 weeks","Between 3-4 weeks"],
-                ["Did not respond within a month","Did not respond within a month"]], :selected => @offer.response_time), class:"select"%> 
-      </div>
-    </div> 
-    <div class="row">
-      <div class="col-md-6">
-        <%= f.label :satisfaction do %>
-          Were you satisfied with this company's responsiveness:
-        <% end %>
-      </div>
-      <div class="col-md-6">
-        <%= f.collection_radio_buttons :satisfaction, [['Yes', 'Yes'] ,['No', 'No']],:first, :last,:item_wrapper_class => 'vertical2', :id =>"radioButton2" %>
+                ["1-2 weeks","1-2 weeks"],
+                ["2-3 weeks","2-3 weeks"],
+                ["3-4 weeks","3-4 weeks"],
+                ["Not within a month","Not within a month"]], :selected => @offer.response_time), class:"select"%> 
       </div>
     </div>
+    <hr />
+    <h6><strong>Position Details</strong></h6>
     <div class="row">
       <div class="col-md-6">
         <%= f.label :position do %>
@@ -77,14 +81,31 @@
         <%= f.select(:employment_type, options_for_select([["Full-Time","Full-Time"],["Part-Time","Part-Time"],["Intern","Intern"],["Temporary","Temporary"],["Contractor","Contractor"]],:selected => @offer.employment_type),prompt: '--Select--', class:"select") %>
       </div>
     </div>
-    <div class="row">
+     <div class="row">
       <div class="col-md-6">
-        <%= f.label 'Address' %>
+        <%= f.label :experience do %>
+          Did you have less experience than the job required? 
+        <% end %>
       </div>
       <div class="col-md-6">
-        <%= f.text_field :address, :size => "40", placeholder: "Type address to autofill", id: :autocomplete_address %>
+        <%= f.select(:experience, options_for_select([["No, I had equal or greater experience","No, I had equal or greater experience"], ["Yes, I had little to no experience","Yes, I had little to no experience"], ["Yes, I had moderately less experience","Yes, I had moderately less experience"]], :selected => @offer.experience), :prompt => '--Select--', class:"select") %>
       </div>
     </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-12">
+        <%= f.label 'Address' do %>
+          <strong>Location</strong>
+          <small><I>(Type in the field below to autocomplete the rest of the location information)</I></small>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12" >
+        <%= f.text_field :address,  :size=>"30", placeholder: "Type address to autofill below...", id: :autocomplete_address2, class: "addressField" %>
+      </div>
+    </div>
+    <br>
     <div class="row">
       <div class="col-md-6">
         <%= f.label 'Street' %>
@@ -135,7 +156,7 @@
     </div>
     <br />
     <div align="center">
-      <%= f.button :submit,'Create Review', :class => "btn btn-primary", data: { confirm: "Is the information you provided correct?" } %>
+      <%= f.button :submit,'Update Review', :class => "btn btn-primary", data: { confirm: "Is the information you provided correct?" } %>
     </div>
   <% end %>
 </div>

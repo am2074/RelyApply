@@ -9,14 +9,19 @@
     </div>
   </div><!-- div class="well" id="wellProfileForReviewIndex"-->
   <p>Want to add a review? Go back to <%= link_to @company.name, company_path(@company), method: :get %>'s profile and click "Submit Review"</p>
-  <div class="text-left">
-    <div class="alert alert-info" role="alert">
-      <u><strong>Reminder:</strong></u>
-      <ul>
-        <li><h6>The information below is based on what users have submitted in their reviews</li>
-        <li><h6>Their opinions are based on what they felt was a meaningful response after an application or an interview</h6></li>
-        <li><h6>If you don't hear back within a reasonable time frame relative to the other reviews, it is highly suggested you do a follow-up or assume you didn't qualify for the job.</h6></li>
-      </ul>
+  <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Reminder!
+  </a>
+    <div class="collapse" id="collapseExample">
+      <div class="text-left">
+        <div class="alert alert-info" role="alert">
+          <ul>
+            <li><h6>The information below is based on what users have submitted in their reviews</li>
+            <li><h6>Their opinions are based on what they felt was a meaningful response after an application or an interview</h6></li>
+            <li><h6>If you don't hear back within a reasonable time frame relative to the other reviews, it is highly suggested you do a follow-up or assume you didn't qualify for the job.</h6></li>
+          </ul>
+        </div>
+      </div>
     </div>
     <hr id="reviewIndexHr">
     <div class="container-fluid">
@@ -58,13 +63,6 @@
           </div>
         </div>
         <div class="row">
-         <div class="col-sm">
-            <%= f.label :satisfaction_eq, "Satisfied with Responsiveness? " %>
-            <%= f.select :satisfaction_eq, options_for_select([
-              ["Yes","Yes"],
-              ["No","No"]
-              ] , @q.satisfaction_eq), prompt: '--Select--'   %>
-          </div>
           <div class="col-sm">
             <%= f.label :Location, "Location: " %>
             <%= h text_field_tag :search, params[:search], :placeholder => '[City, State] or Zip Code'%>
@@ -79,7 +77,7 @@
   </div>
   <hr id="reviewIndexHr">
   <div>
-    <h2><strong>Total offer-Interview Reviews: <%= @company.offers.size %></strong></h2>
+    <h2><strong>Total Post-Interview Reviews: <%= @company.offers.size %></strong></h2>
     <div class="text-left">
       <%= sort_link(@q, :created_at, default_order: :asc) do %>
         <strong>Sort by Date</strong>
@@ -90,57 +88,70 @@
     <div class="card border-secondary mb-3" id="reviewsIndexCard">
       <div class="card-header" id="reviewsIndexCardHeader">
         <h3>
-          Estimated Post-Interview Response Time: <%= offer.response_time %>
+          Post-Interview Response Time: <%= offer.response_time %>
         </h3>
       </div>
       <div class="card-body" id="cardBodyText">
         <p style="color:grey" ><I>Submitted: <%= offer.created_at.strftime("%B %d, %Y") %></I></p>
-        <h4><strong>Responsiveness:</strong></h4>
+        <h4><strong>Responsiveness</strong></h4>
         <div class="row"><!--first row of card-->
           <div class="col-md-6">
-            <p><strong>Did you feel this company was responsive?</strong> <%= offer.responsiveness %></p>
+            <p><strong>Were you satisfied with their level of responsiveness?</strong></p>
           </div>
-          <div class="col-md-6">
-            <p><strong>Were you satisifed with this company's responsiveness :</strong> <%= offer.satisfaction%></p>
+           <div class="col-md-6">
+            <p><%= offer.responsiveness %></p>
           </div>
         </div>
         <hr>
-        <h4><strong>Application Details:</strong></h4>
+        <h4><strong>Application Details</strong></h4>
         <div class="row"><!--first row of card-->
           <div class="col-md-6">
-            <p><strong>Position:</strong> <%= offer.position %></p>
+            <% if offer.position.blank? %> 
+              <p><strong>Position:</strong> n/a</p>
+            <% else %>
+              <p><strong>Position:</strong> <%= offer.position %></p>
+            <% end %>
           </div>
           <div class="col-md-6">
-            <p><strong>Employment Type:</strong> <%= offer.employment_type %></p>
+            <% if offer.employment_type.blank? %> 
+              <p><strong>Employment Type:</strong> n/a </p>
+            <% else %>
+              <p><strong>Employment Type:</strong> <%= offer.employment_type %></p>
+            <% end %>
           </div>
         </div>
         <div class="row"><!--second row of card-->
-          <div class="col-md-6">
-            <p><strong>Location:</strong> <%= offer.address.chomp(', USA') %></p>
+           <div class="col-md-6">
+            <% if offer.address.blank? %> 
+             <p><strong>Location:</strong> n/a</p>
+            <% else %>
+              <p><strong>Location:</strong> <%= offer.address.chomp(', USA') %></p>
+           <% end %>
           </div>
         </div>
+        <hr>
+        <h4><strong>Interview Details</strong></h4>
+        <div class="row">
+          <div class="col-md-6">
+              <p><strong>Did you have less experience than the job required?</strong></p>
+          </div>
+          <div class="col-md-6">
+              <p><%= offer.experience %></p>
+          </div>
+        </div>
+        <hr>
         <div class="vote-count bind-<%= offer.id %>" style="text-align: center"> <!--links to likes and dislikes -->
           <% if user_signed_in? %>
             <%= link_to like_offer_path(offer),:remote => true, method: :get, class: "vpos", id: "thumbs" do %>
               <button class="btn btn-success">
                 <i class="fas fa-thumbs-up" style="color:white"></i>
-                <span class="vcount-<%= offer.id %>" style="color:white">Accurate(<%= offer.get_upvotes.size %>)</span>
-              </button>
-            <% end %>
-            <%= link_to dislike_offer_path(offer),:remote => true, method: :get, class: "npos", id: "thumbs" do %>
-              <button class="btn btn-danger">
-                <i class="fas fa-thumbs-down" style="color:white"></i>
-                <span class="ncount-<%= offer.id %>" style="color:white">Inaccurate(<%= offer.get_downvotes.size %>)</span>
+                <span class="vcount-<%= offer.id %>" style="color:white">Helpful (<%= offer.get_upvotes.size %>)</span>
               </button>
             <% end %>
           <% else %>
             <button class="btn btn-success" onclick="visitorVote()">
               <i class="fas fa-thumbs-up" style="color:white !important"></i>
-              <span class="vcount-<%= offer.id %>">Accurate(<%= offer.get_upvotes.size %>)</span>
-            </button>
-            <button class="btn btn-danger" onclick="visitorVote()">
-              <i class="fas fa-thumbs-down" style="color:white !important"></i>
-              <span class="ncount-<%= offer.id %>">Inaccurate(<%= offer.get_downvotes.size %>)</span>
+              <span class="vcount-<%= offer.id %>">Helpful (<%= offer.get_upvotes.size %>)</span>
             </button>
           <% end %>
         </div><!--close div for to likes and dislikes -->

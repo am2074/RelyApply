@@ -52,7 +52,7 @@ class OffersController < ApplicationController
   def update
     respond_to do |format|
       if @offer.update(offer_params)
-        format.html { redirect_to @offer.user, notice: 'Offer was successfully updated.' }
+        format.html { redirect_to @offer.user, notice: 'Review was successfully updated.' }
         format.json { render :show, status: :ok, location: @offer }
       else
         format.html { render :edit }
@@ -66,7 +66,7 @@ class OffersController < ApplicationController
   def destroy
     @offer.destroy
     respond_to do |format|
-      format.html { redirect_back fallback_location: root_path, notice: 'Offer was successfully destroyed.' }
+      format.html { redirect_back fallback_location: root_path, notice: 'Reivew was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -105,7 +105,7 @@ class OffersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def offer_params
-      params.require(:offer).permit(:offer_id, :user_id, :company_id, :position, :employment_type, :responsiveness, :satisfaction, :response_time, :address, :latitude, :longitude, :street_number, :locality, :route, :administrative_area_level_1, :country, :postal_code)
+      params.require(:offer).permit(:offer_id, :user_id, :company_id, :position, :employment_type, :responsiveness, :experience, :response_time, :address, :latitude, :longitude, :street_number, :locality, :route, :administrative_area_level_1, :country, :postal_code)
     end
 
     def company_friendly_params
