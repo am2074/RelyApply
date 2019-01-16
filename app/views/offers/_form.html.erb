@@ -23,7 +23,7 @@
         <div class="alert alert-info" role="alert">
           <ul>
             <ul>
-            <li><h6>You are sharing your opinions based on what you felt was a meaningful response after applying.</h6></li>
+            <li><h6>You are sharing your opinions based on what you felt was a proper follow-up after applying.</h6></li>
             <li><h6>Normally, if it's been over a month, the position you applied for may have been filled. However, some companies don't bother telling applicants.</h6></li>
             <li><h6>Companies usually get back within a couple of weeks on average. Depending on the industry, average meaningful response times can vary.</h6></li>
             <li><h6>We ask users to please be honest with their reviews.</h6></li>
@@ -38,7 +38,7 @@
     <div class="row">
       <div class="col-md-6">
         <%= f.label :responsiveness do %>
-          *Were you satisfied with their level of responsiveness?
+          *Were you satisfied with their level of responsiveness and follow-up?
         <% end %>
       </div>
       <div class="col-md-6">
@@ -84,11 +84,11 @@
      <div class="row">
       <div class="col-md-6">
         <%= f.label :experience do %>
-          Did you have less experience than the job required? 
+          What was your experience relative to the job requirement?
         <% end %>
       </div>
       <div class="col-md-6">
-        <%= f.select(:experience, options_for_select([["No, I had equal or greater experience","No, I had equal or greater experience"], ["Yes, I had little to no experience","Yes, I had little to no experience"], ["Yes, I had moderately less experience","Yes, I had moderately less experience"]], :selected => @offer.experience), :prompt => '--Select--', class:"select") %>
+        <%= f.select(:experience, options_for_select([["Equal or Greater","Equal or Greater"], ["Little to no experience","Little to no experience"], ["Moderately less experience","Moderately less experience"]], :selected => @offer.experience), :prompt => '--Select--', class:"select") %>
       </div>
     </div>
     <hr>

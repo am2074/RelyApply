@@ -2,7 +2,7 @@
  New Review | RelyApply
 <% end %>
 
-<h1 style="color:white">New Review for <%= @company.name %></h1>
+<h3 style="color:white">New Review for <%= @company.name %></h3>
 <% if user_signed_in? %>
 	<%= render 'new_review_form', review: @review %>
 <% else %>

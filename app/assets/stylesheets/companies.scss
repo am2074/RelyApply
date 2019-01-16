@@ -67,8 +67,14 @@ border-bottom: red;
 //border-color: grey !important;
 }
 
-#searchCardTitle {
+
+#searchCardTitleCompany {
   padding-left: 10px;
+  margin-top: 5px !important;
+}
+
+#searchCardTitle {
+  padding-left: 10px !important;
   margin-top: 5px !important;
 }
 
@@ -395,6 +401,7 @@ tbody tr td {
     color:white;
     text-align: center;
     padding: 10px;
+    font-weight: 700px !important;
     //margin-right: 5px;
     //width: 80px;
     //height: 60px; 
@@ -505,7 +512,7 @@ input[type="radio"] {
   }
 
 
-#responseScoreShowPage {display: none !important;}
+responseScoreShowPage {display: none !important;}
 #mobileResponsiveness {
   display: inline !important;
 }

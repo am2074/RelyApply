@@ -81,5 +81,6 @@ gem 'cookies_eu'
 gem 'bootstrap-social-rails'
 gem 'will_paginate'
 #Performance gems'
-gem 'bullet', group: :development
-gem 'rack-mini-profiler'
+#gem 'bullet', group: :development
+#gem 'rack-mini-profiler'
+gem 'sitemap_generator'

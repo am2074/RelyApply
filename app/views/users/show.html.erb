@@ -108,6 +108,13 @@
                               <p><strong>Application Type:</strong> <%= review.application_type%></p>
                             <% end %>
                           </div>
+                          <div class="col-md-6">
+                            <% if review.experience.blank? %> 
+                              <p><strong>Experience Relative to Job Requirement:</strong> n/a </p>
+                            <% else %>
+                              <p><strong>Experience Relative to Job Requirement:</strong> <%= review.experience %> </p>
+                            <% end %>
+                        </div>
                         </div>
                         <div class="row"> <!--Second row of card-->
                           <div class="col-md-6">
@@ -184,26 +191,21 @@
                           <% end %>
                         </div>
                       </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <% if offer.experience.blank? %> 
+                            <p><strong>Experience Relative to Job Requirement:</strong> n/a </p>
+                          <% else %>
+                            <p><strong>Experience Relative to Job Requirement:</strong> <%= offer.experience %> </p>
+                          <% end %>
+                        </div>
+                      </div>
                       <div class="row"> <!--second row of card-->
                         <div class="col-md-6">
                           <% if offer.address.blank? %> 
                            <p><strong>Location:</strong> n/a</p>
                          <% else %>
                           <p><strong>Location:</strong> <%= offer.address.chomp(', USA') %></p>
-                         <% end %>
-                        </div>
-                      </div>
-                      <hr>
-                      <h5><strong>Interview Details</strong></h5>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <p><strong>Did you have less experience than the job required?</strong></p>
-                        </div>
-                       <div class="col-md-6">
-                         <% if offer.experience.blank? %> 
-                           <p>n/a</p>
-                         <% else %>
-                           <p><%= offer.experience %></p>
                          <% end %>
                         </div>
                       </div>

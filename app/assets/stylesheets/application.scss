@@ -336,6 +336,7 @@ section .section-title {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
+  font-size:100%;
   src: local('Roboto Light'), local('Roboto-Light'), url(https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmSU5fCBc4EsA.woff2) format('woff2');
   unicode-range: U+1F00-1FFF;
 }
@@ -604,18 +605,43 @@ section .section-title {
 }
 }
 
-@media (min-width: 320px) and (max-width: 480px) {
-#g-recaptcha {
-transform:scale(0.77);
--webkit-transform:scale(0.77);
-transform-origin:0 0;
--webkit-transform-origin:0 0;
-}
-}
 
 @media (min-width: 320px) and (max-width: 480px){
-#rc-imageselect {
-transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;
-}
+  #rc-imageselect {
+  transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;
+  }
+  #g-recaptcha {
+  transform:scale(0.77);
+  -webkit-transform:scale(0.77);
+  transform-origin:0 0;
+  -webkit-transform-origin:0 0;
+  }
+
+  #searchCardTitleCompany {
+    font-size: 150% !important;
+    padding-left: 10px !important;
+    margin-top: 5px !important;
+  }
+
+  #companyShowHeaders{
+    font-size: 150% !important;
+  }
+  #responsivenessSearchHeaderMobile{
+    display: inline !important;
+  }
+  
+  #searchScore {
+   display: none !important;
+  }
+
+  #mobileResponsivenessScore {
+    display: inline !important;
+  }
+
 }
 
+@media only screen and (max-device-width: 480px) {
+  #responseScoreShowPage {
+    font-size: 60% !important;
+  }
+}

@@ -5,7 +5,7 @@
 <div class="container emp-profile">
   <div class="well" id="wellProfileForReviewIndex">
     <div id= "headerProfileForReviewIndex">  
-      <h1><%=@company.name%>'s</strong> Application Response Times<strong></h1>
+      <h3><%=@company.name%>'s</strong> Post-Application Reviews<strong></h3>
     </div>
   </div><!-- div class="well" id="wellProfileForReviewIndex"-->
   <p>Want to add a review? Go back to <%= link_to @company.name, company_path(@company), method: :get%>'s profile and click "Submit Review"</p>
@@ -18,7 +18,7 @@
         <div class="alert alert-info" role="alert">
           <ul>
             <li><h6>The information below is based on what users have submitted in their reviews</li>
-            <li><h6>Their opinions are based on what they felt was a meaningful response after an application or an interview</h6></li>
+            <li><h6>Their opinions are based on what they felt was a proper follow-up after an application or an interview</h6></li>
             <li><h6>If you don't hear back within a reasonable time frame relative to the other reviews, it is highly suggested you do a follow-up or assume you didn't qualify for the job.</h6></li>
           </ul>
         </div>
@@ -74,11 +74,15 @@
               ["Referral","Referral"]
               ] , @q.employment_type_eq), prompt: '--Select--'  %>
           </div>
-        </div>
-        <div class="row">
           <div class="col-sm">
             <%= f.label :Location, "Location: " %>
             <%= h text_field_tag :search, params[:search], :placeholder => '[City, State] or Zip Code'%>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm">
+           <%= f.label :experience, "Experience: " %>
+           <%= f.select :experience, options_for_select([["Equal or Greater","Equal or Greater"], ["Little to no experience","Little to no experience"], ["Moderately less experience","Moderately less experience"]], @q.experience), prompt: '--Select--' %>
           </div>
         </div>
         <br />
@@ -86,7 +90,9 @@
           <%= f.submit :class => "btn btn-primary" %>  <a href="<%=company_reviews_path%>" class="btn btn-primary" color="black">Clear filters</a>
         <div>
       <% end %>
+
     </div> <!--div class="container-fluid"-->
+
   </div><!--textleft -->
   <hr id="reviewIndexHr">
   <div>
@@ -98,7 +104,7 @@
     </div>  
   </div>
   <% @reviews.each do |review| %>
-    <div class="card border-secondary mb-3" id="reviewsIndexCard">
+    <!--div class="card border-secondary mb-3" id="reviewsIndexCard"-->
       <div class="card-header" id="reviewsIndexCardHeader">
         <h3>Response Time: <%= review.response_time %></h3>
       </div>
@@ -139,6 +145,13 @@
               <p><strong>Application Type:</strong> <%= review.application_type %></p>
             <% end %>
           </div>
+          <div class="col-md-6">
+            <% if review.experience.blank? %> 
+              <p><strong>Experience Relative to Job Requirement:</strong> n/a </p>
+            <% else %>
+              <p><strong>Experience Relative to Job Requirement:</strong> <%= review.experience %> </p>
+            <% end %>
+          </div>
         </div>
         <div class="row"> <!--second row of card-->
             <div class="col-md-6">
@@ -149,17 +162,26 @@
               <% end %>                 
             </div>
         </div>
-        <div colspan="1" class="vote-count bind-<%= review.id %>" style="text-align: center"> <!--links to likes and dislikes -->
-          <%= link_to like_review_path(review),:remote => true, method: :get, class: "vpos", id: "thumbs" do %>
-              <button class="btn btn-success">
-                <i class="fas fa-thumbs-up" style="color:white"></i>
-                <span class="vcount-<%= review.id %>" style="color:white">Helpful (<%= review.get_upvotes.size %>)</span>
-              </button>
-          <% end %>
-           
+        <% if user_signed_in? %>
+          <div colspan="1" class="vote-count bind-<%= review.id %>" style="text-align: center"> <!--links to likes and dislikes -->
+            <%= link_to like_review_path(review),:remote => true, method: :get, class: "vpos", id: "thumbs" do %>
+                <button class="btn btn-success">
+                  <i class="fas fa-thumbs-up" style="color:white"></i>
+                  <span class="vcount-<%= review.id %>" style="color:white">Helpful (<%= review.get_upvotes.size %>)</span>
+                </button>
+            <% end %>
+        <% else %>
+          <div colspan="1" style="text-align: center"> <!--links to likes and dislikes -->
+              <%= link_to new_user_session_path, data: { confirm: "Please Log In to Vote" } do %>
+                <button class="btn btn-success">
+                  <i class="fas fa-thumbs-up" style="color:white"></i>
+                  <span class="vcount-<%= review.id %>" style="color:white">Helpful (<%= review.get_upvotes.size %>)</span>
+                </button>
+            <% end %>
+        <% end %>
         </div><!--close div for to likes and dislikes -->
-      </div><!--div close card body-->
+      <!--div--><!--div close card body-->
     </div> 
-    <br />       
+    <hr>   
   <% end %>
 </div><!--div class="container emp-profile"-->
