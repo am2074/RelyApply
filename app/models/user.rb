@@ -5,12 +5,20 @@ class User < ApplicationRecord
 	devise :database_authenticatable, :registerable,
     	:recoverable, :rememberable, :validatable,:omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
 
-  has_many :reviews, dependent: :destroy
+  has_many :reviews, dependent: :destroy 
+
   has_many :offers, dependent: :destroy
   has_many :requests, dependent: :destroy
   validates :user_agreement, acceptance: { accept: 'yes' }
+  
+  def company_review(company)
+   Review.find_by(user_id: self, company_id: company, created_at: (Time.zone.now.beginning_of_quarter..Time.zone.now))
+  end
 
-
+  def company_interview_review(company)
+   Offer.find_by(user_id: self, company_id: company, created_at: (Time.zone.now.beginning_of_quarter..Time.zone.now))
+  end
+ 
   def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
@@ -43,4 +51,5 @@ class User < ApplicationRecord
       end
     end
   end  
+
 end

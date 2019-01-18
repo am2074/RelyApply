@@ -7,5 +7,5 @@ class Offer < ApplicationRecord
   after_validation :geocode, :if => :address_changed?
   scope :latest, -> { where(created_at: 60.days.ago..DateTime.now.end_of_day) }
   validates_presence_of :response_time, :responsiveness
-  validates :company_id, uniqueness: { scope: :user_id, message: "Post-Interview Review has already been submitted by you. You can still submit a Post-Application Review if you have not done so already." }
+  #validates :company_id, uniqueness: { scope: :user_id, message: "Post-Interview Review has already been submitted by you. You can still submit a Post-Application Review if you have not done so already." }
 end

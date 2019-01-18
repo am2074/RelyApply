@@ -203,3 +203,23 @@ body{
 		margin-left: 5%;
 	}
 }
+
+//FAQ 
+#faqCard {
+	height: auto;
+	margin-top: auto;
+	margin-bottom: auto;
+	width: auto;
+	background-color: #100833  !important;
+	color: white !important;
+}
+
+#faqCard a:hover{
+  color: grey !important;
+  text-decoration: underline;
+ }
+
+#faqCard a:active{
+  color: white!important;
+  text-decoration: underline;
+ }

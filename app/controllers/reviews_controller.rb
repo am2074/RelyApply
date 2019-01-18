@@ -3,7 +3,7 @@ class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy, :upvote, :downvote, :vote]
   before_action :company_friendly_params, only: [:index, :new, :create]
   before_action :authenticate_user!, except: [:index, :show]
-
+  before_action :limit_review, only: [:new, :create]
   # GET /reviews
   # GET /reviews.json
   def index
@@ -114,4 +114,12 @@ class ReviewsController < ApplicationController
     def company_friendly_params
        @company = Company.friendly.find(params[:company_id])
     end 
+
+    def limit_review
+      user_review = current_user.company_review(@company)
+
+      if user_review.present?
+        redirect_back fallback_location: root_path,  alert: "You have already submitted a post-application review to this company. You can resubmit a new review to this company every quarter of the year."
+      end
+    end
 end

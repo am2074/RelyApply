@@ -19,4 +19,5 @@ class Company < ApplicationRecord
 	def company_name=(name)
 		self.company = Company.find_by_name(name) if name.present?
 	end
+	
 end

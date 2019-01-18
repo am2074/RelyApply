@@ -43,6 +43,7 @@ Rails.application.routes.draw do
      end
     resources :requests
   end
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to:'companies#index'
   get 'about', to: 'pages#about'
@@ -51,7 +52,8 @@ Rails.application.routes.draw do
   get 'privacy', to: 'pages#privacy'
   get 'profile', to: 'users#show'
   get 'testing', to: 'pages#testing'
-  
+  get 'faq', to: 'pages#faq'
+
   match 'users/:id' => 'users#show', via: :get
 
 end

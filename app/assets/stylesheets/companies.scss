@@ -467,6 +467,72 @@ tbody tr td {
     margin-top: 25px !important;
 }
 
+//mobile responsiveness scores//
+
+.mobile-na-review-score-show {
+    background-color:map-get($theme-colors, secondary);
+    //background-color:#66CC33;
+    color:white;
+    text-align: center;
+    padding: 1px;
+    width: 75%;
+    height: 30px; 
+    line-height: 30px;
+    margin-left: 10px !important;
+}
+
+.mobile-good-review-score-show {
+    background-color:map-get($theme-colors, success);
+    //background-color:#66CC33;
+    color:white;
+    text-align: center;
+    padding: 1px;
+    width: 75%;
+    height: 30px; 
+    line-height: 30px;
+    margin-left:  10px !important;
+}
+
+.mobile-bad-review-score-show{
+    background-color:map-get($theme-colors, danger);
+    //background-color:#66CC33;
+     color:white;
+    text-align: center;
+    padding: 1px;
+    width: 75%;
+    height: 30px; 
+    line-height: 30px;
+    margin-left:  10px !important;
+}
+
+.mobile-mixed-review-score-show {
+    //background-color:map-get($theme-colors, warning);
+    background-color: orange;
+     color:white;
+    text-align: center;
+    padding: 1px;
+    width: 75%;
+    height: 30px; 
+    line-height: 30px;
+    margin-left:  10px !important;
+}
+//Iphone 5/SE mixed review score setting
+@media only screen and (max-device-width : 320px) {
+  .mobile-mixed-review-score-show{
+    //background-color:map-get($theme-colors, warning);
+    background-color: orange;
+     color:white;
+    text-align: center;
+    padding: 1px;
+    width: 75%;
+    height: 30px; 
+    line-height: 30px;
+    margin-left:  10px !important;
+    font-size: 14px !important;
+  }
+}
+
+//forms
 input[type="radio"] { 
   //select all input type = "radio"
     display: inline; 
