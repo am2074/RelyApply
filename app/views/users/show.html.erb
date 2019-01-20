@@ -31,10 +31,10 @@
            <!--Navbar header: Applying and Interview-->
            <ul class="nav nav-tabs" id="navbarCompanyShow" role="tablist">
               <li class="nav-item">
-                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Post-Application</a>
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Application Reviews</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Post-Interview</a>
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Interview Reviews</a>
               </li>
             </ul>
         </div><!--Line 30 -->
@@ -139,7 +139,7 @@
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
               <% if @users.offers.includes(:company).count. == 0 %>
                 <br/>
-                <p style="color: grey">You currently have no post-interview reviews</p>
+                <p style="color: grey">You currently have no Interview reviews</p>
               <% else %>
                 <% @users.offers.includes(:company).each do |offer| %>
                    <!-- links to edit or destory review -->
@@ -158,7 +158,7 @@
                       <h5><strong>Responsiveness</strong></h5>
                       <div class="row"><!--first row of card-->
                         <div class="col-md-6">
-                          <p><strong>Post-Interview Response Time:</strong></p>
+                          <p><strong>Interview Follow-up Response Time:</strong></p>
                         </div>
                         <div class="col-md-6">
                           <%= offer.response_time %>

@@ -2,7 +2,7 @@
  Edit Review | RelyApply
 <% end %>
 
-<h1 style="color: white">Editing Post-Application Review</h1>
+<h1 style="color: white">Editing Your Application Review</h1>
 <div>
   <% if user_signed_in? && current_user.id == @review.user_id %>
 		<%= render 'form', review: @review %>

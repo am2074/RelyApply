@@ -9,7 +9,7 @@
 
        
   
-          <!-- Omitted Profile Company Picture Section
+          <!-- Omitted Profile Company Picture Section00<>
             <div class="col-md-4">
               Company Profile: Profile Picture 
                 <div class="profile-img">
@@ -20,7 +20,7 @@
                   </div>
                 </div>
             </div>
-             -->
+            -->
       <!-- Company Profile: Name, Website, Rating --> 
    
       <div class="col-md-6">
@@ -97,17 +97,17 @@
               <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Overall</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Submit Review</a>
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Submit a Review</a>
               <div class="dropdown-menu">
-                <p><%= link_to '• Post-Application', new_company_review_path(@company), :id=>"dropdownItem" %></p>
-                <p><%= link_to '• Post-Interview', new_company_offer_path(@company), :id=>"dropdownItem" %></p>
+                <p><%= link_to '• Application Review', new_company_review_path(@company), :id=>"dropdownItem" %></p>
+                <p><%= link_to '• Interview Review', new_company_offer_path(@company), :id=>"dropdownItem" %></p>
               </div>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reviews (<%=@company.reviews.count + @company.offers.count %>)</a>
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> Show Reviews (<%=@company.reviews.count + @company.offers.count %>)</a>
               <div class="dropdown-menu">
-                <p><%= link_to '• Post-Application', company_reviews_path(@company), :id=>"dropdownItem"%></p>
-                <p><%= link_to '• Post-Interview', company_offers_path(@company), :id=>"dropdownItem"%></p>
+                <p><%= link_to '• For Applications', company_reviews_path(@company), :id=>"dropdownItem"%></p>
+                <p><%= link_to '• For Interviews', company_offers_path(@company), :id=>"dropdownItem"%></p>
               </div>
             </li>
           </ul>

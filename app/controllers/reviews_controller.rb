@@ -118,8 +118,9 @@ class ReviewsController < ApplicationController
     def limit_review
       user_review = current_user.company_review(@company)
 
-      if user_review.present?
-        redirect_back fallback_location: root_path,  alert: "You have already submitted a post-application review to this company. You can resubmit a new review to this company every quarter of the year."
+      if user_review.present? 
+        redirect_to proc { company_path(@company) }, alert: "You have already submitted a post-application review to this company. You can resubmit a new review to this company every quarter of the year."
+        #RedirectToAction("companies","show", alert: "You have already submitted a post-application review to this company. You can resubmit a new review to this company every quarter of the year."
       end
     end
 end

@@ -1,11 +1,11 @@
 <% content_for :title do %>
-  Post-Interview Response Time| RelyApply
+  Interview Reviews| RelyApply
 <% end %>
 
 <div class="container emp-profile">
   <div class="well" id="wellProfileForReviewIndex">
     <div id= "headerProfileForReviewIndex">  
-      <h1><%=@company.name%>'s</strong> Post-Interview Reviews</h1>
+      <h1><%=@company.name%>'s</strong> Interview Reviews</h1>
     </div>
   </div><!-- div class="well" id="wellProfileForReviewIndex"-->
   <p>Want to add a review? Go back to <%= link_to @company.name, company_path(@company), method: :get %>'s profile and click "Submit Review"</p>
@@ -81,7 +81,7 @@
   </div>
   <hr id="reviewIndexHr">
   <div>
-    <h2><strong>Total Post-Interview Reviews: <%= @company.offers.size %></strong></h2>
+    <h2><strong>Total Interview Reviews: <%= @company.offers.size %></strong></h2>
     <div class="text-left">
       <%= sort_link(@q, :created_at, default_order: :asc) do %>
         <strong>Sort by Date</strong>
@@ -92,7 +92,7 @@
     <!--div class="card border-secondary mb-3" id="reviewsIndexCard"-->
       <div class="card-header" id="reviewsIndexCardHeader">
         <h3>
-          Post-Interview Response Time: <%= offer.response_time %>
+          Interview Follow-up Response Time: <%= offer.response_time %>
         </h3>
       </div>
       <div class="card-body" id="cardBodyText">
