@@ -45,7 +45,7 @@
             </div>
             <%# Submit Button %>
             <div class="form-group" id=loginBttn>
-              <%= f.submit "Sign Up",class: "btn login_btn"%>
+              <%= invisible_recaptcha_tags text: 'Sign Up',class: "btn login_btn",  data: { confirm: "Is the information you provided correct?" } %>
             </div>
           <% end %>
           <hr>

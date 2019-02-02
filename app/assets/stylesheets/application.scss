@@ -20,21 +20,14 @@
 @import 'font_awesome5_webfont';
 @import "cookies_eu";
 @import "bootstrap-social";
+
 html, body {
- 
-  background: url(abstract2.jpg) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  -o-background-size: cover;
-  height: 100%;
-  width: 100%;
+  background: #3c1aa3 !important;
 }
 
 #test {
   min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
   min-height: 100vh; /* These two lines are counted as one :-)       */
-
   display: flex;
   align-items: top;
 }
@@ -49,11 +42,6 @@ body {
   margin-bottom: 20px;
 }
 
-#navbar {
-  //background: #2c485c;
-}
-
-
 #logo {
  font-size: 24px;
  font-weight: 700;
@@ -66,9 +54,6 @@ body {
   }
 }
 
-.nav-item {
-
-}
 
 //Navbarhover
 nav .navbar-nav li a{
@@ -102,16 +87,10 @@ nav .navbar-nav li a:active{
 #searchnav {
   margin-top: 10px;
 }
-//#navbarSearchBar {
-   //align-items: center;
-   //justify-content: center;
-//}
+
 #searchbarcontainer {
   height: 50px;
-  //left:500px;
-  //align-items: center;
-   //justify-content: center;
-   float: right;
+  float: right;
 }
 
 #searchicon {
@@ -204,7 +183,8 @@ section .section-title {
     text-transform: uppercase;
 }
 #footer {
-    background: #100833 !important;
+    background: #3c1aa3  !important;
+    border-top: 2px solid white;
 }
 #footer h5{
   padding-left: 10px;
@@ -257,6 +237,65 @@ section .section-title {
 #footer ul.quick-links li:hover a i {
     font-weight: 700;
 }
+
+
+@media (max-width:767px){
+  #footer h5 {
+    padding-left: 0;
+    border-left: transparent;
+    padding-bottom: 0px;
+    margin-bottom: 10px;
+}
+}
+
+
+@media (min-width: 320px) and (max-width: 480px){
+  #rc-imageselect {
+  transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;
+  }
+  #g-recaptcha {
+  transform:scale(0.77);
+  -webkit-transform:scale(0.77);
+  transform-origin:0 0;
+  -webkit-transform-origin:0 0;
+  }
+
+  #searchCardTitleCompany {
+    font-size: 150% !important;
+    padding-left: 10px !important;
+    margin-top: 5px !important;
+  }
+
+  #companyShowHeaders{
+    font-size: 150% !important;
+  }
+  #responsivenessSearchHeaderMobile{
+    display: inline !important;
+  }
+  
+  #searchScore {
+   display: none !important;
+  }
+
+  #mobileResponsivenessScore {
+    display: inline !important;
+  }
+
+}
+
+@media only screen and (max-device-width: 480px) {
+  #responseScoreShowPage {
+    font-size: 60% !important;
+  }
+}
+
+.footer {
+ position:relative;
+ bottom:0;
+ width:100%;
+ height:60px;
+}
+
 
 //Google fonts
 /* cyrillic-ext */
@@ -595,60 +634,4 @@ section .section-title {
   font-weight: 900;
   src: local('Roboto Black'), local('Roboto-Black'), url(https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmYUtfBBc4.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@media (max-width:767px){
-  #footer h5 {
-    padding-left: 0;
-    border-left: transparent;
-    padding-bottom: 0px;
-    margin-bottom: 10px;
-}
-}
-
-
-@media (min-width: 320px) and (max-width: 480px){
-  #rc-imageselect {
-  transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;
-  }
-  #g-recaptcha {
-  transform:scale(0.77);
-  -webkit-transform:scale(0.77);
-  transform-origin:0 0;
-  -webkit-transform-origin:0 0;
-  }
-
-  #searchCardTitleCompany {
-    font-size: 150% !important;
-    padding-left: 10px !important;
-    margin-top: 5px !important;
-  }
-
-  #companyShowHeaders{
-    font-size: 150% !important;
-  }
-  #responsivenessSearchHeaderMobile{
-    display: inline !important;
-  }
-  
-  #searchScore {
-   display: none !important;
-  }
-
-  #mobileResponsivenessScore {
-    display: inline !important;
-  }
-
-}
-
-@media only screen and (max-device-width: 480px) {
-  #responseScoreShowPage {
-    font-size: 60% !important;
-  }
-}
-
-.footer {
- position:relative;
- bottom:0;
- width:100%;
- height:60px;
 }

@@ -75,7 +75,7 @@
             </div>
             <br />
             <div class="form-group" style="text-align: center;">
-              <%= f.submit "Update", class: "btn btn-lg btn-primary"  %>
+              <%= invisible_recaptcha_tags text: 'Update', class: "btn btn-lg btn-primary",  data: { confirm: "Is the information you provided correct?" } %>
             </div>
           <% end %>
           <div class="card-footer" style="text-align: left;">

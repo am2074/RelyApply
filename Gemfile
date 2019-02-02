@@ -84,3 +84,4 @@ gem 'will_paginate'
 #gem 'bullet', group: :development
 #gem 'rack-mini-profiler'
 gem 'sitemap_generator'
+gem 'can_be_flagged'

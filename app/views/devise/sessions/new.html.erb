@@ -37,7 +37,7 @@
             </div>
             <%# Submit Button %>
             <div class="form-group" id=loginBttn>
-              <%= f.submit "Log in",class: "btn login_btn"%>
+              <%= invisible_recaptcha_tags text: 'Log In',class: "btn login_btn" %>
             </div>
           <% end %>
              <div class="form-group col-12" style="color:white;">

@@ -1,2 +1,2 @@
-$('.vcount-<%= @offer.id %>').html('Helpful (<%=escape_javascript @offer.get_upvotes.size.to_s %>)');
-$('.ncount-<%= @offer.id %>').html('Helpful (<%=escape_javascript @offer.get_downvotes.size.to_s %>)');
+$('.vcount-<%= @offer.id %>').html(' (<%=escape_javascript @offer.get_upvotes.size.to_s %>)');
+$('.ncount-<%= @offer.id %>').html(' (<%=escape_javascript @offer.get_downvotes.size.to_s %>)');

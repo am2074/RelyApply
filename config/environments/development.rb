@@ -49,8 +49,8 @@ Rails.application.configure do
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
-  config.assets.debug = true
-
+  config.assets.debug =  false
+  
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
@@ -64,28 +64,42 @@ config.action_mailer.perform_deliveries = true
 config.action_mailer.raise_delivery_errors = true
 config.action_mailer.default :charset => "utf-8"
 config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = true  
+config.action_mailer.perform_deliveries = true
+config.action_mailer.raise_delivery_errors = true  
 config.read_encrypted_secrets = true
 config.action_mailer.delivery_method = :smtp
 config.action_mailer.smtp_settings = {
-  address:              'smtp.gmail.com',
-  port:                 587,
-  domain:               'example.com',
-  user_name:            'almalmis1393@gmail.com',
-  password:             'enfwbflntqunaweu',
-  authentication:       'plain',
-  enable_starttls_auto: true }
+  :address              => 'smtp.zoho.com',
+  :port                 => 465,
+  :domain               => 'relyapply.com',
+  :user_name            => Hearback::Application.credentials.SUPPORT_RELYAPPLY_EMAIL,
+  :password             => Hearback::Application.credentials.SUPPORT_RELYAPPLY_EMAIL_PW,
+  :authentication       => :login,
+  :ssl                  => true,
+  :enable_starttls_auto => true
+}
+#config.action_mailer.delivery_method = :smtp
+#config.action_mailer.smtp_settings = {
+  #address:              'smtp.zoho.com',
+  #port:                 465,
+  #domain:               'zoho.com',
+  #user_name:            'support@relyapply.com',
+  #password:             'Aznforever13!zoho',
+  #authentication:       'plain',
+  #enable_starttls_auto: true }
 ENV['FACEBOOK_APP_ID'] = Hearback::Application.credentials.FACEBOOK_APP_ID;
 ENV['FACEBOOK_SECRET'] = Hearback::Application.credentials.FACEBOOK_SECRET;
 ENV['GOOGLE_SIGN_IN_CLIENT_ID'] = Hearback::Application.credentials.GOOGLE_SIGN_IN_CLIENT_ID;
 ENV['GOOGLE_SIGN_IN_SECRET'] = Hearback::Application.credentials.GOOGLE_SIGN_IN_SECRET;
 ENV['GOOGLE_SIGN_IN_SECRET'] = Hearback::Application.credentials.GOOGLE_SIGN_IN_SECRET;
-ENV['CLEARBIT'] = Hearback::Application.credentials.CLEARBIT;
+ENV['SUPPORT_RELYAPPLY_EMAIL'] = Hearback::Application.credentials.SUPPORT_RELYAPPLY_EMAIL;
+ENV['SUPPORT_RELYAPPLY_EMAIL_PW'] = Hearback::Application.credentials.SUPPORT_RELYAPPLY_EMAIL_PW;
 #config.after_initialize do
   #Bullet.enable = false
   #Bullet.alert = false
   #Bullet.bullet_logger = false
   #Bullet.console = false
 #end
+
+
 end

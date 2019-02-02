@@ -2,14 +2,14 @@ class User < ApplicationRecord
   acts_as_voter
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-	devise :database_authenticatable, :registerable,
+	devise :database_authenticatable, :registerable,  :confirmable,
     	:recoverable, :rememberable, :validatable,:omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
 
   has_many :reviews, dependent: :destroy 
-
   has_many :offers, dependent: :destroy
   has_many :requests, dependent: :destroy
   validates :user_agreement, acceptance: { accept: 'yes' }
+  has_many :flags
   
   def company_review(company)
    Review.find_by(user_id: self, company_id: company, created_at: (Time.zone.now.beginning_of_quarter..Time.zone.now))

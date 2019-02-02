@@ -12,7 +12,6 @@
   <meta name="turbolinks-cache-control" content="no-cache">
   <!-- Page Title -->
   <!-- Google Fonts -->
-    <!--link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900" rel="stylesheet"-->
   <!-- Simple line Icon -->
    <!--link rel="stylesheet" href="css/simple-line-icons.css"-->
   <!-- Themify Icon -->
@@ -24,10 +23,9 @@
     <!--link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"-->
   <%= csrf_meta_tags %>
   <%= favicon_link_tag 'favicon/favicon.ico' %>
-  <%=stylesheet_link_tag    'application','users','companies', 'pages', media: 'all', 'data-turbolinks-track': true %>
-  <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{Hearback::Application.credentials.GOOGLE_API_BROWSER_KEY}" %>
-  <%= javascript_include_tag 'application'%>
-  <script src='https://www.google.com/recaptcha/api.js'></script>
+  <%= javascript_include_tag 'application', :defer => "defer"  %>
+  <%= stylesheet_link_tag    'application','users','companies', 'pages', media: 'all', 'data-turbolinks-track': true %>
+  <script type="text/javascript" src="https://cdnjs.com/libraries/helium-css"></script>
 </head>
 <body>
   <!-- NavBar -->
@@ -43,12 +41,18 @@
         <% end %>
        </div>
     <% end %>
+
     <div class="container" data-trigger="focus">
       <%= yield %>
     </div>
   </div>
 <%= render 'shared/footer'%>
 </body>
+<%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{Hearback::Application.credentials.GOOGLE_API_BROWSER_KEY}", async: true %>
+ 
+
+
+<script src="https://www.google.com/recaptcha/api.js" async=""></script>
 </html>
 
 

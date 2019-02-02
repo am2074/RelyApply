@@ -9,10 +9,11 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.paths << Rails.root.join('node_modules')
 Rails.application.config.assets.precompile += %w( home.scss )
 Rails.application.config.assets.precompile += %w( bootstrap.min.js )
-Rails.application.config.assets.precompile += %w( users.css )
-Rails.application.config.assets.precompile += %w( companies.css )
-Rails.application.config.assets.precompile += %w( pages.css )
-Rails.application.config.assets.precompile += %w( reviews.css )
+Rails.application.config.assets.precompile += %w( users.scss )
+Rails.application.config.assets.precompile += %w( companies.scss )
+Rails.application.config.assets.precompile += %w( pages.scss )
+Rails.application.config.assets.precompile += %w( reviews.scss )
+Rails.application.config.assets.precompile += %w( application.scss )
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.

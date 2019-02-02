@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :requests
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :pages
+  resources :flags
   resources :reviews do
    member do
     get "like", to: "reviews#upvote"
@@ -24,8 +25,12 @@ Rails.application.routes.draw do
   
   resources :reviews do 
     resources :companies
+    resources :flags
   end 
   
+  resources :flags do
+    resources :reviews
+  end
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' } 
  
   

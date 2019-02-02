@@ -1,14 +1,10 @@
 //@import "bootstrap-sprockets";
 @import "bootstrap";
 
-
-
 //Home Page
 #test{
   min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
   min-height: 100vh; /* These two lines are counted as one :-)       */
-
-
   margin-top: 20px; 
 }
 
@@ -17,8 +13,6 @@
   #test{
   min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
   min-height: 100vh; /* These two lines are counted as one :-)       */
-
-
   margin-top: 100px; 
 }
   #searchItem {
@@ -467,6 +461,10 @@ tbody tr td {
     margin-top: 25px !important;
 }
 
+
+#notEnoughReviews {
+  font-size: 14px !important;
+}
 //mobile responsiveness scores//
 
 .mobile-na-review-score-show {

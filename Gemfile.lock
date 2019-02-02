@@ -59,10 +59,9 @@ GEM
     bootstrap-social-rails (4.12.0)
       railties (>= 3.1)
     builder (3.2.3)
-    bullet (5.9.0)
-      activesupport (>= 3.0.0)
-      uniform_notifier (~> 1.11)
     byebug (10.0.2)
+    can_be_flagged (0.0.3)
+      activerecord (>= 3.1.0)
     cancancan (2.3.0)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -182,8 +181,6 @@ GEM
     public_suffix (3.0.3)
     puma (3.11.4)
     rack (2.0.5)
-    rack-mini-profiler (1.0.1)
-      rack (>= 1.2.0)
     rack-pjax (1.0.0)
       nokogiri (~> 1.5)
       rack (>= 1.1)
@@ -285,7 +282,6 @@ GEM
       thread_safe (~> 0.1)
     uglifier (4.1.10)
       execjs (>= 0.3.0, < 3)
-    uniform_notifier (1.12.1)
     validate_url (1.0.2)
       activemodel (>= 3.0.0)
       addressable
@@ -313,8 +309,8 @@ DEPENDENCIES
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.1.3)
   bootstrap-social-rails
-  bullet
   byebug
+  can_be_flagged
   cancancan (~> 2.0)
   coffee-rails (~> 4.2)
   cookies_eu
@@ -333,7 +329,6 @@ DEPENDENCIES
   pg (>= 0.18, < 2.0)
   popper_js (~> 1.14.3)
   puma (~> 3.11)
-  rack-mini-profiler
   rails (~> 5.2.0)
   rails_admin (~> 1.3)
   ransack

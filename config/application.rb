@@ -24,8 +24,9 @@ module Hearback
     config.load_defaults 5.2
 
     #these two were originally set to true
-    config.assets.initialize_on_precompile = false
-    config.assets.enabled = false
+    config.assets.initialize_on_precompile = true
+    config.assets.enabled = true
+    config.middleware.insert_after ActionDispatch::Static, Rack::Deflater
     
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

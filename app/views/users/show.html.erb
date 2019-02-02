@@ -127,7 +127,10 @@
                         </div>
                         <hr>
                         <div style="text-align: center"> <!--Links to likes and dislikes -->
-                          <%= review.get_upvotes.size %> thought this review was helpful
+                          <%= review.get_upvotes.size %> Liked this review
+                        </div>
+                        <div style="text-align: center"> <!--Links to likes and dislikes -->
+                          <%= review.get_downvotes.size %> Disliked this review
                         </div><!-- div for to likes and dislikes -->
                       </div><!--Line 65: div close card body-->
                     </div> <!-- Line 63: div class="card border-secondary mb-3" id="reviewsIndexCard"-->
@@ -211,8 +214,11 @@
                       </div>
                       <hr>
                       <div style="text-align: center"> <!--links to likes and dislikes -->
-                        <%= offer.get_upvotes.size %> thought this review was helpful
-                      </div><!--close div for to likes and dislikes -->
+                        <%= offer.get_upvotes.size %> Liked this review
+                      </div>
+                       <div style="text-align: center"> <!--Links to likes and dislikes -->
+                          <%= offer.get_downvotes.size %> Disliked this review
+                        </div><!-- div for to likes and dislikes -->
                     </div><!--Line 119: div close card body -->
                   </div> <!--Line 115: div class="card border-secondary mb-3" id="reviewsIndexCard" -->
                   <br />       
