@@ -202,6 +202,13 @@
                             <p><strong>Experience Relative to Job Requirement:</strong> <%= offer.experience %> </p>
                           <% end %>
                         </div>
+                        <div class="col-md-6">
+                          <% if offer.offer.blank? %> 
+                            <p><strong>Did you get an offer? </strong> n/a </p>
+                          <% else %>
+                            <p><strong>Did you get an offer? </strong> <%= offer.offer %> </p>
+                          <% end %>
+                        </div>
                       </div>
                       <div class="row"> <!--second row of card-->
                         <div class="col-md-6">

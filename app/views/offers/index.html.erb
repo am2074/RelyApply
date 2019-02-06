@@ -1,5 +1,5 @@
 <% content_for :title do %>
-  Interview Reviews| RelyApply
+  Interview Reviews | RelyApply
 <% end %>
 
 <div class="container emp-profile">
@@ -72,6 +72,12 @@
             <%= h text_field_tag :search, params[:search], :placeholder => '[City, State] or Zip Code'%>
           </div>
         </div>
+          <div class="row">
+          <div class="col-sm">
+           <%= f.label :offer, "Job Offered: " %>
+           <%= f.select :offer, options_for_select([["Yes","Yes"], ["No","No"]], @q.offer), prompt: '--Select--' %>
+          </div>
+        </div>
         <br />
         <div colspan="1" align="center">
           <%= f.submit :class => "btn btn-primary" %>  <a href="<%=company_offers_path%>" class="btn btn-primary" color="black">Clear filters</a>
@@ -136,11 +142,18 @@
           </div>
         </div>
         <div class="row">
-        <div class="col-md-6">
+          <div class="col-md-6">
             <% if offer.experience.blank? %> 
               <p><strong>Experience Relative to Job Requirement:</strong> n/a </p>
             <% else %>
               <p><strong>Experience Relative to Job Requirement:</strong> <%= offer.experience %> </p>
+            <% end %>
+          </div>
+           <div class="col-md-6">
+            <% if offer.offer.blank? %> 
+              <p><strong>Did you get an offer? </strong> n/a </p>
+            <% else %>
+              <p><strong>Did you get an offer? </strong> <%= offer.offer %> </p>
             <% end %>
           </div>
         </div>

@@ -106,7 +106,7 @@ class OffersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def offer_params
-      params.require(:offer).permit(:offer_id, :user_id, :company_id, :position, :employment_type, :responsiveness, :experience, :response_time, :address, :latitude, :longitude, :street_number, :locality, :route, :administrative_area_level_1, :country, :postal_code)
+      params.require(:offer).permit(:offer_id, :user_id, :company_id, :position, :employment_type, :responsiveness, :experience, :response_time, :address, :latitude, :longitude, :street_number, :locality, :route, :offer, :administrative_area_level_1, :country, :postal_code)
     end
 
     def company_friendly_params

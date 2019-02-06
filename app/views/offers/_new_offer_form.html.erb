@@ -94,6 +94,16 @@
         <%= f.select(:experience, options_for_select([["Equal or Greater","Equal or Greater"], ["Little to no experience","Little to no experience"], ["Moderately less experience","Moderately less experience"]], :selected => @offer.experience), :prompt => '--Select--', class:"select") %>
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.label :offer do %>
+          Did you recieve a job offer?
+        <% end %>
+      </div>
+      <div class="col-md-6">
+        <%= f.select(:offer, options_for_select([["Yes","Yes"], ["No","No"]], :selected => @offer.offer), :prompt => '--Select--', class:"select") %>
+      </div>
+    </div>
     <hr id="reviewIndexHr">
     <div class="row">
       <div class="col-md-6">

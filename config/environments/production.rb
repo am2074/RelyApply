@@ -66,7 +66,24 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "hearback_#{Rails.env}"
 
   config.action_mailer.perform_caching = false
-
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default :charset => "utf-8"
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true  
+  config.read_encrypted_secrets = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address              => 'smtp.zoho.com',
+    :port                 => 465,
+    :domain               => 'relyapply.com',
+    :user_name            => Hearback::Application.credentials.SUPPORT_RELYAPPLY_EMAIL,
+    :password             => Hearback::Application.credentials.SUPPORT_RELYAPPLY_EMAIL_PW,
+    :authentication       => :login,
+    :ssl                  => true,
+    :enable_starttls_auto => true
+  }
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
@@ -90,7 +107,13 @@ Rails.application.configure do
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
-
+  ENV['FACEBOOK_APP_ID'] = Hearback::Application.credentials.FACEBOOK_APP_ID;
+  ENV['FACEBOOK_SECRET'] = Hearback::Application.credentials.FACEBOOK_SECRET;
+  ENV['GOOGLE_SIGN_IN_CLIENT_ID'] = Hearback::Application.credentials.GOOGLE_SIGN_IN_CLIENT_ID;
+  ENV['GOOGLE_SIGN_IN_SECRET'] = Hearback::Application.credentials.GOOGLE_SIGN_IN_SECRET;
+  ENV['GOOGLE_SIGN_IN_SECRET'] = Hearback::Application.credentials.GOOGLE_SIGN_IN_SECRET;
+  ENV['SUPPORT_RELYAPPLY_EMAIL'] = Hearback::Application.credentials.SUPPORT_RELYAPPLY_EMAIL;
+  ENV['SUPPORT_RELYAPPLY_EMAIL_PW'] = Hearback::Application.credentials.SUPPORT_RELYAPPLY_EMAIL_PW;
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end
