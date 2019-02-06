@@ -27,7 +27,7 @@ module Hearback
     config.assets.initialize_on_precompile = true
     config.assets.enabled = true
     config.middleware.insert_after ActionDispatch::Static, Rack::Deflater
-    
+    config.secret_key_base = ENV["secret_key_base_production"]
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
