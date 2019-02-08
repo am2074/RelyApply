@@ -114,6 +114,8 @@ Rails.application.configure do
   ENV['GOOGLE_SIGN_IN_SECRET'] = Hearback::Application.credentials.GOOGLE_SIGN_IN_SECRET;
   ENV['SUPPORT_RELYAPPLY_EMAIL'] = Hearback::Application.credentials.SUPPORT_RELYAPPLY_EMAIL;
   ENV['SUPPORT_RELYAPPLY_EMAIL_PW'] = Hearback::Application.credentials.SUPPORT_RELYAPPLY_EMAIL_PW;
+  ENV['RECAPTCHA_SITE_KEY'] = Hearback::Application.credentials.RECAPTCHA_SITE_KEY
+  ENV['RECAPTCHA_SECRET_KEY'] = Hearback::Application.credentials.RECAPTCHA_SECRET_KEY
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end
