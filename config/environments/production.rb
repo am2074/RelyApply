@@ -107,8 +107,7 @@ Rails.application.configure do
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
-  ENV['FACEBOOK_APP_ID'] = Hearback::Application.credentials.FACEBOOK_APP_ID;
-  ENV['FACEBOOK_SECRET'] = Hearback::Application.credentials.FACEBOOK_SECRET;
+  
   ENV['GOOGLE_SIGN_IN_CLIENT_ID'] = Hearback::Application.credentials.GOOGLE_SIGN_IN_CLIENT_ID;
   ENV['GOOGLE_SIGN_IN_SECRET'] = Hearback::Application.credentials.GOOGLE_SIGN_IN_SECRET;
   ENV['GOOGLE_SIGN_IN_SECRET'] = Hearback::Application.credentials.GOOGLE_SIGN_IN_SECRET;
