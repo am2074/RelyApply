@@ -81,7 +81,7 @@ Rails.application.configure do
     :user_name            => ENV['SUPPORT_RELYAPPLY_EMAIL'],
     :password             => ENV['SUPPORT_RELYAPPLY_EMAIL_PW'],
     :authentication       => :login,
-    :ssl                  => tr530 5.5.1 Authentication Required.ue,
+    :ssl                  => true,
     :enable_starttls_auto => true
   }
   # Ignore bad email addresses and do not raise email delivery errors.
