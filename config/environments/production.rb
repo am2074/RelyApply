@@ -69,7 +69,7 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default :charset => "utf-8"
-  config.action_mailer.default_url_options = { :host => 'https://relyapply.herokuapp.com/' }
+  config.action_mailer.default_url_options = { :host => 'https://relyapply.herokuapp.com' }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true  
   config.read_encrypted_secrets = true
@@ -78,10 +78,10 @@ Rails.application.configure do
     :address              => 'smtp.zoho.com',
     :port                 => 465,
     :domain               => 'relyapply.com',
-    :user_name            => Hearback::Application.credentials.SUPPORT_RELYAPPLY_EMAIL,
-    :password             => Hearback::Application.credentials.SUPPORT_RELYAPPLY_EMAIL_PW,
+    :user_name            => ENV['SUPPORT_RELYAPPLY_EMAIL'],
+    :password             => ENV['SUPPORT_RELYAPPLY_EMAIL_PW'],
     :authentication       => :login,
-    :ssl                  => true,
+    :ssl                  => tr530 5.5.1 Authentication Required.ue,
     :enable_starttls_auto => true
   }
   # Ignore bad email addresses and do not raise email delivery errors.
@@ -107,15 +107,7 @@ Rails.application.configure do
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
-  ENV['FACEBOOK_APP_ID'] = Hearback::Application.credentials.FACEBOOK_APP_ID;
-  ENV['FACEBOOK_SECRET'] = Hearback::Application.credentials.FACEBOOK_SECRET;
-  ENV['GOOGLE_SIGN_IN_CLIENT_ID'] = Hearback::Application.credentials.GOOGLE_SIGN_IN_CLIENT_ID;
-  ENV['GOOGLE_SIGN_IN_SECRET'] = Hearback::Application.credentials.GOOGLE_SIGN_IN_SECRET;
-  ENV['GOOGLE_SIGN_IN_SECRET'] = Hearback::Application.credentials.GOOGLE_SIGN_IN_SECRET;
-  ENV['SUPPORT_RELYAPPLY_EMAIL'] = Hearback::Application.credentials.SUPPORT_RELYAPPLY_EMAIL;
-  ENV['SUPPORT_RELYAPPLY_EMAIL_PW'] = Hearback::Application.credentials.SUPPORT_RELYAPPLY_EMAIL_PW;
-  ENV['RECAPTCHA_SITE_KEY'] = Hearback::Application.credentials.RECAPTCHA_SITE_KEY
-  ENV['RECAPTCHA_SECRET_KEY'] = Hearback::Application.credentials.RECAPTCHA_SECRET_KEY
+
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end
