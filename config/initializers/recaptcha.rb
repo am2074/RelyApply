@@ -1,4 +1,4 @@
 Recaptcha.configure do |config|
-	config.site_key  = Hearback::Application.credentials.RECAPTCHA_SITE_KEY
-	config.secret_key = Hearback::Application.credentials.RECAPTCHA_SECRET_KEY
+	config.site_key  =  ENV['RECAPTCHA_SITE_KEY']
+	config.secret_key = ENV['RECAPTCHA_SECRET_KEY']
 end
