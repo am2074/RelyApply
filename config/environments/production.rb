@@ -107,12 +107,6 @@ Rails.application.configure do
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
-  
-  ENV['GOOGLE_SIGN_IN_CLIENT_ID'] = Hearback::Application.credentials.GOOGLE_SIGN_IN_CLIENT_ID;
-  ENV['GOOGLE_SIGN_IN_SECRET'] = Hearback::Application.credentials.GOOGLE_SIGN_IN_SECRET;
-  ENV['GOOGLE_SIGN_IN_SECRET'] = Hearback::Application.credentials.GOOGLE_SIGN_IN_SECRET;
-  ENV['SUPPORT_RELYAPPLY_EMAIL'] = Hearback::Application.credentials.SUPPORT_RELYAPPLY_EMAIL;
-  ENV['SUPPORT_RELYAPPLY_EMAIL_PW'] = Hearback::Application.credentials.SUPPORT_RELYAPPLY_EMAIL_PW;
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
