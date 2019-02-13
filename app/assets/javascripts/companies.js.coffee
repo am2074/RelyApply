@@ -2,6 +2,3 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$(document).on 'turbolinks:load', ->
-	$("[data-behavior='autocomplete']").autocomplete
-		source: $("[data-behavior='autocomplete']").data('autocomplete-source')
