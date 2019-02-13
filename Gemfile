@@ -74,7 +74,7 @@ gem 'popper_js', '~> 1.14.3'
 gem 'font_awesome5_rails'
 gem "recaptcha", require: "recaptcha/rails"
 gem 'omniauth-facebook'
-gem 'omniauth-google-oauth2'
+gem 'omniauth-google-oauth2', , '~> 1.3.1'
 gem 'omniauth-linkedin-oauth2'
 gem "validate_url"
 gem 'cookies_eu'
