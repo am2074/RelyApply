@@ -54,7 +54,7 @@
   </div>
 <%= render 'shared/footer'%>
 </body>
-<%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{Hearback::Application.credentials.GOOGLE_API_BROWSER_KEY}", async: true %>
+<%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_BROWSER_KEY']}", async: true %>
  <script src="https://www.google.com/recaptcha/api.js" async=""></script>
 </html>
 
