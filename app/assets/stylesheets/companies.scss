@@ -10,17 +10,17 @@
 
 //Media Query for Mobile Devices
 @media (min-width: 481px) and (max-width: 767px) {
-  #test{
-  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
-  min-height: 100vh; /* These two lines are counted as one :-)       */
-  margin-top: 100px; 
-}
-  #searchItem {
-  border-style: solid !important;
-  border: white;
-  border-width: 0.5px;
-}
+  #test {
+    min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+    min-height: 100vh; /* These two lines are counted as one :-)       */
+    margin-top: 100px; 
+  }
 
+  #searchItem {
+    border-style: solid !important;
+    border: white;
+    border-width: 0.5px;
+  }
 }
 
 //Media Query for Iphone X
@@ -657,3 +657,19 @@ responseScoreShowPage {display: none !important;}
 .pagniation-wrapper {
     text-align: center;
   }
+
+//ad medai queries
+@media screen and (max-width: 600px) { 
+ .jobscanDesktop {
+    display: none !important;
+  }
+  .jobscanMobile {
+    display: block !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .jobscanDesktop {
+    display: none !important;
+  }
+}

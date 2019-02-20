@@ -1,7 +1,15 @@
 <% content_for :title do %>
  Search | RelyApply
 <% end %>
-
+<div style="text-align: center" class="jobscanDesktop">
+  <a href="http://www.tkqlhce.com/click-8991516-12933358" target="_top">
+  <img src="http://www.tqlkg.com/image-8991516-12933358" width="704" height="87" alt="jobscan-interview-chances" border="0"/></a>
+</div> 
+<div style="text-align: center; display: none;" class="jobscanMobile">
+  <a href="http://www.anrdoezrs.net/click-8991516-12933357" target="_top">
+  <img src="http://www.awltovhc.com/image-8991516-12933357" width="304" height="104" alt="get-hired-faster-jobscan" border="0"/></a>
+</div> 
+<br>
 <div class="col-12">
   <%= form_tag(search_companies_path, method: :get, enforce_utf8: false) do %>
     <div class="input-group input-group-lg">
@@ -21,14 +29,17 @@
     <p style="color:white"><I>Can't Find It?</I> <%= link_to 'Submit a Company', new_company_path %> </P>
   </div>
   <div class="page_info" style="color:white; display:inline">
-        <small><%= page_entries_info @companies%></small>
+    <small><%= page_entries_info @companies%></small>
   </div>
   <hr>
+  <% if @companies.size == 0 %>
+  <% else %>
   <div class="container">
     <div class="float-right" style="color:white;" id="responsivenessOnMobile">
-        <p class="float-right" style="color:white;">Reponsiveness</p>
+      <p class="float-right" style="color:white;">Reponsiveness</p>
     </div>
   </div>
+  <% end %>
   <% @companies.each do |company| %>    
     <div>   
       <div class="card" id="cardSearchPage">
