@@ -65,6 +65,11 @@
             <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
             <% end -%>
           </div>
+          <div class="d-flex justify-content-center">
+            <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+              <%= link_to 'Resend confirmation email?', new_user_confirmation_path %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
