@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.5.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.0'
+gem 'rails', '>= 5.2.2'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
@@ -56,9 +56,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise', '~> 4.4', '>= 4.4.1'
 gem 'simple_form'
 gem 'record_tag_helper', '~> 1.0'
-
 gem 'acts_as_votable', '~> 0.11.1'
-#gem 'bootstrap', '~> 4.1.3'
 gem 'webpacker', '~> 3.0'
 gem 'jquery-rails'
 gem 'ransack'
@@ -68,7 +66,7 @@ gem "figaro"
 gem 'rails_admin', '~> 1.3'
 gem 'cancancan', '~> 2.0'
 gem 'mail_form'
-gem 'bootstrap', '~> 4.1.3'
+gem "bootstrap", ">= 4.3.1"
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'popper_js', '~> 1.14.3'
 gem 'font_awesome5_rails'
@@ -84,5 +82,5 @@ gem 'will_paginate'
 #gem 'bullet', group: :development
 #gem 'rack-mini-profiler'
 gem 'sitemap_generator'
-gem 'can_be_flagged'
 gem 'newrelic_rpm'
+gem "activestorage", ">= 5.2.1.1"
