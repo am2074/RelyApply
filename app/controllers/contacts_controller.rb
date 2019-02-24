@@ -9,7 +9,7 @@ class ContactsController < ApplicationController
     def create
       @contact = Contact.new(params[:contact])
       @contact.request = request
-        if @contact.delivered && verify_recaptcha(model: @contact)        
+        if @contact.delivered
           redirect_to root_path, notice: "Thank you for contacting us. We'll get back to you as soon as possible."
         else
           flash.now[:error] = 'Cannot send message.'
