@@ -82,7 +82,7 @@ Rails.application.configure do
     :password             => ENV['SUPPORT_RELYAPPLY_EMAIL_PW'],
     :authentication       => :login,
     :ssl                  => true,
-    :enable_starttls_auto => true
+    :enable_starttls_auto => false
   }
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
