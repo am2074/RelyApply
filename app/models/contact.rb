@@ -1,5 +1,6 @@
 class Contact < MailForm::Base
-	
+  include ActiveModel::Model
+  attr_accessor :first_name, :last_name, :email, :message
 	attribute  :first_name, 	 :validate => true
 	attribute  :last_name, 		 :validate => true
 	attribute  :email,	 :validate => /\A([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})\z/i
