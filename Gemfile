@@ -59,7 +59,7 @@ gem 'record_tag_helper', '~> 1.0'
 gem 'acts_as_votable', '~> 0.11.1'
 gem 'webpacker', '~> 3.0'
 gem 'jquery-rails'
-gem 'ransack'
+gem 'ransack', '~> 2.1.1'
 gem 'friendly_id', '~> 5.2.0'
 gem "geocoder"
 gem "figaro"
