@@ -666,6 +666,9 @@ responseScoreShowPage {display: none !important;}
   .jobscanMobile {
     display: block !important;
   }
+  #profileJobscanlink {
+    display: none !important;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {

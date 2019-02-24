@@ -1,10 +1,9 @@
 <% content_for :title do %>
   <%= @company.name %> | Rely Apply
 <% end %>
-
 <div class="container emp-profile">
+
   <form method="post">
-       <small style="float: right;"><%= link_to 'Edit', new_company_request_path(@company) %></small>
     <div class="row">
           <!-- Omitted Profile Company Picture Section00<>
             <div class="col-md-4">
@@ -28,11 +27,9 @@
                <%= @company.name %> 
           <% end %> 
           </h2>
-          
           <h6>
             <%= link_to @company.website, "#{@company.website}" %>
           </h6>
-          <br />
         </div>
       </div><!-- Line 21 -->
       <div  class= "col-md-6">
@@ -249,6 +246,9 @@
                   </div><!--alert-alert-info-->
               </div>
             </div><!-- Line 182 -->
+              <br />
+              <br />
+              <a style="text-align: right;"> <%= link_to 'Profile Information Incorrect?', new_company_request_path(@company)%> </a>
           </div><!-- Line 109 -->
         </div><!-- Line 108 -->
       </div><!-- Line 83 -->

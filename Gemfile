@@ -84,3 +84,4 @@ gem 'will_paginate'
 gem 'sitemap_generator'
 gem 'newrelic_rpm'
 gem "activestorage", ">= 5.2.1.1"
+gem 'google_sign_in'

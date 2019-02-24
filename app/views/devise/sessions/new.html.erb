@@ -40,15 +40,15 @@
               <%= invisible_recaptcha_tags text: 'Log In',class: "btn login_btn" %>
             </div>
           <% end %>
-             <div class="form-group col-12" style="color:white;">
+          <div class="form-group col-12" style="color:white;">
             <hr>
-            </div>
-           <%# Google %>
-           <%= link_to user_google_oauth2_omniauth_authorize_path, class: "btn btn-block btn-social btn-google" do %>
-            <span><i class="fab fa-google"></i></i></span> Sign in with Google
-           <% end %>
+          </div>
+      <%# Google %>
+        <%= link_to user_google_oauth2_omniauth_authorize_path, class: "btn btn-block btn-social btn-reddit", id: "googleSignIn" do %>
+          <span><%= image_tag('google_logo.png', alt: 'Google', id: 'google_logo') %></span> Sign in with Google
+        <% end %>
         <%# Facebook %>
-        <%= link_to user_facebook_omniauth_authorize_path, class: "btn btn-block btn-social btn-facebook" do %>
+        <%= link_to user_facebook_omniauth_authorize_path, class: "btn btn-block btn-social btn-facebook", id: "fbSignIn" do %>
           <span><i class="fab fa-facebook-square"></i></span>  Sign in with Facebook
         <% end %>
         </div>
