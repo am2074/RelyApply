@@ -75,9 +75,9 @@ Rails.application.configure do
   config.read_encrypted_secrets = true
   config.action_mailer.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
-  :user_name => ENV['SENDGRID_USERNAME'],
-  :password => ENV['SENDGRID_PW'],
-  :domain => 'relyapply.com',
+  :user_name => ENV["SENDGRID_USERNAME"],
+  :password => ENV["SENDGRID_PASSWORD"],
+  :domain => 'heroku.com',
   :address => 'smtp.sendgrid.net',
   :port => 587,
   :authentication => :plain,
