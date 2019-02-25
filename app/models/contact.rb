@@ -7,7 +7,7 @@ class Contact < MailForm::Base
 		{
 			:subject => "Contact Form",
 			:to => "support@relyapply.com",
-			:from => %("#{name}" <#{email}>)
+			:from => %(<#{email}>)
 		}
 	end		
 end
