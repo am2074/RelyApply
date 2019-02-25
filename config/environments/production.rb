@@ -86,12 +86,13 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     :address              => 'smtp.zoho.com',
     :port                 => 465,
-    :domain               => 'zoho.com',
+    :domain               => 'relyapply.com',
     :user_name            => ENV['SUPPORT_RELYAPPLY_EMAIL'],
     :password             => ENV['SUPPORT_RELYAPPLY_EMAIL_PW'],
     :authentication       => :login,
-    :ssl                  => true,
-    :enable_starttls_auto => false
+    :ssl                  =>  true, 
+    :tls                  =>  true, 
+    :enable_starttls_auto =>  true
   }
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
