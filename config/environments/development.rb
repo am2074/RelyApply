@@ -76,6 +76,8 @@ config.action_mailer.smtp_settings = {
   user_name:            ENV['SUPPORT_RELYAPPLY_EMAIL'],
   password:             ENV['SUPPORT_RELYAPPLY_EMAIL_PW'],
   authentication:       'plain',
+  :ssl                  =>  true, 
+  :tls                  =>  true, 
   enable_starttls_auto: true 
 }
 ENV['FACEBOOK_APP_ID'] = Hearback::Application.credentials.FACEBOOK_APP_ID;
