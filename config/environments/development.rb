@@ -68,25 +68,16 @@ config.action_mailer.perform_deliveries = true
 config.action_mailer.raise_delivery_errors = true  
 config.read_encrypted_secrets = true
 config.action_mailer.delivery_method = :smtp
+config.action_mailer.delivery_method = :smtp
 config.action_mailer.smtp_settings = {
-  :address              => 'smtp.zoho.com',
-  :port                 => 465,
-  :domain               => 'relyapply.com',
-  :user_name            => Hearback::Application.credentials.SUPPORT_RELYAPPLY_EMAIL,
-  :password             => Hearback::Application.credentials.SUPPORT_RELYAPPLY_EMAIL_PW,
-  :authentication       => :login,
-  :ssl                  => true,
-  :enable_starttls_auto => true
+  address:              'smtp.zoho.com',
+  port:                 465,
+  domain:               'zoho.com',
+  user_name:            ENV['SUPPORT_RELYAPPLY_EMAIL'],
+  password:             ENV['SUPPORT_RELYAPPLY_EMAIL_PW'],
+  authentication:       'plain',
+  enable_starttls_auto: true 
 }
-#config.action_mailer.delivery_method = :smtp
-#config.action_mailer.smtp_settings = {
-  #address:              'smtp.zoho.com',
-  #port:                 465,
-  #domain:               'zoho.com',
-  #user_name:            'support@relyapply.com',
-  #password:             'Aznforever13!zoho',
-  #authentication:       'plain',
-  #enable_starttls_auto: true }
 ENV['FACEBOOK_APP_ID'] = Hearback::Application.credentials.FACEBOOK_APP_ID;
 ENV['FACEBOOK_SECRET'] = Hearback::Application.credentials.FACEBOOK_SECRET;
 ENV['GOOGLE_SIGN_IN_CLIENT_ID'] = Hearback::Application.credentials.GOOGLE_SIGN_IN_CLIENT_ID;
