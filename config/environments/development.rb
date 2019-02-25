@@ -72,12 +72,11 @@ config.action_mailer.delivery_method = :smtp
 config.action_mailer.smtp_settings = {
   address:              'smtp.zoho.com',
   port:                 465,
-  domain:               'zoho.com',
-  user_name:            ENV['SUPPORT_RELYAPPLY_EMAIL'],
-  password:             ENV['SUPPORT_RELYAPPLY_EMAIL_PW'],
-  authentication:       'plain',
+  domain:               'relyapply.com',
+  user_name:            ENV['SUPPORT_RELYAPPLY'],
+  password:             ENV['SUPPORT_RELYAPPLY_PW'],
+  :authentication       => :login,
   :ssl                  =>  true, 
-  :tls                  =>  true, 
   enable_starttls_auto: true 
 }
 ENV['FACEBOOK_APP_ID'] = Hearback::Application.credentials.FACEBOOK_APP_ID;
@@ -85,8 +84,8 @@ ENV['FACEBOOK_SECRET'] = Hearback::Application.credentials.FACEBOOK_SECRET;
 ENV['GOOGLE_SIGN_IN_CLIENT_ID'] = Hearback::Application.credentials.GOOGLE_SIGN_IN_CLIENT_ID;
 ENV['GOOGLE_SIGN_IN_SECRET'] = Hearback::Application.credentials.GOOGLE_SIGN_IN_SECRET;
 ENV['GOOGLE_SIGN_IN_SECRET'] = Hearback::Application.credentials.GOOGLE_SIGN_IN_SECRET;
-ENV['SUPPORT_RELYAPPLY_EMAIL'] = Hearback::Application.credentials.SUPPORT_RELYAPPLY_EMAIL;
-ENV['SUPPORT_RELYAPPLY_EMAIL_PW'] = Hearback::Application.credentials.SUPPORT_RELYAPPLY_EMAIL_PW;
+ENV['SUPPORT_RELYAPPLY'] = Hearback::Application.credentials.SUPPORT_RELYAPPLY_EMAIL;
+ENV['SUPPORT_RELYAPPLY_PW'] = Hearback::Application.credentials.SUPPORT_RELYAPPLY_EMAIL_PW;
 #config.after_initialize do
   #Bullet.enable = false
   #Bullet.alert = false
