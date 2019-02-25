@@ -86,3 +86,4 @@ gem 'newrelic_rpm'
 gem "activestorage", ">= 5.2.1.1"
 gem 'google_sign_in'
 gem 'mailgun-ruby', '~>1.1.6'
+gem 'rails_12factor', group: :production
