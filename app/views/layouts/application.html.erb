@@ -24,22 +24,20 @@
   <%= csrf_meta_tags %>
   <%= favicon_link_tag 'favicon/favicon.ico' %>
   <%= javascript_include_tag 'application', :defer => "defer"  %>
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
      (adsbygoogle = window.adsbygoogle || []).push({
           google_ad_client: "ca-pub-1204279719751899",
           enable_page_level_ads: true
      });
-</script>
-  <%= stylesheet_link_tag    'application','users','companies', 'pages', media: 'all', 'data-turbolinks-track': true %>
+  </script>
+  <%= stylesheet_link_tag 'application','users','companies', 'pages', media: 'all', 'data-turbolinks-track': true %>
 </head>
 <body>
   <!-- NavBar -->
   <%= render 'shared/navbar'%>
   <%= render 'cookies_eu/consent_banner' %>
-  <!--Flash -->
-  <div class="container-fluid" data-trigger="focus">
-    <% flash.each do |name, msg| %>
+   <% flash.each do |name, msg| %>
       <div id="flash">
         <%= content_tag(:div, class: "alert alert-info", id:"flash-Messages" ) do %>
           <%=msg%>
@@ -47,10 +45,15 @@
         <% end %>
        </div>
     <% end %>
-    <div class="container" data-trigger="focus">
+    
+  <% if mobile_device == ("mobile" or "tablet") %>
+   <%= yield %>
+  <% else %>
+   <div class="container" data-trigger="focus" id="yieldContainer">
       <%= yield %>
     </div>
-  </div>
+  <% end %>
+  <!--/div-->
 <%= render 'shared/footer'%>
 </body>
 <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_BROWSER_KEY']}", async: true %>

@@ -158,7 +158,8 @@ margin-left: 4px;
 } 
 
 #reviewsIndexCardHeader{
-background-color:#2c485c;
+  background-color: #6c2be2;
+  //background-color:#2c485c;
 } 
 
 
@@ -206,4 +207,15 @@ background-color:#2c485c;
     color: #fff !important;
     background-color: #3b5998 !important;
     border-color: rgba(0,0,0,0.2) !important;
+}
+
+
+
+//Profile mobile view
+
+.full-width {
+    padding: -20px;
+    position: absolute !important;
+    width: 100% !important;
+    left: 0 !important;
 }

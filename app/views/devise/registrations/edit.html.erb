@@ -1,5 +1,5 @@
 <% content_for :title do %>
- Edit Profile | RelyApply
+ Settings | RelyApply
 <% end %>
 
 <% if current_user.provider =="facebook" %>
@@ -7,7 +7,7 @@
     <div class="d-flex justify-content-center h-100" >
       <div class="card" id="editAccountCard">
         <div class="card-header">
-          <h2 style="color:white;"><strong>Edit Account</strong></h2>
+          <h2 style="color:white;"><strong>Settings</strong></h2>
           <small style="color:white">You agree to our <%= link_to 'Terms of Use', tos_path %> and <%= link_to 'Privacy Policy', privacy_path %> when you edit your account settings</small>
         </div>
         <div class="card-body" style="text-align: left;">

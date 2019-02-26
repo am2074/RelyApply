@@ -1,0 +1,231 @@
+<% if user_signed_in? %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2 style="color:white;">My Profile</h2>
+      </div>
+    </div>
+  <div class="container emp-profile">
+    <form method="post">
+      <h4 style="color: #333333;"><%= @users.email %></h4>
+      <p id="profileJobscanlink">Want to get hired faster? Optimize your résumé and LinkedIn profile with <a href="https://www.tkqlhce.com/click-8991516-12933374" target="_top">Jobscan</a><p>
+      <%= link_to edit_user_registration_path do %>
+       <h6>Settings <span><i class="fas fa-cog"></i></span></h6>
+      <% end %>
+      <br />
+      <h3 style="color: #333333;">My Reviews</h3>
+      <div class="row">
+        <div class="col-md-12">
+           <!--Navbar header: Applying and Interview-->
+           <ul class="nav nav-tabs" id="navbarCompanyShow" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Application Reviews</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Interview Reviews</a>
+              </li>
+            </ul>
+        </div><!--Line 30 -->
+      </div><!--Line 29 -->
+      <div class="row">
+        <div class="col-md-12">
+          <!-- Tab Content -->
+          <div class="tab-content profile-tab" id="myTabContent">
+            <!--Post application User Reviews -->
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+              <br />
+              <% if @users.reviews.includes(:company).count. == 0 %>
+                <br/>
+                <p style="color: grey; text-align: center; margin-top: 20px;">You currently have no Application Reviews</p>
+              <% else %>
+                <% @users.reviews.includes(:company).each do |review| %>
+                  <!-- Links to edit or destory review -->
+                  <div colspan="1" align="right">
+                    <% if review.user == current_user %>
+                      <%= link_to 'Edit', edit_review_path(review)%>
+                      |
+                      <%= link_to 'Delete', review, method: :delete, data: { confirm: 'Are you sure?' }%>
+                    <% end %><!-- Line 56 -->
+                  </div>
+                    <div class="card border-secondary mb-3" id="reviewsIndexCard">
+                      <div class="card-header" id="reviewsIndexCardHeader" >
+                        <h4 style="color: white"><%= review.company.name %></h4>     
+                      </div>
+                      <div class="card-body" id="userReviewCardBody">
+                        <p style="color:grey !important" ><I>Review Submitted: <%= review.created_at.strftime("%B %d, %Y") %></I></p>
+                        <h5><strong>Responsiveness</strong></h5>
+                        <div class="row"><!--First row of card-->
+                          <div class="col-md-6">
+                            <p><strong>Response Time:</strong></p>
+                          </div>
+                          <div class="col-md-6">
+                            <%= review.response_time %>
+                          </div>
+                        </div>
+                        <br>
+                        <div class="row"><!--first row of card-->
+                          <div class="col-md-6" >
+                            <p><strong>Were you satisfied with their level of responsiveness?</strong></p>
+                          </div>
+                          <div class="col-md-6" >
+                            <%= review.responsiveness %>
+                          </div>
+                        </div>
+                        <hr>
+                        <h5><strong>Application Details</strong></h5>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <% if review.position.blank? %> 
+                              <p><strong>Position:</strong> n/a </p>
+                            <% else %>
+                              <p><strong>Position:</strong> <%= review.position %> </p>
+                            <% end %>
+                          </div>
+                          <div class="col-md-6">
+                            <% if review.employment_type.blank? %> 
+                              <p><strong>Employment Type:</strong> n/a</p>
+                            <% else %>
+                              <p><strong>Employment Type:</strong> <%= review.employment_type %></p>
+                            <% end %>
+                          </div>
+                        </div>
+                        <div class="row"> <!--econd row of card-->
+                          <div class="col-md-6">
+                            <% if review.application_type.blank? %> 
+                             <p><strong>Application Type:</strong> n/a</p>
+                            <% else %>
+                              <p><strong>Application Type:</strong> <%= review.application_type%></p>
+                            <% end %>
+                          </div>
+                          <div class="col-md-6">
+                            <% if review.experience.blank? %> 
+                              <p><strong>Experience Relative to Job Requirement:</strong> n/a </p>
+                            <% else %>
+                              <p><strong>Experience Relative to Job Requirement:</strong> <%= review.experience %> </p>
+                            <% end %>
+                        </div>
+                        </div>
+                        <div class="row"> <!--Second row of card-->
+                          <div class="col-md-6">
+                            <% if review.address.blank? %> 
+                              <p><strong>Location:</strong> n/a</p>
+                            <% else %>
+                              <p><strong>Location:</strong> <%= review.address.chomp(', USA') %></p>
+                            <% end %>                 
+                          </div>
+                        </div>
+                        <hr>
+                        <div style="text-align: center"> <!--Links to likes and dislikes -->
+                          <%= review.get_upvotes.size %> Liked this review
+                        </div>
+                        <div style="text-align: center"> <!--Links to likes and dislikes -->
+                          <%= review.get_downvotes.size %> Disliked this review
+                        </div><!-- div for to likes and dislikes -->
+                      </div><!--Line 65: div close card body-->
+                    </div> <!-- Line 63: div class="card border-secondary mb-3" id="reviewsIndexCard"-->
+                  <br />       
+                <% end %><!-- Line 53 -->
+              <% end %><!--Line 49: if @users.reviews.includes(:company).count. == 0 -->
+            </div> <!-- Line 47: div for users each do -->
+            <!-- Post Interview User Reviews --> 
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+              <% if @users.offers.includes(:company).count. == 0 %>
+                <br/>
+                <p style="color: grey; text-align: center; margin-top: 20px;">You currently have no Interview Reviews</p>
+              <% else %>
+                <% @users.offers.includes(:company).each do |offer| %>
+                  <br />
+                   <!-- links to edit or destory review -->
+                  <div colspan="1" align="right">
+                    <% if offer.user == current_user %>
+                      <%= link_to 'Edit', edit_offer_path(offer) %>
+                      |
+                      <%= link_to 'Delete', offer, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    <% end %>
+                  </div>
+                  <div class="card border-secondary mb-3" id="reviewsIndexCard">
+                    <div class="card-header" id="reviewsIndexCardHeader">
+                     <h4 style="color:white;"><%= offer.company.name %></h4>
+                    </div>
+                  <div class="card-body" id="userReviewCardBody">
+                      <p style="color:grey !important" ><I>Review Submitted: <%= offer.created_at.strftime("%B %d, %Y") %></I></p>
+                      <h5><strong>Responsiveness</strong></h5>
+                      <div class="row"><!--first row of card-->
+                        <div class="col-md-6">
+                          <p><strong>Interview Follow-up Response Time:</strong></p>
+                        </div>
+                        <div class="col-md-6">
+                          <%= offer.response_time %>
+                        </div>
+                      </div>
+                      <br>
+                      <div class="row">
+                        <div class="col-md-6">
+                         <p><strong>Were you satisfied with their level of responsiveness?</strong></p>
+                        </div>
+                        <div class="col-md-6">
+                          <%= offer.responsiveness %>
+                        </div>
+                      </div>
+                      <hr>
+                      <h5><strong>Application Details</strong></h5>
+                      <div class="row"> <!--second row of card-->
+                        <div class="col-md-6">
+                          <% if offer.position.blank? %> 
+                            <p><strong>Position:</strong> n/a</p>
+                          <% else %>
+                            <p><strong>Position:</strong> <%= offer.position %></p>
+                          <% end %>
+                        </div>
+                        <div class="col-md-6">
+                          <% if offer.employment_type.blank? %> 
+                            <p><strong>Employment Type:</strong> n/a </p>
+                          <% else %>
+                            <p><strong>Employment Type:</strong> <%= offer.employment_type %></p>
+                          <% end %>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <% if offer.experience.blank? %> 
+                            <p><strong>Experience Relative to Job Requirement:</strong> n/a </p>
+                          <% else %>
+                            <p><strong>Experience Relative to Job Requirement:</strong> <%= offer.experience %> </p>
+                          <% end %>
+                        </div>
+                        <div class="col-md-6">
+                          <% if offer.offer.blank? %> 
+                            <p><strong>Did you get an offer? </strong> n/a </p>
+                          <% else %>
+                            <p><strong>Did you get an offer? </strong> <%= offer.offer %> </p>
+                          <% end %>
+                        </div>
+                      </div>
+                      <div class="row"> <!--second row of card-->
+                        <div class="col-md-6">
+                          <% if offer.address.blank? %> 
+                           <p><strong>Location:</strong> n/a</p>
+                         <% else %>
+                          <p><strong>Location:</strong> <%= offer.address.chomp(', USA') %></p>
+                         <% end %>
+                        </div>
+                      </div>
+                      <hr>
+                      <div style="text-align: center"> <!--links to likes and dislikes -->
+                        <%= offer.get_upvotes.size %> Liked This Review
+                      </div>
+                       <div style="text-align: center"> <!--Links to likes and dislikes -->
+                          <%= offer.get_downvotes.size %> Disliked This Review
+                        </div><!-- div for to likes and dislikes -->
+                    </div><!--Line 119: div close card body -->
+                  </div> <!--Line 115: div class="card border-secondary mb-3" id="reviewsIndexCard" -->
+                  <br />       
+                <% end %><!--Line 108: users.offers.includes(company).each do -->
+              <% end %><!--Line 104: users.offers.includes(company).each do -->
+            </div><!--div for profile tab-->
+          </div><!--Line 103: div for myTabContent: Post-Interview Reviews-->
+        </div><!-- line 37: div for col m12  -->
+      </div><!--Line 36: div for row line -->
+    </form><!-- Line 27 -->          
+  </div><!-- div class="container emp-profile"-->
+<% end %><!-- Line 5 -->

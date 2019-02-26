@@ -104,8 +104,8 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> Show Reviews (<%=@company.reviews.count + @company.offers.count %>)</a>
               <div class="dropdown-menu">
-                <p><%= link_to '• For Applications', company_reviews_path(@company), :id=>"dropdownItem"%></p>
-                <p><%= link_to '• For Interviews', company_offers_path(@company), :id=>"dropdownItem"%></p>
+                <p><%= link_to '• Applications', company_reviews_path(@company), :id=>"dropdownItem"%></p>
+                <p><%= link_to '• Interviews', company_offers_path(@company), :id=>"dropdownItem"%></p>
               </div>
             </li>
           </ul>
