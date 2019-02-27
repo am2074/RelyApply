@@ -530,6 +530,28 @@ tbody tr td {
   }
 }
 
+//Button for Editing Company Profile
+#editCompanyProfileButtonMobile {
+  width: 100%; 
+}
+
+//Overall Banner
+#overallBanner {
+  width: 100%;
+  background-color: grey;
+  color: white;
+  text-align: center;
+}
+
+//Table Card
+#tableCard {
+  border-width: 1px;
+  border-color: grey !important;
+  background-color: white !important;
+  padding: auto;
+  width: 100%;
+}
+
 //forms
 input[type="radio"] { 
   //select all input type = "radio"
@@ -658,7 +680,7 @@ responseScoreShowPage {display: none !important;}
     text-align: center;
   }
 
-//ad medai queries
+//ad media queries
 @media screen and (max-width: 600px) { 
  .jobscanDesktop {
     display: none !important;
@@ -675,4 +697,9 @@ responseScoreShowPage {display: none !important;}
   .jobscanDesktop {
     display: none !important;
   }
+}
+
+//Desktop vs Mobile Layouts
+#companyFormInsideMainDiv {
+  padding: 10px;
 }
