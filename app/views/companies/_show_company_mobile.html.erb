@@ -92,10 +92,12 @@
             </button>
           </p>
           <div class="collapse" id="collapseExample">
-              <ul> 
+            <div style="text-align: center;">
+              <ul style = "display: inline-block; text-align: left;"> 
                 <li><%= link_to 'Application Review', new_company_review_path(@company), :id=>"dropdownItem" %></li>
                 <li><%= link_to 'Interview Review', new_company_offer_path(@company), :id=>"dropdownItem" %></li>
               </ul>
+            </div>
           </div>
           <p>
             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#seeReviews" aria-expanded="false" aria-controls="seeReviews" style="width: 100%;">
@@ -103,10 +105,12 @@
             </button>
           </p>
           <div class="collapse" id="seeReviews">
-              <ul> 
-                <li><%= link_to 'Applications', company_reviews_path(@company), :id=>"dropdownItem"%></li>
-                <li><%= link_to 'Interviews', company_offers_path(@company), :id=>"dropdownItem"%></li>
+            <div style="text-align: center;">
+              <ul style = "display: inline-block; text-align: left;"> 
+                <li><%= link_to 'For Applications', company_reviews_path(@company), :id=>"dropdownItem"%></li>
+                <li><%= link_to 'For Interviews', company_offers_path(@company), :id=>"dropdownItem"%></li>
               </ul>
+            </div>
           </div>
           <br />
 
