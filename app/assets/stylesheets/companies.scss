@@ -15,13 +15,11 @@
     min-height: 100vh; /* These two lines are counted as one :-)       */
     margin-top: 100px; 
   }
-
-  #searchItem {
-    border-style: solid !important;
-    border: white;
-    border-width: 0.5px;
-  }
 }
+
+ #searchItem {
+    border-top: 1px solid grey;
+  }
 
 //Media Query for Iphone X
 @media only screen 
@@ -56,8 +54,8 @@ height: auto !important;
 margin-top: auto !important;
 margin-bottom: 10px !important;
 width: 100% !important;
-background-color: rgba(0,0,0,0.5) !important;
-border-bottom: red;
+//background-color: rgba(0,0,0,0.5) !important;
+//border-bottom: red;
 //border-color: grey !important;
 }
 
@@ -73,7 +71,12 @@ border-bottom: red;
 }
 
 #searchContainer {
-  background-color: rgba(0,0,0,0.9) !important;
+  background-color: white !important;
+  border-radius: 10px;
+}
+#searchContainerMobile {
+  background-color: white !important;
+  border-radius: 0px;
 }
 #searchtable {
   font-size: 16px;
@@ -82,7 +85,7 @@ border-bottom: red;
 @media (min-width: 320px) and (max-width: 480px) {
   #searchItem {
   border-style: solid !important;
-  border: white;
+  border: grey;
   border-width: 0.5px;
   }
 }
@@ -433,6 +436,7 @@ tbody tr td {
     height: 70px; 
     //line-height: 30px;*/
     margin-top: 25px !important;
+    border-radius: 10px;
 }
 
 .bad-review-score-show{
@@ -602,7 +606,14 @@ input[type="radio"] {
   #responsivenessOnMobile { display: none !important;
   }
 
-
+#responsivenessOnMobile {
+   font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size:100%;
+  src: local('Roboto Light'), local('Roboto-Light'), url(https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmSU5fCBc4EsA.woff2) format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
 responseScoreShowPage {display: none !important;}
 #mobileResponsiveness {
   display: inline !important;
@@ -681,7 +692,7 @@ responseScoreShowPage {display: none !important;}
   position: absolute;
   width: 1px;
 }
-.pagniation-wrapper {
+.pagination-wrapper {
     text-align: center;
   }
 
@@ -708,3 +719,50 @@ responseScoreShowPage {display: none !important;}
 #companyFormInsideMainDiv {
   padding: 10px;
 }
+
+.digg_pagination {
+  background: white;
+  cursor: default;
+  /* self-clearing method: */ }
+  .digg_pagination a, .digg_pagination span, .digg_pagination em {
+    padding: 0.2em 0.5em;
+    display: block;
+    float: left;
+    margin-right: 1px; }
+  .digg_pagination .disabled {
+    color: #999999;
+    border: 1px solid #dddddd; }
+  .digg_pagination .current {
+    font-style: normal;
+    font-weight: bold;
+    background: #2e6ab1;
+    color: white;
+    border: 1px solid #2e6ab1; }
+  .digg_pagination a {
+    text-decoration: none;
+    color: #105cb6;
+    border: 1px solid #9aafe5; }
+    .digg_pagination a:hover, .digg_pagination a:focus {
+      color: #000033;
+      border-color: #000033; }
+  .digg_pagination .page_info {
+    background: #2e6ab1;
+    color: white;
+    padding: 0.4em 0.6em;
+    width: 22em;
+    margin-bottom: 0.3em;
+    text-align: center; }
+    .digg_pagination .page_info b {
+      color: #000033;
+      background: #6aa6ed;
+      padding: 0.1em 0.25em; }
+  .digg_pagination:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html .digg_pagination {
+    height: 1%; }
+  *:first-child + html .digg_pagination {
+    overflow: hidden; }
