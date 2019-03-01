@@ -91,7 +91,7 @@
         <% end %>
       </div>
       <div class="col-md-6">
-        <%= f.select(:experience, options_for_select([["Equal or Greater","Equal or Greater"], ["Little to no experience","Little to no experience"], ["Moderately less experience","Moderately less experience"]], :selected => @offer.experience), :prompt => '--Select--', class:"select") %>
+        <%= f.select(:experience, options_for_select([["Equal or Greater","Equal or Greater"],["Moderately less experience","Moderately less experience"], ["Little to no experience","Little to no experience"]], :selected => @offer.experience), :prompt => '--Select--', class:"select") %>
       </div>
     </div>
     <div class="row">
@@ -180,7 +180,6 @@
     </div>
     <br />
     <div align="center">
-      <%= f.submit 'Submit' %>
       <%= invisible_recaptcha_tags text: 'Submit',class: "btn btn-primary",  data: { confirm: "Is the information you provided correct?" } %>
     </div>
   <% end %>

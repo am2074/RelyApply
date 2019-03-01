@@ -21,7 +21,7 @@
 	</div>
   <hr id="reviewIndexHr">
   <%= search_form_for @q, url: company_reviews_path(params[:company_id]) do |f| %> 
-	<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch">
+	<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch" style="width: 100%;">
    Filter & Search
   </button>
 	<div class="collapse" id="collapseSearch">
@@ -68,7 +68,7 @@
         </div>
         <div class="col-sm">
           <%= f.label :experience, "Experience: " %>
-          <%= f.select :experience, options_for_select([["Equal or Greater","Equal or Greater"], ["Little to no experience","Little to no experience"], ["Moderately less experience","Moderately less experience"]], @q.experience), prompt: '--Select--' %>
+          <%= f.select :experience, options_for_select([["Equal or Greater","Equal or Greater"], ["Moderately less experience","Moderately less experience"], ["Little to no experience","Little to no experience"]], @q.experience), prompt: '--Select--' %>
         </div>
       </div>
       <div class="row">

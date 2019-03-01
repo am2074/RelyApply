@@ -79,7 +79,7 @@
         <div class="row">
           <div class="col-sm">
            <%= f.label :experience, "Experience: " %>
-           <%= f.select :experience, options_for_select([["Equal or Greater","Equal or Greater"], ["Little to no experience","Little to no experience"], ["Moderately less experience","Moderately less experience"]], @q.experience), prompt: '--Select--' %>
+           <%= f.select :experience, options_for_select([["Equal or Greater","Equal or Greater"], ["Moderately less experience","Moderately less experience"], ["Little to no experience","Little to no experience"]], @q.experience), prompt: '--Select--' %>
           </div>
         </div>
         <br />
@@ -87,9 +87,7 @@
           <%= f.submit :class => "btn btn-primary" %>  <a href="<%=company_reviews_path%>" class="btn btn-primary" color="black">Clear filters</a>
         <div>
       <% end %>
-
     </div> <!--div class="container-fluid"-->
-
   </div><!--textleft -->
   <hr id="reviewIndexHr">
   <div>

@@ -100,7 +100,7 @@
         <% end %>
       </div>
       <div class="col-md-6">
-        <%= f.select(:experience, options_for_select([["Equal or Greater","Equal or Greater"], ["Little to no experience","Little to no experience"], ["Moderately less experience","Moderately less experience"]], :selected => @review.experience), :prompt => '--Select--', class:"select") %>
+        <%= f.select(:experience, options_for_select([["Equal or Greater","Equal or Greater"],["Moderately less experience","Moderately less experience"], ["Little to no experience","Little to no experience"]], :selected => @review.experience), :prompt => '--Select--', class:"select") %>
       </div>
     </div>
     <hr>
