@@ -2,8 +2,11 @@
  Search | RelyApply
 <% end %>
 
-<%= render 'search_desktop'%>
-
+<% if mobile_device == ("mobile" or "tablet") %>
+  <%= render 'search_mobile'%>
+<% else %>
+  <%= render 'search_desktop'%>
+<% end %>
 
 
 
