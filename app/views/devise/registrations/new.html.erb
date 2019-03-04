@@ -51,11 +51,11 @@
           <hr>
          <%# Google %>
         <%= link_to user_google_oauth2_omniauth_authorize_path, class: "btn btn-block btn-social btn-reddit", id: "googleSignIn" do %>
-          <span><%= image_tag('google_logo.png', alt: 'Google', id: 'google_logo') %></span> Sign in with Google
+          <span><%= image_tag('google_logo.png', alt: 'Google', id: 'google_logo') %></span><strong>Sign up with Google</strong>
         <% end %>
         <%# Facebook %>
         <%= link_to user_facebook_omniauth_authorize_path, class: "btn btn-block btn-social btn-facebook", id: "fbSignIn" do %>
-          <span><i class="fab fa-facebook-square"></i></span>  Sign in with Facebook
+          <span><i class="fab fa-facebook-square"></i></span>  Sign up with Facebook
         <% end %>
         </div>
         <div class="card-footer">

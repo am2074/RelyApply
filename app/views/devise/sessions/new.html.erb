@@ -41,11 +41,11 @@
             </div>
           <% end %>
           <div class="form-group col-12" style="color:white;">
-            <hr>
           </div>
       <%# Google %>
+      <p style="color: white;">Signed up with Google or Facebook?</p>
         <%= link_to user_google_oauth2_omniauth_authorize_path, class: "btn btn-block btn-social btn-reddit", id: "googleSignIn" do %>
-          <span><%= image_tag('google_logo.png', alt: 'Google', id: 'google_logo') %></span> Sign in with Google
+          <span><%= image_tag('google_logo.png', alt: 'Google', id: 'google_logo') %></span><strong>Sign in with Google</strong>
         <% end %>
         <%# Facebook %>
         <%= link_to user_facebook_omniauth_authorize_path, class: "btn btn-block btn-social btn-facebook", id: "fbSignIn" do %>

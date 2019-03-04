@@ -44,35 +44,35 @@
              N/A
             </span>  
             <br>
-          <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) >= 60) and ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) >= 60) and ((company.reviews.size == 3 or company.offers.size == 3) or (company.reviews.size + company.offers.size >=  3)) %>
+          <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) >= 60) and ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) >= 60) and ((company.reviews.size == 5 or company.offers.size == 5) or (company.reviews.size + company.offers.size >=  5)) %>
             <span class="good-review-score-show" id="responseScoreShowPage" style="border-radius: 50% !important;">
               <i class="fas fa-thumbs-up" style="color:white"></i>
             </span>
-          <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) < 60) and ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) < 60) and ((company.reviews.size == 3 or company.offers.size == 3) or (company.reviews.size + company.offers.size >=  3)) %>
+          <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) < 60) and ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) < 60) and ((company.reviews.size == 5 or company.offers.size == 5) or (company.reviews.size + company.offers.size >=  5)) %>
             <span class="bad-review-score-show" id="responseScoreShowPage" style="border-radius: 50% !important;">
               <i class="fas fa-thumbs-down"></i>
             </span>
-          <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) >= 60) and ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) < 60) and ((company.reviews.size == 3 or company.offers.size == 3) or (company.reviews.size + company.offers.size >=  3)) %>
+          <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) >= 60) and ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) < 60) and ((company.reviews.size == 5 or company.offers.size == 5) or (company.reviews.size + company.offers.size >=  5)) %>
             <span class="mixed-review-score-show" id="responseScoreShowPage">
               Mixed
             </span>
-          <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) < 60) and ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) >= 60) and ((company.reviews.size == 3 or company.offers.size == 3) or (company.reviews.size + company.offers.size >=  3)) %>
+          <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) < 60) and ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) >= 60) and ((company.reviews.size == 5 or company.offers.size == 5) or (company.reviews.size + company.offers.size >=  5)) %>
             <span class="mixed-review-score-show" id="responseScoreShowPage">
               Mixed
             </span>
-          <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) < 60) and (company.offers.size == 0 and company.reviews.size == 3) %>
+          <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) < 60) and (company.offers.size == 0 and company.reviews.size == 5) %>
             <span class="bad-review-score-show" id="responseScoreShowPage" style="border-radius: 50% !important;">
               <i class="fas fa-thumbs-down"></i>
             </span>
-          <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) > 60) and (company.offers.size == 0 and company.reviews.size == 3) %>
+          <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) > 60) and (company.offers.size == 0 and company.reviews.size == 5) %>
             <span class="good-review-score-show" id="responseScoreShowPage" style="border-radius: 50% !important;">
               <i class="fas fa-thumbs-up"></i>
             </span>
-          <% elsif ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) < 60) and (company.reviews.size == 0 and company.offers.size == 3) %>
+          <% elsif ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) < 60) and (company.reviews.size == 0 and company.offers.size == 5) %>
             <span class="bad-review-score-show" id="responseScoreShowPage" style="border-radius: 50% !important;">
                <i class="fas fa-thumbs-down"></i>
             </span>
-          <% elsif ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) > 60) and (company.reviews.size == 0 and company.offers.size == 3) %>
+          <% elsif ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) > 60) and (company.reviews.size == 0 and company.offers.size == 5) %>
             <span class="good-review-score-show" id="responseScoreShowPage" style="border-radius: 50% !important;" >
               <i class="fas fa-thumbs-up"></i>
             </span>
@@ -94,35 +94,35 @@
              <p class="mobile-na-review-score-show" style="border-radius: 10px !important;">
               Responsiveness: N/A
               </p>
-            <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) >= 60) and ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) >= 60) and ((company.reviews.size == 3 or company.offers.size == 3) or (company.reviews.size + company.offers.size >=  3)) %>
+            <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) >= 60) and ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) >= 60) and ((company.reviews.size == 5 or company.offers.size == 5) or (company.reviews.size + company.offers.size >=  5)) %>
               <p class="mobile-good-review-score-show" style="color:white" id="searchCardTitle">
                 Responsiveness: <i class="fas fa-thumbs-up" style="color:white"></i>
               </p>
-            <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) < 60) and ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) < 60) and ((company.reviews.size == 3 or company.offers.size == 3) or (company.reviews.size + company.offers.size >=  3)) %>
+            <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) < 60) and ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) < 60) and ((company.reviews.size == 5 or company.offers.size == 5) or (company.reviews.size + company.offers.size >=  5)) %>
               <p class="mobile-bad-review-score-show" style="color:white" id="searchCardTitle">
                 Responsiveness: <i class="fas fa-thumbs-down" style="color:white"></i>
               </p>
-            <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) >= 60) and ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) < 60) and ((company.reviews.size == 3 or company.offers.size == 3) or (company.reviews.size + company.offers.size >=  3)) %>
+            <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) >= 60) and ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) < 60) and ((company.reviews.size == 5 or company.offers.size == 5) or (company.reviews.size + company.offers.size >=  5)) %>
              <p class="mobile-mixed-review-score-show" style="color:white" id="searchCardTitle">
                Responsiveness: Mixed
               </p>
-            <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) < 60) and ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) >= 60) and ((company.reviews.size == 3 or company.offers.size == 3) or (company.reviews.size + company.offers.size >=  3)) %>
+            <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) < 60) and ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) >= 60) and ((company.reviews.size == 5 or company.offers.size == 5) or (company.reviews.size + company.offers.size >=  5)) %>
                <p class="mobile-mixed-review-score-show" style="color:white" id="searchCardTitle">
                 Responsiveness: Mixed
               </p>
-            <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) < 60) and (company.offers.size == 0 and company.reviews.size == 3) %>
+            <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) < 60) and (company.offers.size == 0 and company.reviews.size == 5) %>
              <p class="mobile-bad-review-score-show" style="color:white" id="searchCardTitle">
                Responsiveness: <i class="fas fa-thumbs-down" style="color:white"></i>
               </p>
-            <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) > 60) and (company.offers.size == 0 and company.reviews.size == 3) %>
+            <% elsif ((Float(company.reviews.where(responsiveness: "Yes").size)/(company.reviews.size) * 100) > 60) and (company.offers.size == 0 and company.reviews.size == 5) %>
               <p class="mobile-good-review-score-show" style="color:white" id="searchCardTitle">
                 Responsiveness: <i class="fas fa-thumbs-up" style="color:white"></i>
               </p>
-            <% elsif ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) < 60) and (company.reviews.size == 0 and company.offers.size == 3) %>
+            <% elsif ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) < 60) and (company.reviews.size == 0 and company.offers.size == 5) %>
              <p class="mobile-bad-review-score-show" style="color:white" id="searchCardTitle">
                Responsiveness: <i class="fas fa-thumbs-down" style="color:white"></i>
               </p>
-            <% elsif ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) > 60) and (company.reviews.size == 0 and company.offers.size == 3) %>
+            <% elsif ((Float(company.offers.where(responsiveness: "Yes").size)/(company.offers.size) * 100) > 60) and (company.reviews.size == 0 and company.offers.size == 5) %>
               <p class="mobile-good-review-score-show" style="color:white" id="searchCardTitle">
                Responsiveness: <i class="fas fa-thumbs-up" style="color:white"></i>
               </p>
@@ -151,7 +151,6 @@
   </div>
 </div><!-- Line 5 -->
 <br>
-
 <script>
   // executes when HTML-Document is loaded and DOM is ready
   $(document).ready(function() {
