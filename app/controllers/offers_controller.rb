@@ -67,7 +67,7 @@ class OffersController < ApplicationController
   def destroy
     @offer.destroy
     respond_to do |format|
-      format.html { redirect_back fallback_location: root_path, notice: 'Reivew was successfully destroyed.' }
+      format.html { redirect_back fallback_location: root_path, notice: 'Review was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -117,7 +117,7 @@ class OffersController < ApplicationController
       user_offer_review = current_user.company_interview_review(@company)
 
       if user_offer_review.present?
-        redirect_back fallback_location: root_path,  alert: "You have already submitted a post-interview review to this company. You can resubmit a new review to this company every quarter of the year."
+        redirect_back fallback_location: root_path,  alert: "You have already submitted a post-interview review to this company. You can resubmit a new review to this company every quarter of the year." unless current_user.admin?
       end
     end
 end
