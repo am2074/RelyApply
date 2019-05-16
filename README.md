@@ -1,25 +1,8 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+RelyApply
 
-Things you may want to cover:
 
-* Ruby version
+RelyApply is a cool tool where job hunters can share with each other how long it took to hear back from job applications and interviews. 
 
-* System dependencies
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# hearback
